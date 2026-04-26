@@ -30,16 +30,16 @@ function MapStage() {
         <circle r="3" class="pin" />
       </g>
       <g transform="translate(980 130)">
-        <circle r="14" fill="#DA0000" opacity=".25" />
-        <circle r="9" fill="#DA0000" />
-        <circle r="3" fill="#fff" />
+        <circle r="14" class="dest-ring" />
+        <circle r="9" class="dest-dot" />
+        <circle r="3" class="dest-center" />
       </g>
       <g transform="translate(680 270)">
         <circle r="22" class="live-pulse" />
         <circle r="10" fill="#0E1117" />
         <circle r="7" class="live-dot" />
       </g>
-      <g style="font-family:Inter,sans-serif;font-size:11px;fill:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;font-weight:600">
+      <g style="font-family:var(--font-body);font-size:11px;fill:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;font-weight:600">
         <text x="120" y="624" text-anchor="middle">Lisbon</text>
         <text x="480" y="364" text-anchor="middle">Coimbra</text>
         <text x="990" y="118" text-anchor="start">Douro Valley</text>
