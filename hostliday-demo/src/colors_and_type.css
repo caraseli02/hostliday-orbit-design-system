@@ -84,6 +84,8 @@
   --bg-surface-alt:   var(--neutral-50);
   --bg-sunken:        var(--neutral-150);
   --bg-inverse:       var(--neutral-1000);
+  --surface-explore:  #F5F0E8;
+  --surface-navigate: #0E1117;
 
   --fg-1:             var(--neutral-1000);   /* primary text */
   --fg-2:             var(--neutral-700);    /* secondary text */
