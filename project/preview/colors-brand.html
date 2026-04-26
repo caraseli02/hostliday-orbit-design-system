@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  .sw{aspect-ratio:1.6/1;border-radius:8px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 10px;font-family:var(--font-mono);font-size:11px;color:#fff;border:1px solid rgba(0,0,0,.04)}
+  .sw .name{font-weight:600;font-family:var(--font-body);font-size:11px;letter-spacing:.04em;text-transform:uppercase;opacity:.85}
+  .sw .hex{font-family:var(--font-mono);font-size:11px;opacity:.95}
+  .grad{grid-column:span 5;aspect-ratio:auto;height:64px;background:var(--hostliday-gradient-120);color:#fff}
+  .grad .name{font-weight:700}
+  .light{color:#0E0E0E}
+</style></head>
+<body><div class="card">
+  <div class="swatches">
+    <div class="sw grad">
+      <div class="name">Hostliday Gradient · 120°</div>
+      <div class="hex">#DA0000 → #810000</div>
+    </div>
+    <div class="sw" style="background:#DA0000"><div class="name">Bright</div><div class="hex">#DA0000</div></div>
+    <div class="sw" style="background:#BE0000"><div class="name">Primary</div><div class="hex">#BE0000</div></div>
+    <div class="sw" style="background:#A30000"><div class="name">Hover</div><div class="hex">#A30000</div></div>
+    <div class="sw" style="background:#810000"><div class="name">Deep</div><div class="hex">#810000</div></div>
+    <div class="sw" style="background:#5C0000"><div class="name">Press</div><div class="hex">#5C0000</div></div>
+  </div>
+</div></body></html>

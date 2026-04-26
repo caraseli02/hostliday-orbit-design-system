@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .swatch{height:90px;border-radius:12px;display:flex;align-items:flex-end;padding:10px;color:#fff;font-family:var(--font-mono);font-size:10px}
+  .photo{height:90px;border-radius:12px;overflow:hidden;background:#3F3E3D;position:relative}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .lbl{margin-top:8px;font-family:var(--font-mono);font-size:10px;color:var(--fg-3);text-align:center}
+  .pg{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%, rgba(0,0,0,.55) 100%)}
+  .pgt{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%, transparent 60%)}
+</style></head>
+<body><div class="card">
+  <div class="strip">
+    <div>
+      <div class="photo"><img src="../assets/imagery/mountain-bedroom-hero.png"></div>
+      <div class="lbl">Photo · raw</div>
+    </div>
+    <div>
+      <div class="photo"><img src="../assets/imagery/mountain-bedroom-hero.png"><div class="pgt"></div></div>
+      <div class="lbl">Top protection</div>
+    </div>
+    <div>
+      <div class="photo"><img src="../assets/imagery/mountain-bedroom-hero.png"><div class="pg"></div></div>
+      <div class="lbl">Bottom protection</div>
+    </div>
+    <div>
+      <div class="swatch" style="background:var(--hostliday-gradient-120)">120° · brand gradient</div>
+      <div class="lbl">Hostliday gradient</div>
+    </div>
+  </div>
+</div></body></html>

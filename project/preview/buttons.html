@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  button{font-family:var(--font-body);font-weight:600;font-size:14px;letter-spacing:-0.01em;border:none;cursor:pointer;border-radius:8px;padding:0 16px;height:40px;display:inline-flex;align-items:center;gap:8px;transition:all 140ms cubic-bezier(.2,.7,.2,1)}
+  .primary{background:var(--hostliday-gradient);color:#fff}
+  .solid{background:#BE0000;color:#fff}
+  .secondary{background:var(--bg-surface);color:var(--fg-1);box-shadow:inset 0 0 0 1px var(--border-2)}
+  .ghost{background:transparent;color:var(--fg-1)}
+  .danger{background:transparent;color:#BE0000;box-shadow:inset 0 0 0 1px var(--hostliday-red-200)}
+  .sm{height:32px;font-size:13px;padding:0 12px}
+  .lg{height:48px;font-size:15px;padding:0 22px}
+  .pill{border-radius:999px}
+  .icon{width:14px;height:14px}
+</style></head>
+<body><div class="card">
+  <div class="row" style="margin-bottom:10px">
+    <button class="primary">Plan a trip</button>
+    <button class="solid">Save</button>
+    <button class="secondary">Compare</button>
+    <button class="ghost">Skip</button>
+    <button class="danger">Cancel hold</button>
+  </div>
+  <div class="row">
+    <button class="primary lg pill">Continue to checkout</button>
+    <button class="secondary sm">Edit</button>
+    <button class="solid sm pill">Hold for 24h</button>
+  </div>
+</div></body></html>

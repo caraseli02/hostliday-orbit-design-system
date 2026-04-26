@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .hero{position:relative;border-radius:12px;overflow:hidden;height:240px}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero .pg{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%, rgba(0,0,0,.7) 100%)}
+  .hero .pgt{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%, transparent 50%)}
+  .hero .copy{position:absolute;left:24px;right:24px;bottom:20px;color:#fff}
+  .eyebrow{font-family:var(--font-body);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+  .ttl{font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:-0.02em;line-height:1.05;margin-top:6px;text-wrap:balance}
+  .hero .top{position:absolute;left:24px;top:18px;color:#fff;display:flex;align-items:center;gap:8px;font-family:var(--font-body);font-size:13px;font-weight:500}
+  .hero .top svg{width:18px;height:18px}
+</style></head>
+<body><div class="card" style="background:var(--neutral-100)">
+  <div class="hero">
+    <img src="../assets/imagery/mountain-bedroom-hero.png">
+    <div class="pgt"></div>
+    <div class="pg"></div>
+    <div class="top">
+      <img src="../assets/logos/hostliday-wordmark-white.svg" style="height:22px">
+    </div>
+    <div class="copy">
+      <div class="eyebrow">Asturias · Highlands</div>
+      <div class="ttl">Cabins above the cloud line — quiet, with the windows open.</div>
+    </div>
+  </div>
+</div></body></html>

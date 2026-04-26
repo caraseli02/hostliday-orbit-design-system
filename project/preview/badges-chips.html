@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.02em}
+  .dot{width:6px;height:6px;border-radius:999px}
+  .confirmed{background:#E5F2EC;color:#1F7A4D}.confirmed .dot{background:#1F7A4D}
+  .held{background:#FAF1DF;color:#8C5E18}.held .dot{background:#B6822E}
+  .live{background:#E5EEF7;color:#2E5C8A}.live .dot{background:#2E5C8A}
+  .critical{background:#FBEAEA;color:#810000}.critical .dot{background:#BE0000}
+  .neutral{background:#ECE8E3;color:#3F3E3D}.neutral .dot{background:#807F7E}
+  .row + .row{margin-top:10px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;background:var(--bg-surface);box-shadow:inset 0 0 0 1px var(--border-1);font-family:var(--font-body);font-weight:500;font-size:13px;color:var(--fg-1)}
+  .chip.on{background:#0E0E0E;color:#fff;box-shadow:none}
+</style></head>
+<body><div class="card">
+  <div class="row">
+    <span class="badge confirmed"><span class="dot"></span>Confirmed</span>
+    <span class="badge held"><span class="dot"></span>Held · 23h left</span>
+    <span class="badge live"><span class="dot"></span>In transit</span>
+    <span class="badge critical"><span class="dot"></span>Action needed</span>
+    <span class="badge neutral"><span class="dot"></span>Saved</span>
+  </div>
+  <div class="row">
+    <span class="chip on">Stays</span>
+    <span class="chip">Flights</span>
+    <span class="chip">Trains</span>
+    <span class="chip">Experiences</span>
+    <span class="chip">Restaurants</span>
+  </div>
+</div></body></html>

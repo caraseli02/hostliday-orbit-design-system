@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 96" width="480" height="96">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1" gradientTransform="rotate(120 .5 .5)">
+      <stop offset="0%" stop-color="#DA0000"></stop>
+      <stop offset="100%" stop-color="#810000"></stop>
+    </linearGradient>
+  </defs>
+  
+  <g transform="translate(8 8)">
+    <circle cx="40" cy="40" r="36" fill="none" stroke="url(#hg)" stroke-width="6"></circle>
+    <circle cx="40" cy="40" r="10" fill="url(#hg)"></circle>
+    <circle cx="68" cy="14" r="6" fill="url(#hg)"></circle>
+  </g>
+  
+  <text x="100" y="62" font-family="Montserrat, sans-serif" font-weight="900" font-size="44" letter-spacing="-1.2" fill="url(#hg)">Hostliday</text>
+</svg>

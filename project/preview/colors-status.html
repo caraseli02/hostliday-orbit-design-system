@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .item{border-radius:10px;border:1px solid var(--border-1);overflow:hidden}
+  .swatch{height:60px;display:flex;align-items:center;gap:10px;padding:0 14px;color:#fff;font-family:var(--font-body)}
+  .dot{width:10px;height:10px;border-radius:999px;background:#fff}
+  .label{font-size:13px;font-weight:600;letter-spacing:.02em}
+  .body{padding:10px 14px;background:var(--bg-surface)}
+  .name{font-family:var(--font-mono);font-size:11px;color:var(--fg-2)}
+  .hex{font-family:var(--font-mono);font-size:11px;color:var(--fg-3);margin-top:2px}
+</style></head>
+<body><div class="card">
+  <div class="row">
+    <div class="item">
+      <div class="swatch" style="background:#1F7A4D"><span class="dot"></span><span class="label">Confirmed</span></div>
+      <div class="body"><div class="name">--status-confirmed</div><div class="hex">#1F7A4D</div></div>
+    </div>
+    <div class="item">
+      <div class="swatch" style="background:#B6822E"><span class="dot"></span><span class="label">Held</span></div>
+      <div class="body"><div class="name">--status-held</div><div class="hex">#B6822E</div></div>
+    </div>
+    <div class="item">
+      <div class="swatch" style="background:#2E5C8A"><span class="dot"></span><span class="label">Live</span></div>
+      <div class="body"><div class="name">--status-live</div><div class="hex">#2E5C8A</div></div>
+    </div>
+    <div class="item">
+      <div class="swatch" style="background:#BE0000"><span class="dot"></span><span class="label">Critical</span></div>
+      <div class="body"><div class="name">--status-critical</div><div class="hex">#BE0000</div></div>
+    </div>
+  </div>
+</div></body></html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="_card.css">
+<style>
+  body{padding:0;background:transparent}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  label{font-family:var(--font-body);font-weight:500;font-size:13px;color:var(--fg-2)}
+  input,select{height:42px;padding:0 14px;border:1px solid var(--border-2);border-radius:8px;background:var(--bg-surface);font-family:var(--font-body);font-size:15px;color:var(--fg-1);outline:none;transition:all 140ms}
+  input:focus{border-color:#BE0000;box-shadow:0 0 0 3px rgba(190,0,0,.18)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .help{font-family:var(--font-body);font-size:12px;color:var(--fg-3);margin-top:2px}
+</style></head>
+<body><div class="card">
+  <div class="row">
+    <div class="field">
+      <label>Where to</label>
+      <input value="Lisbon" />
+      <span class="help">City, region, or coordinates</span>
+    </div>
+    <div class="field">
+      <label>Dates</label>
+      <input value="22 — 28 Aug" />
+      <span class="help">Flexible by ±2 days</span>
+    </div>
+  </div>
+  <div class="field" style="margin:0">
+    <label>Notes for Orbit</label>
+    <input placeholder="e.g. arriving late, prefer trains over flights" />
+  </div>
+</div></body></html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hostliday Orbit · Design System</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--neutral-100); color: var(--fg-1); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 32px 120px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; }
+  header img { height: 28px; }
+  header .crumb { font: 600 12px var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); }
+  h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 6vw, 72px); letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 18px; max-width: 880px; }
+  .lead { font-size: 18px; line-height: 1.55; color: var(--fg-2); max-width: 720px; margin: 0 0 12px; }
+  .lead b { color: var(--fg-1); font-weight: 600; }
+  .meta { font: 500 12px var(--font-mono); letter-spacing: .04em; color: var(--fg-3); margin-top: 8px; }
+
+  .section { margin-top: 64px; }
+  .section h2 { font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.02em; margin: 0 0 6px; }
+  .section .desc { font-size: 14px; color: var(--fg-3); margin-bottom: 20px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  .card { display: block; padding: 22px 24px; background: var(--bg-surface); border-radius: 12px; box-shadow: var(--shadow-card); text-decoration: none; color: inherit; transition: transform 220ms var(--ease-orbit), box-shadow 220ms var(--ease-orbit); border-left: 3px solid transparent; }
+  .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-pop); }
+  .card.explore { border-left-color: var(--hostliday-red-500); }
+  .card.compose { border-left-color: var(--status-confirmed); }
+  .card.navigate { border-left-color: var(--status-live); }
+  .card.recover { border-left-color: var(--status-held); }
+  .eye { font: 700 11px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--fg-3); }
+  .card.explore .eye { color: var(--hostliday-red-700); }
+  .card.compose .eye { color: var(--status-confirmed); }
+  .card.navigate .eye { color: var(--status-live); }
+  .card.recover .eye { color: #8C5E18; }
+  .name { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.015em; margin: 6px 0 6px; }
+  .card p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fg-2); }
+  .arrow { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; font-weight: 600; font-size: 13px; color: var(--fg-1); }
+
+  .doclinks { display: flex; gap: 14px; flex-wrap: wrap; }
+  .doc { padding: 10px 14px; background: var(--bg-surface); border: 1px solid var(--border-1); border-radius: 8px; text-decoration: none; color: var(--fg-1); font-weight: 500; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; }
+  .doc:hover { border-color: var(--neutral-700); }
+  .doc .k { color: var(--fg-3); font-family: var(--font-mono); font-size: 12px; }
+
+  .pricks { display: flex; gap: 8px; align-items: center; margin-top: 32px; flex-wrap: wrap; }
+  .pricks .swatch { width: 28px; height: 28px; border-radius: 999px; border: 1px solid var(--border-1); }
+  .pricks .lbl { font: 500 11px var(--font-mono); letter-spacing: .04em; color: var(--fg-3); margin-left: 8px; margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="assets/logos/hostliday-wordmark.svg" alt="Hostliday">
+    <span class="crumb">Design System · Orbit</span>
+  </header>
+
+  <h1>The trip-coordination layer for Hostliday.</h1>
+  <p class="lead">Hostliday Orbit is a single design system with <b>four product surfaces</b> — Explore, Compose, Navigate, Recover — each with its own register but sharing one set of color, type, and motion tokens.</p>
+  <p class="meta">Hostliday red · Montserrat + Inter · 4-surface system</p>
+
+  <div class="pricks">
+    <span class="lbl">Palette</span>
+    <span class="swatch" style="background:#DA0000"></span>
+    <span class="swatch" style="background:#BE0000"></span>
+    <span class="swatch" style="background:#810000"></span>
+    <span class="swatch" style="background:#000000"></span>
+    <span class="swatch" style="background:#A3A2A2"></span>
+    <span class="swatch" style="background:#E1DFDD"></span>
+    <span class="swatch" style="background:#FAF8F6"></span>
+  </div>
+
+  <section class="section">
+    <h2>Four surfaces</h2>
+    <div class="desc">Each is a self-contained React + Babel page using the shared tokens.</div>
+    <div class="grid">
+      <a class="card explore" href="ui_kits/explore/index.html">
+        <div class="eye">Explore</div>
+        <div class="name">Research &amp; save</div>
+        <p>Warm photo-led discovery. Save anything to a trip board. Hero gradient and large display type.</p>
+        <div class="arrow">Open surface →</div>
+      </a>
+      <a class="card compose" href="ui_kits/compose/index.html">
+        <div class="eye">Compose</div>
+        <div class="name">Plan &amp; build</div>
+        <p>Day-by-day timeline with Orbit chat alongside. Slot in existing bookings, compare candidates, hold options.</p>
+        <div class="arrow">Open surface →</div>
+      </a>
+      <a class="card navigate" href="ui_kits/navigate/index.html">
+        <div class="eye">Navigate</div>
+        <div class="name">Live trip</div>
+        <p>Dark, map-first chrome. Translucent glass panels, mono times, breathing live dot. Terse, time-stamped voice.</p>
+        <div class="arrow">Open surface →</div>
+      </a>
+      <a class="card recover" href="ui_kits/recover/index.html">
+        <div class="eye">Recover</div>
+        <div class="name">When plans change</div>
+        <p>Incident view: what broke, what Orbit's already done, three held options, one tap to switch. Humans on call.</p>
+        <div class="arrow">Open surface →</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Foundations</h2>
+    <div class="desc">Tokens, type, color, components — all rendered in the Design System tab.</div>
+    <div class="doclinks">
+      <a class="doc" href="README.md"><span class="k">md</span> README</a>
+      <a class="doc" href="SKILL.md"><span class="k">md</span> SKILL</a>
+      <a class="doc" href="colors_and_type.css"><span class="k">css</span> colors_and_type</a>
+      <a class="doc" href="preview/colors-brand.html"><span class="k">html</span> Colors</a>
+      <a class="doc" href="preview/type-display.html"><span class="k">html</span> Type</a>
+      <a class="doc" href="preview/buttons.html"><span class="k">html</span> Components</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
