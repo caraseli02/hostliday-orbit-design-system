@@ -1,70 +1,93 @@
+import { Show } from "solid-js";
+import { useTrip } from "../state";
+
+const SURFACES = [
+  {
+    id: "explore",
+    accent: "explore",
+    eye: "Explore",
+    name: "Drop intake",
+    cta: "Drop research",
+    blurb:
+      "Paste a link, forward an email, drop a screenshot. We parse, dedupe, slot it into the right trip.",
+  },
+  {
+    id: "compose",
+    accent: "compose",
+    eye: "Compose",
+    name: "Plan & build",
+    cta: "Plan the trip",
+    blurb: "Day-by-day timeline. Slot in bookings. Hold options. Reasoning trace from Orbit.",
+  },
+  {
+    id: "recover",
+    accent: "recover",
+    eye: "Recover",
+    name: "Fix & escalate",
+    cta: "See an incident",
+    blurb: "Live disruption response. Three backups held. Refund filed. Sara R. on call in 38 sec.",
+  },
+];
+
 export default function Overview(props) {
+  const { activeTrip } = useTrip();
+  const primaryLabel = () => (activeTrip() ? `Resume ${activeTrip().name}` : "Start a trip");
+  const primarySurface = () => (activeTrip() ? "compose" : "explore");
+
   return (
     <div class="home">
       <div class="home-header">
         <img src="/assets/logos/hostliday-wordmark.svg" alt="Hostliday" />
-        <span class="home-crumb">Design System · v1</span>
+        <span class="home-crumb">Pre-seed demo · April 2026</span>
       </div>
 
-      <h1>Hostliday Orbit</h1>
+      <h1>Travel coordination, finally end-to-end.</h1>
       <p class="home-lead">
-        Four product surfaces for <b>AI-powered travel coordination</b>.
-        Explore, plan, navigate, and recover — each with its own voice,
-        palette, and interaction model.
+        Paste anything — links, emails, screenshots — Orbit parses it into a trip. When something
+        breaks, a real concierge picks up in 38 seconds.
+        <b> AI for the boring parts. Humans when it matters.</b>
       </p>
-      <div class="swatch-row">
-        <div class="swatch" style="background:var(--hostliday-red-bright)"></div>
-        <div class="swatch" style="background:var(--hostliday-red-500)"></div>
-        <div class="swatch" style="background:var(--hostliday-red-800)"></div>
-        <span class="lbl">Brand reds</span>
-        <div class="swatch" style="background:var(--status-confirmed)"></div>
-        <div class="swatch" style="background:var(--status-held)"></div>
-        <div class="swatch" style="background:var(--status-live)"></div>
-        <span class="lbl">Status</span>
+
+      <div class="home-cta-row">
+        <button
+          class="home-cta home-cta-primary"
+          onclick={() => props.onNavigate(primarySurface())}
+        >
+          {primaryLabel()}
+          <span class="home-cta-arrow">→</span>
+        </button>
+        <Show when={activeTrip()}>
+          <span class="home-cta-meta">
+            <span class={`home-cta-dot ${activeTrip().status}`}></span>
+            {activeTrip().dates}
+            {activeTrip().nights ? ` · ${activeTrip().nights} nights` : ""}
+          </span>
+        </Show>
       </div>
 
       <div class="section">
         <div class="section-head">
-          <h2>Four surfaces</h2>
-          <p class="section-desc">Click any card to explore that surface.</p>
+          <h2>Three surfaces, one trip</h2>
+          <p class="section-desc">
+            Each surface handles one phase. Same trip context across all of them.
+          </p>
         </div>
-        <div class="surface-grid stagger">
-          <div class="surface-card explore featured" onclick={() => props.onNavigate('explore')}>
-            <div class="card-photo" style="background:linear-gradient(135deg, #E8D5B7 0%, #D4A574 40%, #B8864A 100%)"></div>
-            <div class="card-body">
-              <div class="eye">Explore</div>
-              <div class="name">Research & save</div>
-              <p>Warm photo-led discovery. Save anything to a trip board.</p>
-            </div>
-          </div>
-          <div class="surface-card compose" onclick={() => props.onNavigate('compose')}>
-            <div class="eye">Compose</div>
-            <div class="name">Plan & build</div>
-            <p>Day-by-day timeline with Orbit chat. Slot in bookings, compare, hold options.</p>
-            <div class="card-mini-tl">
-              <span class="tl-dot confirmed"></span>
-              <span class="tl-line"></span>
-              <span class="tl-dot held"></span>
-              <span class="tl-line"></span>
-              <span class="tl-dot empty"></span>
-            </div>
-            <span class="arrow">Open surface &rarr;</span>
-          </div>
-          <div class="surface-card navigate dark" onclick={() => props.onNavigate('navigate')}>
-            <div class="eye">Navigate</div>
-            <div class="name">Live trip</div>
-            <p>Dark, map-first chrome. Glass panels, mono times, breathing pulse.</p>
-            <div class="card-mono">LIS → OPR · <span class="live-dot-sm"></span> 14 min</div>
-            <span class="arrow">Open surface &rarr;</span>
-          </div>
-          <div class="surface-card recover" onclick={() => props.onNavigate('recover')}>
-            <div class="eye">Recover</div>
-            <div class="name">Fix & escalate</div>
-            <p>Incident-first layout. Alternatives held, action log, human escalation.</p>
-            <span class="arrow">Open surface &rarr;</span>
-          </div>
+        <div class="overview-surfaces">
+          {SURFACES.map((s) => (
+            <button
+              class={`overview-surface overview-surface-${s.accent}`}
+              onclick={() => props.onNavigate(s.id)}
+            >
+              <div class="os-eye">{s.eye}</div>
+              <div class="os-name">{s.name}</div>
+              <p class="os-blurb">{s.blurb}</p>
+              <span class="os-cta">
+                {s.cta} <span aria-hidden="true">→</span>
+              </span>
+            </button>
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
