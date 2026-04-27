@@ -109,6 +109,7 @@ hostliday-demo/
 ## 🔗 Original Design System
 
 See `../project/` for the complete design system documentation:
+
 - `README.md` - Full design system documentation
 - `SKILL.md` - Quick reference guide
 - `colors_and_type.css` - Token definitions

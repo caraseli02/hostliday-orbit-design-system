@@ -1,10 +1,19 @@
-import Icon from './Icon'
+import Icon from "./Icon";
 
 function MapStage() {
   return (
-    <svg class="map-svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+    <svg
+      class="map-svg"
+      viewBox="0 0 1280 720"
+      preserveAspectRatio="xMidYMid slice"
+      style="position:absolute;inset:0;width:100%;height:100%"
+    >
       <path class="map-park" d="M0 520 Q 200 460 380 500 T 720 540 L 720 720 L 0 720 Z" />
-      <path class="map-water" d="M820 0 Q 880 120 940 220 Q 1000 340 1100 380 Q 1200 420 1280 410 L 1280 0 Z" opacity=".6" />
+      <path
+        class="map-water"
+        d="M820 0 Q 880 120 940 220 Q 1000 340 1100 380 Q 1200 420 1280 410 L 1280 0 Z"
+        opacity=".6"
+      />
       <path class="map-water" d="M0 0 Q 80 60 180 80 Q 260 100 280 60 L 280 0 Z" opacity=".5" />
       <g class="map-roads">
         <path class="major" d="M-20 380 Q 320 360 640 400 T 1300 360" />
@@ -40,71 +49,129 @@ function MapStage() {
         <circle r="7" class="live-dot" />
       </g>
       <g style="font-family:var(--font-body);font-size:11px;fill:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;font-weight:600">
-        <text x="120" y="624" text-anchor="middle">Lisbon</text>
-        <text x="480" y="364" text-anchor="middle">Coimbra</text>
-        <text x="990" y="118" text-anchor="start">Douro Valley</text>
+        <text x="120" y="624" text-anchor="middle">
+          Lisbon
+        </text>
+        <text x="480" y="364" text-anchor="middle">
+          Coimbra
+        </text>
+        <text x="990" y="118" text-anchor="start">
+          Douro Valley
+        </text>
       </g>
     </svg>
-  )
+  );
 }
 
 export default function Navigate(props) {
   return (
     <div class="nav-shell orbit-dark">
-      <div class="nav-map"><MapStage /></div>
+      <div class="nav-map">
+        <MapStage />
+      </div>
 
       <div class="nav-topbar">
-        <div class="glass brand-pill" onclick={props.onExit} style="cursor:pointer"><img src="/assets/logos/hostliday-wordmark-white.svg" /></div>
+        <div class="glass brand-pill" onclick={props.onExit} style="cursor:pointer">
+          <img src="/assets/logos/hostliday-wordmark-white.svg" />
+        </div>
         <div class="glass nav-crumb">
           <div class="lbl">Day 1 · in transit</div>
-          <div class="ttl"><span class="dot-live"></span>LIS Airport → Casa do Vale, Douro Valley</div>
+          <div class="ttl">
+            <span class="dot-live"></span>LIS Airport → Casa do Vale, Douro Valley
+          </div>
           <div class="meta">Driver Henrique · Black Skoda · 22-AB-94 · ETA 02:14</div>
         </div>
-        <div class="glass help-btn"><Icon name="help" /> Help</div>
+        <div class="glass help-btn">
+          <Icon name="help" /> Help
+        </div>
       </div>
 
       <div class="nav-fab">
-        <button title="Re-center"><Icon name="locate" /></button>
-        <button title="Zoom in"><Icon name="plus" /></button>
-        <button title="Zoom out"><Icon name="minus" /></button>
+        <button title="Re-center">
+          <Icon name="locate" />
+        </button>
+        <button title="Zoom in">
+          <Icon name="plus" />
+        </button>
+        <button title="Zoom out">
+          <Icon name="minus" />
+        </button>
       </div>
 
       <div class="glass nav-sheet">
         <div class="sheet-grid">
           <div>
-            <div class="leg-eye"><span class="dot-live"></span>Live · arriving in 14 min</div>
+            <div class="leg-eye">
+              <span class="dot-live"></span>Live · arriving in 14 min
+            </div>
             <h2 class="leg-title">Your driver is 4 minutes away.</h2>
             <div class="leg-meta">
-              <div class="lm"><span class="k">ETA</span><span class="v lg">02:14</span></div>
-              <div class="lm"><span class="k">Distance</span><span class="v">12.4 km</span></div>
-              <div class="lm"><span class="k">Vehicle</span><span class="v">22-AB-94</span></div>
-              <div class="lm"><span class="k">Driver</span><span class="v">Henrique</span></div>
+              <div class="lm">
+                <span class="k">ETA</span>
+                <span class="v lg">02:14</span>
+              </div>
+              <div class="lm">
+                <span class="k">Distance</span>
+                <span class="v">12.4 km</span>
+              </div>
+              <div class="lm">
+                <span class="k">Vehicle</span>
+                <span class="v">22-AB-94</span>
+              </div>
+              <div class="lm">
+                <span class="k">Driver</span>
+                <span class="v">Henrique</span>
+              </div>
             </div>
           </div>
           <div class="leg-actions">
-            <button class="btn-pri"><Icon name="msg" size={16} /> Message driver</button>
-            <button class="btn-sec"><Icon name="nav" size={14} /> Open in Maps</button>
+            <button class="btn-pri">
+              <Icon name="msg" size={16} /> Message driver
+            </button>
+            <button class="btn-sec">
+              <Icon name="nav" size={14} /> Open in Maps
+            </button>
           </div>
         </div>
         <div class="upnext">
           <div class="up-item">
-            <div class="ico"><Icon name="bed" size={16} /></div>
-            <div class="body"><div class="nm">Casa do Vale · check-in</div><div class="tm">Day 1 · 02:30</div></div>
+            <div class="ico">
+              <Icon name="bed" size={16} />
+            </div>
+            <div class="body">
+              <div class="nm">Casa do Vale · check-in</div>
+              <div class="tm">Day 1 · 02:30</div>
+            </div>
           </div>
           <div class="up-item">
-            <div class="ico"><Icon name="hike" size={16} /></div>
-            <div class="body"><div class="nm">Douro vineyard walk</div><div class="tm">Day 2 · 09:00</div></div>
+            <div class="ico">
+              <Icon name="hike" size={16} />
+            </div>
+            <div class="body">
+              <div class="nm">Douro vineyard walk</div>
+              <div class="tm">Day 2 · 09:00</div>
+            </div>
           </div>
           <div class="up-item">
-            <div class="ico"><Icon name="food" size={16} /></div>
-            <div class="body"><div class="nm">Tasca dinner · Lisbon</div><div class="tm">Day 3 · 22:30</div></div>
+            <div class="ico">
+              <Icon name="food" size={16} />
+            </div>
+            <div class="body">
+              <div class="nm">Tasca dinner · Lisbon</div>
+              <div class="tm">Day 3 · 22:30</div>
+            </div>
           </div>
           <div class="up-item">
-            <div class="ico"><Icon name="car" size={16} /></div>
-            <div class="body"><div class="nm">Train · Lisbon → Porto</div><div class="tm">Day 3 · 14:08</div></div>
+            <div class="ico">
+              <Icon name="car" size={16} />
+            </div>
+            <div class="body">
+              <div class="nm">Train · Lisbon → Porto</div>
+              <div class="tm">Day 3 · 14:08</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

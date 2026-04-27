@@ -33,86 +33,86 @@
    ========================================================= */
 :root {
   /* ---------- Brand red (from Brandbook) ---------- */
-  --hostliday-red:        #BE0000;   /* primary brand red */
-  --hostliday-red-deep:   #810000;   /* gradient end */
-  --hostliday-red-bright: #DA0000;   /* gradient start */
-  --hostliday-red-50:     #FBEAEA;
-  --hostliday-red-100:    #F4C7C7;
-  --hostliday-red-200:    #E89B9B;
-  --hostliday-red-300:    #D86161;
-  --hostliday-red-400:    #CC2929;
-  --hostliday-red-500:    #BE0000;
-  --hostliday-red-600:    #A30000;
-  --hostliday-red-700:    #810000;
-  --hostliday-red-800:    #5C0000;
-  --hostliday-red-900:    #3D0000;
+  --hostliday-red: #be0000; /* primary brand red */
+  --hostliday-red-deep: #810000; /* gradient end */
+  --hostliday-red-bright: #da0000; /* gradient start */
+  --hostliday-red-50: #fbeaea;
+  --hostliday-red-100: #f4c7c7;
+  --hostliday-red-200: #e89b9b;
+  --hostliday-red-300: #d86161;
+  --hostliday-red-400: #cc2929;
+  --hostliday-red-500: #be0000;
+  --hostliday-red-600: #a30000;
+  --hostliday-red-700: #810000;
+  --hostliday-red-800: #5c0000;
+  --hostliday-red-900: #3d0000;
 
   /* The Hostliday Gradient — defined in two angles per brandbook */
-  --hostliday-gradient-120: linear-gradient(120deg, #DA0000 0%, #810000 100%);
-  --hostliday-gradient-90:  linear-gradient(90deg,  #DA0000 0%, #810000 100%);
+  --hostliday-gradient-120: linear-gradient(120deg, #da0000 0%, #810000 100%);
+  --hostliday-gradient-90: linear-gradient(90deg, #da0000 0%, #810000 100%);
   --hostliday-gradient: var(--hostliday-gradient-120);
 
   /* ---------- Neutrals (warm-leaning, brandbook-anchored) ---------- */
-  --neutral-0:    #FFFFFF;
-  --neutral-25:   #FDFCFB;
-  --neutral-50:   #FAF8F6;   /* off-white canvas */
-  --neutral-100:  #F4F1ED;   /* app shell canvas */
-  --neutral-150:  #ECE8E3;
-  --neutral-200:  #E1DFDD;   /* brandbook neutral */
-  --neutral-300:  #C9C6C2;
-  --neutral-400:  #A3A2A2;   /* brandbook neutral */
-  --neutral-500:  #807F7E;
-  --neutral-600:  #5E5D5C;
-  --neutral-700:  #3F3E3D;
-  --neutral-800:  #232221;
-  --neutral-900:  #0E0E0E;
-  --neutral-1000: #000000;   /* brandbook black */
+  --neutral-0: #ffffff;
+  --neutral-25: #fdfcfb;
+  --neutral-50: #faf8f6; /* off-white canvas */
+  --neutral-100: #f4f1ed; /* app shell canvas */
+  --neutral-150: #ece8e3;
+  --neutral-200: #e1dfdd; /* brandbook neutral */
+  --neutral-300: #c9c6c2;
+  --neutral-400: #a3a2a2; /* brandbook neutral */
+  --neutral-500: #807f7e;
+  --neutral-600: #5e5d5c;
+  --neutral-700: #3f3e3d;
+  --neutral-800: #232221;
+  --neutral-900: #0e0e0e;
+  --neutral-1000: #000000; /* brandbook black */
 
   /* ---------- Status (added for product) ---------- */
-  --status-confirmed:     #1F7A4D;  /* green: confirmed bookings */
-  --status-confirmed-bg:  #E5F2EC;
-  --status-held:          #B6822E;  /* amber: held / pending */
-  --status-held-bg:       #FAF1DF;
-  --status-live:          #2E5C8A;  /* slate-blue: in transit / live */
-  --status-live-bg:       #E5EEF7;
-  --status-critical:      var(--hostliday-red-500);
-  --status-critical-bg:   var(--hostliday-red-50);
+  --status-confirmed: #1f7a4d; /* green: confirmed bookings */
+  --status-confirmed-bg: #e5f2ec;
+  --status-held: #b6822e; /* amber: held / pending */
+  --status-held-bg: #faf1df;
+  --status-live: #2e5c8a; /* slate-blue: in transit / live */
+  --status-live-bg: #e5eef7;
+  --status-critical: var(--hostliday-red-500);
+  --status-critical-bg: var(--hostliday-red-50);
 
   /* ---------- Semantic colors (LIGHT) ---------- */
-  --bg-canvas:        var(--neutral-100);
-  --bg-surface:       var(--neutral-0);
-  --bg-surface-alt:   var(--neutral-50);
-  --bg-sunken:        var(--neutral-150);
-  --bg-inverse:       var(--neutral-1000);
-  --surface-explore:  #F5F0E8;
-  --surface-navigate: #0E1117;
+  --bg-canvas: var(--neutral-100);
+  --bg-surface: var(--neutral-0);
+  --bg-surface-alt: var(--neutral-50);
+  --bg-sunken: var(--neutral-150);
+  --bg-inverse: var(--neutral-1000);
+  --surface-explore: #f5f0e8;
+  --surface-navigate: #0e1117;
 
-  --fg-1:             var(--neutral-1000);   /* primary text */
-  --fg-2:             var(--neutral-700);    /* secondary text */
-  --fg-3:             var(--neutral-500);    /* tertiary, captions */
-  --fg-4:             var(--neutral-400);    /* placeholder / disabled */
-  --fg-on-brand:      var(--neutral-0);
-  --fg-on-dark:       var(--neutral-0);
-  --fg-link:          var(--hostliday-red-700);
+  --fg-1: var(--neutral-1000); /* primary text */
+  --fg-2: var(--neutral-700); /* secondary text */
+  --fg-3: var(--neutral-500); /* tertiary, captions */
+  --fg-4: var(--neutral-400); /* placeholder / disabled */
+  --fg-on-brand: var(--neutral-0);
+  --fg-on-dark: var(--neutral-0);
+  --fg-link: var(--hostliday-red-700);
 
-  --border-1:         var(--neutral-200);
-  --border-2:         var(--neutral-300);
-  --border-strong:    var(--neutral-700);
-  --border-focus:     var(--hostliday-red-500);
+  --border-1: var(--neutral-200);
+  --border-2: var(--neutral-300);
+  --border-strong: var(--neutral-700);
+  --border-focus: var(--hostliday-red-500);
 
-  --accent:           var(--hostliday-red-500);
-  --accent-hover:     var(--hostliday-red-600);
-  --accent-press:     var(--hostliday-red-700);
+  --accent: var(--hostliday-red-500);
+  --accent-hover: var(--hostliday-red-600);
+  --accent-press: var(--hostliday-red-700);
 
   /* ---------- Surface gradients & overlays ---------- */
-  --protection-gradient: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.55) 100%);
-  --protection-gradient-strong: linear-gradient(180deg, transparent 0%, rgba(0,0,0,.78) 100%);
-  --protection-gradient-top:    linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 60%);
+  --protection-gradient: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
+  --protection-gradient-strong: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.78) 100%);
+  --protection-gradient-top: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 60%);
 
   /* ---------- Type families ---------- */
   --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-body:    "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* ---------- Type scale (1.25 modular, +1 hero step) ---------- */
   --fs-12: 12px;
@@ -129,79 +129,79 @@
   --fs-48: 48px;
   --fs-64: 64px;
   --fs-80: 80px;
-  --fs-104: 104px;     /* hero numerals */
+  --fs-104: 104px; /* hero numerals */
 
   /* Line heights */
   --lh-tight: 1.05;
-  --lh-snug:  1.18;
-  --lh-base:  1.5;
+  --lh-snug: 1.18;
+  --lh-base: 1.5;
   --lh-loose: 1.7;
 
   /* Letter spacing */
   --ls-tightest: -0.03em;
-  --ls-tighter:  -0.02em;
-  --ls-tight:    -0.01em;
-  --ls-normal:    0em;
-  --ls-wide:      0.04em;
-  --ls-widest:    0.12em;
+  --ls-tighter: -0.02em;
+  --ls-tight: -0.01em;
+  --ls-normal: 0em;
+  --ls-wide: 0.04em;
+  --ls-widest: 0.12em;
 
   /* Weights (Inter / Montserrat variable) */
-  --fw-regular:  400;
-  --fw-medium:   500;
+  --fw-regular: 400;
+  --fw-medium: 500;
   --fw-semibold: 600;
-  --fw-bold:     700;
-  --fw-black:    900;
+  --fw-bold: 700;
+  --fw-black: 900;
 
   /* ---------- Spacing (4px base) ---------- */
-  --sp-0:  0;
-  --sp-1:  4px;
-  --sp-2:  8px;
-  --sp-3:  12px;
-  --sp-4:  16px;
-  --sp-5:  20px;
-  --sp-6:  24px;
-  --sp-8:  32px;
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
   --sp-10: 40px;
   --sp-14: 56px;
   --sp-20: 80px;
   --sp-30: 120px;
 
   /* Page gutters */
-  --gutter-mobile:  16px;
-  --gutter-app:     24px;
+  --gutter-mobile: 16px;
+  --gutter-app: 24px;
   --gutter-desktop: 80px;
 
   /* ---------- Radii ---------- */
-  --r-chip:   4px;
-  --r-input:  8px;
-  --r-card:   12px;
-  --r-sheet:  20px;
-  --r-pill:   999px;
+  --r-chip: 4px;
+  --r-input: 8px;
+  --r-card: 12px;
+  --r-sheet: 20px;
+  --r-pill: 999px;
 
   /* ---------- Shadows (light mode) ---------- */
-  --shadow-flat:   0 0 0 1px var(--border-1);
-  --shadow-card:   0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.10);
-  --shadow-pop:    0 8px 16px -4px rgba(0,0,0,.08), 0 24px 48px -16px rgba(0,0,0,.18);
-  --shadow-modal:  0 32px 64px -24px rgba(0,0,0,.30);
-  --shadow-focus:  0 0 0 3px rgba(190,0,0,.22);
+  --shadow-flat: 0 0 0 1px var(--border-1);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.1);
+  --shadow-pop: 0 8px 16px -4px rgba(0, 0, 0, 0.08), 0 24px 48px -16px rgba(0, 0, 0, 0.18);
+  --shadow-modal: 0 32px 64px -24px rgba(0, 0, 0, 0.3);
+  --shadow-focus: 0 0 0 3px rgba(190, 0, 0, 0.22);
 
   /* ---------- Motion ---------- */
-  --ease-orbit: cubic-bezier(.2, .7, .2, 1);
-  --dur-micro:  140ms;
-  --dur-base:   220ms;
-  --dur-surface:360ms;
-  --dur-breathe:2400ms;
+  --ease-orbit: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-micro: 140ms;
+  --dur-base: 220ms;
+  --dur-surface: 360ms;
+  --dur-breathe: 2400ms;
 
   /* ---------- Layout sizes ---------- */
-  --topbar-h:    56px;
+  --topbar-h: 56px;
   --bottomnav-h: 64px;
-  --sheet-peek:  96px;
+  --sheet-peek: 96px;
 
   /* ---------- Icons ---------- */
-  --icon-base:   "https://unpkg.com/lucide-static@0.460.0/icons";
-  --icon-sw-sm:  1.25;
-  --icon-sw-md:  1.5;
-  --icon-sw-lg:  1.75;
+  --icon-base: "https://unpkg.com/lucide-static@0.460.0/icons";
+  --icon-sw-sm: 1.25;
+  --icon-sw-md: 1.5;
+  --icon-sw-lg: 1.75;
 }
 
 /* =========================================================
@@ -209,37 +209,37 @@
    floats over photography. Apply `.orbit-dark` to a container.
    ========================================================= */
 .orbit-dark {
-  --bg-canvas:      #0E1117;
-  --bg-surface:     #15181F;
-  --bg-surface-alt: #1B1F27;
-  --bg-sunken:      #0A0C12;
+  --bg-canvas: #0e1117;
+  --bg-surface: #15181f;
+  --bg-surface-alt: #1b1f27;
+  --bg-sunken: #0a0c12;
 
-  --fg-1:           #F5F5F4;
-  --fg-2:           #BDBCBA;
-  --fg-3:           #8E8D8B;
-  --fg-4:           #5E5D5C;
+  --fg-1: #f5f5f4;
+  --fg-2: #bdbcba;
+  --fg-3: #8e8d8b;
+  --fg-4: #5e5d5c;
 
-  --border-1:       rgba(255,255,255,.08);
-  --border-2:       rgba(255,255,255,.14);
-  --border-strong:  rgba(255,255,255,.40);
+  --border-1: rgba(255, 255, 255, 0.08);
+  --border-2: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.4);
 
-  --shadow-card:    0 1px 0 rgba(255,255,255,.04) inset, 0 12px 32px -8px rgba(0,0,0,.55);
-  --shadow-pop:     0 16px 48px -8px rgba(0,0,0,.65);
-  --shadow-modal:   0 32px 80px -16px rgba(0,0,0,.75);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+  --shadow-pop: 0 16px 48px -8px rgba(0, 0, 0, 0.65);
+  --shadow-modal: 0 32px 80px -16px rgba(0, 0, 0, 0.75);
 
-  --status-confirmed-bg: rgba(31,122,77,.18);
-  --status-held-bg:      rgba(182,130,46,.20);
-  --status-live-bg:      rgba(46,92,138,.22);
-  --status-critical-bg:  rgba(190,0,0,.22);
+  --status-confirmed-bg: rgba(31, 122, 77, 0.18);
+  --status-held-bg: rgba(182, 130, 46, 0.2);
+  --status-live-bg: rgba(46, 92, 138, 0.22);
+  --status-critical-bg: rgba(190, 0, 0, 0.22);
 }
 
 /* Floating glass panel — for use over the map */
 .orbit-dark .glass,
 .glass {
-  background: rgba(20, 22, 28, .72);
+  background: rgba(20, 22, 28, 0.72);
   backdrop-filter: blur(18px) saturate(1.1);
   -webkit-backdrop-filter: blur(18px) saturate(1.1);
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* =========================================================
@@ -257,7 +257,9 @@
   color: var(--fg-1);
 }
 
-.t-display, h1, :where(h1) {
+.t-display,
+h1,
+:where(h1) {
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
   font-size: clamp(40px, 5vw, var(--fs-64));
@@ -275,7 +277,9 @@
   color: var(--fg-1);
 }
 
-.t-h2, h2, :where(h2) {
+.t-h2,
+h2,
+:where(h2) {
   font-family: var(--font-display);
   font-weight: var(--fw-bold);
   font-size: var(--fs-32);
@@ -284,7 +288,9 @@
   color: var(--fg-1);
 }
 
-.t-h3, h3, :where(h3) {
+.t-h3,
+h3,
+:where(h3) {
   font-family: var(--font-body);
   font-weight: var(--fw-semibold);
   font-size: var(--fs-24);
@@ -293,7 +299,9 @@
   color: var(--fg-1);
 }
 
-.t-h4, h4, :where(h4) {
+.t-h4,
+h4,
+:where(h4) {
   font-family: var(--font-body);
   font-weight: var(--fw-semibold);
   font-size: var(--fs-18);
@@ -301,7 +309,9 @@
   color: var(--fg-1);
 }
 
-.t-body, p, :where(p) {
+.t-body,
+p,
+:where(p) {
   font-family: var(--font-body);
   font-weight: var(--fw-regular);
   font-size: var(--fs-16);
@@ -372,11 +382,13 @@
 /* Link styles */
 a {
   color: var(--fg-link);
-  text-decoration-color: rgba(190,0,0,.35);
+  text-decoration-color: rgba(190, 0, 0, 0.35);
   text-underline-offset: 2px;
   transition: opacity var(--dur-micro) var(--ease-orbit);
 }
-a:hover { opacity: .82; }
+a:hover {
+  opacity: 0.82;
+}
 
 /* Selection */
 ::selection {
@@ -404,8 +416,15 @@ a:hover { opacity: .82; }
 
 /* Ambient breathe for live elements */
 @keyframes orbit-breathe {
-  0%, 100% { transform: scale(1);   opacity: .9; }
-  50%      { transform: scale(1.18); opacity: .35; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.35;
+  }
 }
 .orbit-breathe {
   animation: orbit-breathe var(--dur-breathe) var(--ease-orbit) infinite;
@@ -413,7 +432,9 @@ a:hover { opacity: .82; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
