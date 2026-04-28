@@ -76,6 +76,12 @@ const PATHS = {
       <circle cx="12" cy="10" r="2.5" />
     </>
   ),
+  mapPin: (
+    <>
+      <path d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </>
+  ),
   clock: (
     <>
       <circle cx="12" cy="12" r="9" />
@@ -138,7 +144,6 @@ const PATHS = {
     <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21.3l7.8-7.8 1-1.1a5.5 5.5 0 0 0 0-7.8z" />
   ),
   bookmark: <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />,
-  mapPin: PATHS.pin,
   grid: (
     <>
       <rect x="3" y="3" width="7" height="7" rx="1" />
