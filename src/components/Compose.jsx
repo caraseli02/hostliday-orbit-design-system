@@ -158,10 +158,7 @@ export default function Compose() {
 
       <aside class="comp-pane">
         <div class="comp-tabs">
-          <button
-            class={`comp-tab ${tab() === "orbit" ? "on" : ""}`}
-            onclick={() => setTab("orbit")}
-          >
+          <button class="comp-tab on">
             Orbit
           </button>
           <button
