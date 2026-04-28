@@ -29,3 +29,4 @@ build/
 
 # Archive
 _archive/
+.gstack/

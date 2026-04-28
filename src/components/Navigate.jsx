@@ -45,7 +45,7 @@ function MapStage() {
       </g>
       <g transform="translate(680 270)">
         <circle r="22" class="live-pulse" />
-        <circle r="10" fill="#0E1117" />
+        <circle r="10" class="live-dot-bg" />
         <circle r="7" class="live-dot" />
       </g>
       <g style="font-family:var(--font-body);font-size:11px;fill:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;font-weight:600">

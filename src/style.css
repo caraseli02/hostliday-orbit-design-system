@@ -1922,6 +1922,10 @@ button.trip-card:focus-visible {
   font-weight: 600;
   border-bottom-color: var(--hostliday-red-500);
 }
+.comp-tab-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 .comp-chat {
   flex: 1;
   padding: 16px;
@@ -2138,6 +2142,9 @@ button.trip-card:focus-visible {
 }
 .live-dot {
   fill: var(--hostliday-red-bright);
+}
+.live-dot-bg {
+  fill: var(--bg-inverse, #0E1117);
 }
 
 .glass {
@@ -3205,4 +3212,51 @@ button.trip-card:focus-visible {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Surface error boundary */
+.surface-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  gap: 12px;
+}
+.surface-error h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--hostliday-red-700);
+}
+.surface-error pre {
+  max-width: 480px;
+  padding: 12px 16px;
+  background: var(--bg-inverse);
+  color: var(--fg-inverse);
+  border-radius: var(--r-card);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.surface-error button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: var(--hostliday-red-bright);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Disabled button states */
+.act-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
 }
