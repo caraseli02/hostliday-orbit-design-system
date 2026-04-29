@@ -1,6 +1,28 @@
 import { Show, For } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
+import Icon from "./Icon";
+
+const STEPS = [
+  {
+    num: "01",
+    icon: "paste",
+    title: "Drop anything",
+    desc: "Paste links, forward emails, drop screenshots.",
+  },
+  {
+    num: "02",
+    icon: "spark",
+    title: "Orbit builds your trip",
+    desc: "AI parses, deduplicates, and suggests a timeline.",
+  },
+  {
+    num: "03",
+    icon: "user",
+    title: "Humans step in when it counts",
+    desc: "Real concierges for disruptions and decisions.",
+  },
+];
 
 const SURFACES = [
   {
@@ -12,6 +34,7 @@ const SURFACES = [
     icon: "paste",
     blurb:
       "Paste a link, forward an email, drop a screenshot. We parse, dedupe, slot it into the right trip.",
+    preview: "explore",
   },
   {
     id: "compose",
@@ -21,6 +44,7 @@ const SURFACES = [
     cta: "Plan the trip",
     icon: "calendar",
     blurb: "Day-by-day timeline. Slot in bookings. Hold options. Reasoning trace from Orbit.",
+    preview: "compose",
   },
   {
     id: "recover",
@@ -30,7 +54,13 @@ const SURFACES = [
     cta: "See an incident",
     icon: "shield",
     blurb: "Live disruption response. Three backups held. Refund filed. Sara R. on call in 38 sec.",
+    preview: "recover",
   },
+];
+
+const STATS = [
+  { value: "38s", label: "Average response time" },
+  { value: "3", label: "Humans on call" },
 ];
 
 export default function Overview(props) {
@@ -40,20 +70,24 @@ export default function Overview(props) {
 
   return (
     <div class="home">
+      {/* Hero */}
       <div class="home-header">
         <img src="/assets/logos/hostliday-wordmark.svg" alt="Hostliday" />
         <span class="home-crumb">Pre-seed demo · April 2026</span>
       </div>
 
-      <h1>Travel coordination, finally end-to-end.</h1>
+      <h1>
+        Your trip plan,<br />
+        before you finish researching.
+      </h1>
       <p class="home-lead">
-        Paste anything — links, emails, screenshots — Orbit parses it into a trip. When something
-        breaks, a real concierge picks up in 38 seconds.
-        <b> AI for the boring parts. Humans when it matters.</b>
+        Paste a link or forward an email. Orbit turns it into a day-by-day plan in seconds.
+        When a flight cancels or a hotel overbooks, a real concierge picks up — not a chatbot.
       </p>
 
       <div class="home-cta-row">
-        <button type="button"
+        <button
+          type="button"
           class="home-cta home-cta-primary"
           onClick={() => props.onNavigate(primarySurface())}
         >
@@ -69,6 +103,25 @@ export default function Overview(props) {
         </Show>
       </div>
 
+      {/* How it works */}
+      <div class="home-steps">
+        <For each={STEPS}>
+          {(step) => (
+            <div class="home-step">
+              <div class="home-step-num">{step.num}</div>
+              <div class="home-step-icon">
+                <Icon name={step.icon} size={20} />
+              </div>
+              <div class="home-step-copy">
+                <div class="home-step-title">{step.title}</div>
+                <div class="home-step-desc">{step.desc}</div>
+              </div>
+            </div>
+          )}
+        </For>
+      </div>
+
+      {/* Surface cards */}
       <div class="section">
         <div class="section-head">
           <h2>Three surfaces, one trip</h2>
@@ -79,22 +132,117 @@ export default function Overview(props) {
         <div class="overview-surfaces">
           <For each={SURFACES}>
             {(s) => (
-              <button type="button"
+              <button
+                type="button"
                 class={`overview-surface overview-surface-${s.accent}`}
                 onClick={() => props.onNavigate(s.id)}
               >
-                <div class="os-eye">
-                  <span class="os-eye-icon"><Icon name={s.icon} size={13} /></span>
-                  {s.eye}
+                <div class="os-top">
+                  <div class="os-eye">{s.eye}</div>
+                  <div class="os-name">{s.name}</div>
+                  <p class="os-blurb">{s.blurb}</p>
                 </div>
-                <div class="os-name">{s.name}</div>
-                <p class="os-blurb">{s.blurb}</p>
+
+                <div class={`os-preview os-preview-${s.preview}`}>
+                  <Show when={s.preview === "explore"}>
+                    <div class="prev-stream">
+                      <div class="prev-item">
+                        <span class="prev-icon prev-icon-link">
+                          <Icon name="link" size={12} />
+                        </span>
+                        <span class="prev-text">airbnb.com/rooms/4872…</span>
+                        <span class="prev-badge">Parsed</span>
+                      </div>
+                      <div class="prev-item">
+                        <span class="prev-icon prev-icon-mail">
+                          <Icon name="mail" size={12} />
+                        </span>
+                        <span class="prev-text">BA 502 · LHR → LIS</span>
+                        <span class="prev-badge prev-badge-confirmed">Confirmed</span>
+                      </div>
+                      <div class="prev-item">
+                        <span class="prev-icon prev-icon-img">
+                          <Icon name="image" size={12} />
+                        </span>
+                        <span class="prev-text">Tasca Lisboeta</span>
+                        <span class="prev-badge">Pending</span>
+                      </div>
+                    </div>
+                  </Show>
+
+                  <Show when={s.preview === "compose"}>
+                    <div class="prev-timeline">
+                      <div class="prev-day">
+                        <span class="prev-day-label">Day 1</span>
+                        <div class="prev-tl-row">
+                          <span class="prev-tl-dot prev-tl-confirmed" />
+                          <span class="prev-tl-text">BA 502 · 22:40</span>
+                        </div>
+                        <div class="prev-tl-row">
+                          <span class="prev-tl-dot prev-tl-held" />
+                          <span class="prev-tl-text">Casa do Vale · Douro</span>
+                        </div>
+                      </div>
+                      <div class="prev-tl-line" />
+                      <div class="prev-day">
+                        <span class="prev-day-label">Day 2</span>
+                        <div class="prev-tl-row">
+                          <span class="prev-tl-dot prev-tl-empty" />
+                          <span class="prev-tl-text prev-tl-muted">Open slot</span>
+                        </div>
+                        <div class="prev-tl-row">
+                          <span class="prev-tl-dot prev-tl-confirmed" />
+                          <span class="prev-tl-text">Wine tasting · 14:00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Show>
+
+                  <Show when={s.preview === "recover"}>
+                    <div class="prev-alert">
+                      <div class="prev-alert-header">
+                        <span class="prev-alert-icon">
+                          <Icon name="alertTriangle" size={14} />
+                        </span>
+                        <span class="prev-alert-title">Flight BA 502 delayed 3h</span>
+                      </div>
+                      <div class="prev-alert-body">
+                        <div class="prev-alert-row">
+                          <span class="prev-alert-label">Response</span>
+                          <span class="prev-alert-value prev-alert-live">
+                            <span class="prev-alert-dot" /> Sara R. · 38s
+                          </span>
+                        </div>
+                        <div class="prev-alert-row">
+                          <span class="prev-alert-label">Action</span>
+                          <span class="prev-alert-value">Backup seat held on TAP 1093</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Show>
+                </div>
+
                 <span class="os-cta">
                   {s.cta} <span aria-hidden="true">→</span>
                 </span>
               </button>
             )}
           </For>
+        </div>
+      </div>
+
+      {/* Stats / Trust bar */}
+      <div class="home-stats">
+        <For each={STATS}>
+          {(stat) => (
+            <div class="home-stat">
+              <div class="home-stat-value">{stat.value}</div>
+              <div class="home-stat-label">{stat.label}</div>
+            </div>
+          )}
+        </For>
+        <div class="home-stat home-stat-motto">
+          AI for the boring parts. Humans when it matters.
         </div>
       </div>
     </div>
