@@ -18,7 +18,7 @@ function SurfaceError(props) {
     <div class="surface-error" role="alert">
       <h2>Something went wrong in {props.name}</h2>
       <pre>{props.error.message}</pre>
-      <button onClick={() => window.location.reload()}>Reload</button>
+      <button type="button" onClick={() => window.location.reload()}>Reload</button>
     </div>
   );
 }

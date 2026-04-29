@@ -89,13 +89,13 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-fab">
-        <button title="Re-center" aria-label="Re-center map">
+        <button type="button" title="Re-center" aria-label="Re-center map">
           <Icon name="locate" />
         </button>
-        <button title="Zoom in" aria-label="Zoom in">
+        <button type="button" title="Zoom in" aria-label="Zoom in">
           <Icon name="plus" />
         </button>
-        <button title="Zoom out" aria-label="Zoom out">
+        <button type="button" title="Zoom out" aria-label="Zoom out">
           <Icon name="minus" />
         </button>
       </div>
@@ -127,10 +127,10 @@ export default function Navigate(props) {
             </div>
           </div>
           <div class="leg-actions">
-            <button class="btn-pri" aria-label="Message driver Henrique">
+            <button type="button" class="btn-pri" aria-label="Message driver Henrique">
               <Icon name="msg" size={16} /> Message driver
             </button>
-            <button class="btn-sec" aria-label="Open route in Maps">
+            <button type="button" class="btn-sec" aria-label="Open route in Maps">
               <Icon name="nav" size={14} /> Open in Maps
             </button>
           </div>

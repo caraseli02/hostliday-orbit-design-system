@@ -97,7 +97,7 @@ export default function Walkthrough(props) {
           </span>
           <span class="wt-label">{STEP_LABEL[props.surface()] || ""}</span>
           <div class="wt-spacer" />
-          <button
+          <button type="button"
             class="wt-btn"
             onClick={back}
             disabled={currentIndex() === 0}
@@ -105,17 +105,17 @@ export default function Walkthrough(props) {
           >
             ←
           </button>
-          <button
+          <button type="button"
             class="wt-btn wt-btn-pause"
             onClick={() => setPaused((p) => !p)}
             aria-label={paused() ? "Resume" : "Pause"}
           >
             {paused() ? "▶" : "❚❚"}
           </button>
-          <button class="wt-btn" onClick={advance} aria-label="Next step">
+          <button type="button" class="wt-btn" onClick={advance} aria-label="Next step">
             →
           </button>
-          <button class="wt-btn wt-btn-exit" onClick={stop} aria-label="Exit walkthrough">
+          <button type="button" class="wt-btn wt-btn-exit" onClick={stop} aria-label="Exit walkthrough">
             Esc
           </button>
         </div>

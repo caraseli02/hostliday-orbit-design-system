@@ -77,7 +77,7 @@ function Action(props) {
             <span class="av h">SR</span>Standing by · Sara R., on-call concierge
           </Show>
           <Show when={a().why}>
-            <button class="act-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
+            <button type="button" class="act-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
               {open() ? "Hide reasoning" : "Why?"}
             </button>
           </Show>
@@ -102,7 +102,7 @@ export default function Recover() {
             <b>Sara R.</b> · on-call concierge
             <span class="concierge-meta">· 38s avg pickup · EN/PT</span>
           </div>
-          <button
+          <button type="button"
             class="concierge-bio-btn"
             aria-expanded={bioOpen()}
             onClick={() => setBioOpen((o) => !o)}
@@ -116,10 +116,10 @@ export default function Recover() {
             </div>
           </Show>
         </div>
-        <button class="concierge-chat">
+        <button type="button" class="concierge-chat">
           <Icon name="msg" size={14} /> Chat
         </button>
-        <button class="concierge-call">
+        <button type="button" class="concierge-call">
           <Icon name="phone" size={14} /> Call
         </button>
       </div>
@@ -196,8 +196,8 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button class="primary">Switch · one tap</button>
-              <button class="ghost">Details</button>
+              <button type="button" class="primary">Switch · one tap</button>
+              <button type="button" class="ghost">Details</button>
             </div>
           </article>
 
@@ -230,8 +230,8 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button class="primary">Switch</button>
-              <button class="ghost">Details</button>
+              <button type="button" class="primary">Switch</button>
+              <button type="button" class="ghost">Details</button>
             </div>
           </article>
 
@@ -264,8 +264,8 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button class="primary">Switch</button>
-              <button class="ghost">Details</button>
+              <button type="button" class="primary">Switch</button>
+              <button type="button" class="ghost">Details</button>
             </div>
           </article>
         </div>
@@ -289,10 +289,10 @@ export default function Recover() {
         <div class="e-msg">
           <b>3 humans on call right now</b> · avg pickup 38 sec · all speak EN/PT
         </div>
-        <button class="chat">
+        <button type="button" class="chat">
           <Icon name="msg" size={14} /> Chat with Sara
         </button>
-        <button class="call">
+        <button type="button" class="call">
           <Icon name="phone" size={14} /> Call now
         </button>
       </div>

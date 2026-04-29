@@ -28,7 +28,7 @@ export default function Components(props) {
   return (
     <div class="showcase">
       <div class="showcase-back-row">
-        <button class="showcase-back" onClick={() => props.onExit && props.onExit()}>
+        <button type="button" class="showcase-back" onClick={() => props.onExit && props.onExit()}>
           ← Back to product
         </button>
       </div>
@@ -94,9 +94,9 @@ export default function Components(props) {
       <div class="showcase-section">
         <h2>Buttons</h2>
         <div class="button-group">
-          <button class="btn btn-primary">Primary</button>
-          <button class="btn btn-secondary">Secondary</button>
-          <button class="btn btn-ghost">Ghost</button>
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-secondary">Secondary</button>
+          <button type="button" class="btn btn-ghost">Ghost</button>
         </div>
       </div>
 

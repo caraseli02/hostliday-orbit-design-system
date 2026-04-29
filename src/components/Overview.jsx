@@ -49,7 +49,7 @@ export default function Overview(props) {
       </p>
 
       <div class="home-cta-row">
-        <button
+        <button type="button"
           class="home-cta home-cta-primary"
           onClick={() => props.onNavigate(primarySurface())}
         >
@@ -75,7 +75,7 @@ export default function Overview(props) {
         <div class="overview-surfaces">
           <For each={SURFACES}>
             {(s) => (
-              <button
+              <button type="button"
                 class={`overview-surface overview-surface-${s.accent}`}
                 onClick={() => props.onNavigate(s.id)}
               >

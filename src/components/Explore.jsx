@@ -121,7 +121,7 @@ function StreamItem(props) {
 
       <div class="item-row">
         <Show when={canSlot()}>
-          <button class="act-btn primary" onClick={() => slotItemToTrip(item().id, activeTripId())}>
+          <button type="button" class="act-btn primary" onClick={() => slotItemToTrip(item().id, activeTripId())}>
             <Icon name="check" size={12} /> {slotLabel()}
           </button>
         </Show>
@@ -131,15 +131,15 @@ function StreamItem(props) {
           </span>
         </Show>
         <Show when={item().parseStatus === "failed"}>
-          <button class="act-btn">
+          <button type="button" class="act-btn">
             <Icon name="arrow" size={12} /> Try again
           </button>
         </Show>
         <div class="item-actions">
-          <button class="act-btn" aria-label="Edit (coming soon)" disabled title="Edit · coming soon">
+          <button type="button" class="act-btn" aria-label="Edit (coming soon)" disabled title="Edit · coming soon">
             <Icon name="edit" size={12} />
           </button>
-          <button class="act-btn" aria-label="Delete" onClick={() => deleteItem(item().id)}>
+          <button type="button" class="act-btn" aria-label="Delete" onClick={() => deleteItem(item().id)}>
             <Icon name="trash" size={12} />
           </button>
         </div>
@@ -154,7 +154,7 @@ function Filters(props) {
       <div class="filter-chips" role="group" aria-label="Filter by kind">
         <For each={KIND_CHIPS}>
           {(c) => (
-            <button
+            <button type="button"
               class={`filter-chip ${props.kinds().includes(c.id) ? "on" : ""}`}
               aria-pressed={props.kinds().includes(c.id)}
               onClick={() => props.toggleKind(c.id)}
@@ -165,14 +165,14 @@ function Filters(props) {
         </For>
       </div>
       <div class="filter-toggle" role="group" aria-label="Filter by assignment">
-        <button
+        <button type="button"
           class={`filter-tog ${props.assignment() === "this" ? "on" : ""}`}
           aria-pressed={props.assignment() === "this"}
           onClick={() => props.setAssignment(props.assignment() === "this" ? null : "this")}
         >
           This trip
         </button>
-        <button
+        <button type="button"
           class={`filter-tog ${props.assignment() === "unsorted" ? "on" : ""}`}
           aria-pressed={props.assignment() === "unsorted"}
           onClick={() => props.setAssignment(props.assignment() === "unsorted" ? null : "unsorted")}
@@ -358,7 +358,7 @@ export default function Explore(props) {
 
           <div class="stream-foot">
             <span class="lh">Drop more anywhere on this page</span>
-            <button
+            <button type="button"
               class="compose-btn"
               onClick={() => props.onNavigate && props.onNavigate("compose")}
             >
