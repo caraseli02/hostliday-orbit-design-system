@@ -6,7 +6,7 @@ function MapStage() {
       class="map-svg"
       viewBox="0 0 1280 720"
       preserveAspectRatio="xMidYMid slice"
-      style="position:absolute;inset:0;width:100%;height:100%"
+      style={{"position":"absolute","inset":"0","width":"100%","height":"100%"}}
     >
       <path class="map-park" d="M0 520 Q 200 460 380 500 T 720 540 L 720 720 L 0 720 Z" />
       <path
@@ -48,7 +48,7 @@ function MapStage() {
         <circle r="10" class="live-dot-bg" />
         <circle r="7" class="live-dot" />
       </g>
-      <g style="font-family:var(--font-body);font-size:11px;fill:rgba(255,255,255,.55);letter-spacing:.06em;text-transform:uppercase;font-weight:600">
+      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.55)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
         <text x="120" y="624" text-anchor="middle">
           Lisbon
         </text>
@@ -71,13 +71,13 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-topbar">
-        <div class="glass brand-pill" onclick={props.onExit} style="cursor:pointer">
+        <div class="glass brand-pill" onClick={() => props.onExit()} style={{"cursor":"pointer"}}>
           <img src="/assets/logos/hostliday-wordmark-white.svg" />
         </div>
         <div class="glass nav-crumb">
           <div class="lbl">Day 1 · in transit</div>
           <div class="ttl">
-            <span class="dot-live"></span>LIS Airport → Casa do Vale, Douro Valley
+            <span class="dot-live" />LIS Airport → Casa do Vale, Douro Valley
           </div>
           <div class="meta">Driver Henrique · Black Skoda · 22-AB-94 · ETA 02:14</div>
         </div>
@@ -102,7 +102,7 @@ export default function Navigate(props) {
         <div class="sheet-grid">
           <div>
             <div class="leg-eye">
-              <span class="dot-live"></span>Live · arriving in 14 min
+              <span class="dot-live" />Live · arriving in 14 min
             </div>
             <h2 class="leg-title">Your driver is 4 minutes away.</h2>
             <div class="leg-meta">

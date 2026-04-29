@@ -1,0 +1,275 @@
+/* =========================================================
+   COMPONENT SHOWCASE
+   ========================================================= */
+.showcase {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--sp-10) var(--gutter-app) var(--sp-20);
+}
+.showcase-section {
+  margin-bottom: var(--sp-14);
+}
+.showcase-section h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-32);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--sp-6);
+}
+.showcase-section h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-18);
+  margin: var(--sp-8) 0 var(--sp-4);
+  color: var(--fg-2);
+}
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--sp-4);
+}
+.color-swatch {
+  aspect-ratio: 1;
+  border-radius: var(--r-card);
+  border: 1px solid var(--border-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--sp-3);
+}
+.color-swatch .label {
+  font: 500 11px var(--font-mono);
+  color: var(--fg-on-dark);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.type-sample {
+  margin: var(--sp-4) 0;
+  padding: var(--sp-4);
+  background: var(--bg-surface);
+  border-radius: var(--r-card);
+}
+.button-group {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  margin: var(--sp-4) 0;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  border: none;
+  border-radius: var(--r-input);
+  font: 600 14px var(--font-body);
+  letter-spacing: var(--ls-tight);
+  cursor: pointer;
+  transition: all var(--dur-micro) var(--ease-orbit);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--hostliday-red-500);
+  color: var(--fg-on-brand);
+}
+.btn-primary:hover {
+  background: var(--hostliday-red-600);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+.btn-secondary {
+  background: var(--neutral-200);
+  color: var(--fg-1);
+}
+.btn-secondary:hover {
+  background: var(--neutral-300);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--fg-1);
+  border: 1px solid var(--border-1);
+}
+.btn-ghost:hover {
+  background: var(--neutral-100);
+  border-color: var(--border-2);
+}
+.btn-ghost-on-dark {
+  background: transparent;
+  color: var(--fg-1);
+  border: 1px solid var(--border-1);
+}
+.btn-ghost-on-dark:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* =========================================================
+   INPUT FIELDS
+   ========================================================= */
+.input {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--border-1);
+  border-radius: var(--r-input);
+  font: 400 15px var(--font-body);
+  color: var(--fg-1);
+  background: var(--bg-surface);
+  transition: all var(--dur-micro) var(--ease-orbit);
+}
+.input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+.input::placeholder {
+  color: var(--fg-4);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+/* pulse + blink defined in EXPLORE section above */
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1024px) {
+  .explore-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .comp-shell {
+    grid-template-columns: 1fr;
+  }
+  .comp-pane {
+    grid-row: auto;
+    border-left: none;
+    border-top: 1px solid var(--border-1);
+    max-height: 480px;
+  }
+}
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .surface-grid {
+    grid-template-columns: 1fr;
+  }
+  .surface-grid .surface-card.explore.featured {
+    grid-template-columns: 1fr;
+  }
+  .surface-grid .surface-card.explore.featured .card-photo {
+    border-radius: var(--r-card) var(--r-card) 0 0;
+    min-height: 160px;
+  }
+  .nav-tabs {
+    gap: 0;
+  }
+  .nav-tab {
+    padding: var(--sp-2) var(--sp-2);
+    font-size: 12px;
+  }
+  .explore-layout {
+    padding: 24px var(--gutter-mobile);
+  }
+  .tripstrip {
+    flex-direction: column;
+  }
+  .home {
+    padding: 32px var(--gutter-mobile) 80px;
+  }
+  .home-cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Touch target sizing on small viewports */
+@media (max-width: 720px) {
+  .filter-chip,
+  .filter-tog,
+  .act-btn,
+  .shell-tab,
+  .footer-link {
+    min-height: 36px;
+  }
+  .home-cta,
+  .compose-btn,
+  .concierge-chat,
+  .concierge-call,
+  .comp-confirm-btn {
+    min-height: 44px;
+  }
+}
+
+/* Global reduced-motion fallback — overrides per-rule animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Surface error boundary */
+.surface-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  text-align: center;
+  gap: 12px;
+}
+.surface-error h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--hostliday-red-700);
+}
+.surface-error pre {
+  max-width: 480px;
+  padding: 12px 16px;
+  background: var(--bg-inverse);
+  color: var(--fg-inverse);
+  border-radius: var(--r-card);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.surface-error button {
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: var(--hostliday-red-bright);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Disabled button states */
+.act-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}

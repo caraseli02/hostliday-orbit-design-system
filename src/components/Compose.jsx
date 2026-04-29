@@ -22,30 +22,30 @@ const ORBIT_MESSAGES = [
   },
 ];
 
-function Slot({ kind, status, time, name, sub }) {
+function Slot(props) {
   return (
-    <div class={`comp-slot ${status || ""}`}>
+    <div class={`comp-slot ${props.status || ""}`}>
       <div class="slot-ico">
-        <Icon name={KIND_ICONS[kind]} />
+        <Icon name={KIND_ICONS[props.kind]} />
       </div>
       <div class="slot-body">
-        <div class="slot-name">{name}</div>
-        <div class="slot-sub">{sub}</div>
+        <div class="slot-name">{props.name}</div>
+        <div class="slot-sub">{props.sub}</div>
       </div>
-      {time && <div class="slot-time">{time}</div>}
-      {status === "confirmed" && <span class="badge b-confirmed">Confirmed</span>}
-      {status === "held" && <span class="badge b-held">Held · 23h</span>}
+      {props.time && <div class="slot-time">{props.time}</div>}
+      {props.status === "confirmed" && <span class="badge b-confirmed">Confirmed</span>}
+      {props.status === "held" && <span class="badge b-held">Held · 23h</span>}
     </div>
   );
 }
 
-function Gap({ label }) {
+function Gap(props) {
   return (
     <div class="comp-gap">
       <span class="plus-ico">
         <Icon name="plus" size={14} />
       </span>
-      {label}
+      {props.label}
     </div>
   );
 }
@@ -59,7 +59,7 @@ function OrbitMessage(props) {
       </div>
       <div class="comp-bubble">
         <div class="comp-bubble-body">{props.msg.body}</div>
-        <button class="comp-why" aria-expanded={open()} onclick={() => setOpen((o) => !o)}>
+        <button class="comp-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
           {open() ? "Hide reasoning" : "Why?"}
         </button>
         <Show when={open()}>
@@ -95,7 +95,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">22</span>
             <span class="day-date">Fri · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">31° / warm</span>
           </div>
           <Slot
@@ -119,7 +119,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">23</span>
             <span class="day-date">Sat · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">29° / clear</span>
           </div>
           <Slot
@@ -143,7 +143,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">24</span>
             <span class="day-date">Sun · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">29° / breezy</span>
           </div>
           <Slot
@@ -174,7 +174,7 @@ export default function Compose() {
         </div>
 
         <div class="comp-primary-cta">
-          <button class="comp-confirm-btn" onclick={onConfirmHeld}>
+          <button class="comp-confirm-btn" onClick={onConfirmHeld}>
             <Icon name="check" size={14} />
             Confirm next held · Tasca da Sé
             <span class="comp-confirm-meta">23h left</span>

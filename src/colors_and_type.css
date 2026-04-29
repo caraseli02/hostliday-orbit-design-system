@@ -6,6 +6,7 @@
    ========================================================= */
 
 /* ---------- Webfonts ---------- */
+/* Inter: self-hosted variable font (woff2) */
 @font-face {
   font-family: "Inter";
   src: url("./fonts/Inter-Variable.woff2") format("woff2-variations");
@@ -13,20 +14,7 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Montserrat";
-  src: url("./fonts/Montserrat-Variable.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("./fonts/JetBrainsMono-Variable.woff2") format("woff2-variations");
-  font-weight: 100 800;
-  font-style: normal;
-  font-display: swap;
-}
+/* Montserrat + JetBrains Mono: loaded via Google Fonts CDN (index.html) */
 
 /* =========================================================
    CORE TOKENS
