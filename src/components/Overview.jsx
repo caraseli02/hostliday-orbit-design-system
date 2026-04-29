@@ -1,4 +1,4 @@
-import { Show } from "solid-js";
+import { Show, For } from "solid-js";
 import { useTrip } from "../state";
 
 const SURFACES = [
@@ -51,14 +51,14 @@ export default function Overview(props) {
       <div class="home-cta-row">
         <button
           class="home-cta home-cta-primary"
-          onclick={() => props.onNavigate(primarySurface())}
+          onClick={() => props.onNavigate(primarySurface())}
         >
           {primaryLabel()}
           <span class="home-cta-arrow">→</span>
         </button>
         <Show when={activeTrip()}>
           <span class="home-cta-meta">
-            <span class={`home-cta-dot ${activeTrip().status}`}></span>
+            <span class={`home-cta-dot ${activeTrip().status}`} />
             {activeTrip().dates}
             {activeTrip().nights ? ` · ${activeTrip().nights} nights` : ""}
           </span>
@@ -73,19 +73,21 @@ export default function Overview(props) {
           </p>
         </div>
         <div class="overview-surfaces">
-          {SURFACES.map((s) => (
-            <button
-              class={`overview-surface overview-surface-${s.accent}`}
-              onclick={() => props.onNavigate(s.id)}
-            >
-              <div class="os-eye">{s.eye}</div>
-              <div class="os-name">{s.name}</div>
-              <p class="os-blurb">{s.blurb}</p>
-              <span class="os-cta">
-                {s.cta} <span aria-hidden="true">→</span>
-              </span>
-            </button>
-          ))}
+          <For each={SURFACES}>
+            {(s) => (
+              <button
+                class={`overview-surface overview-surface-${s.accent}`}
+                onClick={() => props.onNavigate(s.id)}
+              >
+                <div class="os-eye">{s.eye}</div>
+                <div class="os-name">{s.name}</div>
+                <p class="os-blurb">{s.blurb}</p>
+                <span class="os-cta">
+                  {s.cta} <span aria-hidden="true">→</span>
+                </span>
+              </button>
+            )}
+          </For>
         </div>
       </div>
     </div>

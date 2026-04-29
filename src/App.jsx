@@ -1,4 +1,4 @@
-import { createSignal, Show } from "solid-js";
+import { createSignal, Show, ErrorBoundary } from "solid-js";
 import { TripProvider } from "./state";
 import Shell from "./components/Shell";
 import Footer from "./components/Footer";
@@ -12,6 +12,16 @@ import Recover from "./components/Recover";
 import Components from "./components/Components";
 
 const FULL_VIEWPORT = new Set(["navigate"]);
+
+function SurfaceError(props) {
+  return (
+    <div class="surface-error" role="alert">
+      <h2>Something went wrong in {props.name}</h2>
+      <pre>{props.error.message}</pre>
+      <button onClick={() => window.location.reload()}>Reload</button>
+    </div>
+  );
+}
 
 export default function App() {
   const [surface, setSurface] = createSignal("overview");
@@ -28,24 +38,41 @@ export default function App() {
       </Show>
 
       <main id="shell-main" class={`main ${isFullViewport() ? "full-viewport" : ""}`} tabindex="-1">
-        <div class={`surface ${surface() === "overview" ? "active" : ""}`}>
-          <Overview onNavigate={setSurface} />
-        </div>
-        <div class={`surface ${surface() === "explore" ? "active" : ""}`}>
-          <Explore onNavigate={setSurface} />
-        </div>
-        <div class={`surface ${surface() === "compose" ? "active" : ""}`}>
-          <Compose />
-        </div>
-        <div class={`surface ${surface() === "navigate" ? "active" : ""}`}>
-          <Navigate onExit={() => setSurface("overview")} />
-        </div>
-        <div class={`surface ${surface() === "recover" ? "active" : ""}`}>
-          <Recover />
-        </div>
-        <div class={`surface ${surface() === "components" ? "active" : ""}`}>
-          <Components onExit={() => setSurface("overview")} />
-        </div>
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Overview" error={err} />}>
+          <Show when={surface() === "overview"}>
+            <Overview onNavigate={setSurface} />
+          </Show>
+        </ErrorBoundary>
+
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Explore" error={err} />}>
+          <Show when={surface() === "explore"}>
+            <Explore onNavigate={setSurface} />
+          </Show>
+        </ErrorBoundary>
+
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Compose" error={err} />}>
+          <Show when={surface() === "compose"}>
+            <Compose />
+          </Show>
+        </ErrorBoundary>
+
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Navigate" error={err} />}>
+          <Show when={surface() === "navigate"}>
+            <Navigate onExit={() => setSurface("overview")} />
+          </Show>
+        </ErrorBoundary>
+
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Recover" error={err} />}>
+          <Show when={surface() === "recover"}>
+            <Recover />
+          </Show>
+        </ErrorBoundary>
+
+        <ErrorBoundary fallback={(err) => <SurfaceError name="Components" error={err} />}>
+          <Show when={surface() === "components"}>
+            <Components onExit={() => setSurface("overview")} />
+          </Show>
+        </ErrorBoundary>
       </main>
 
       <Show when={showShell()}>

@@ -22,30 +22,30 @@ const ORBIT_MESSAGES = [
   },
 ];
 
-function Slot({ kind, status, time, name, sub }) {
+function Slot(props) {
   return (
-    <div class={`comp-slot ${status || ""}`}>
+    <div class={`comp-slot ${props.status || ""}`}>
       <div class="slot-ico">
-        <Icon name={KIND_ICONS[kind]} />
+        <Icon name={KIND_ICONS[props.kind]} />
       </div>
       <div class="slot-body">
-        <div class="slot-name">{name}</div>
-        <div class="slot-sub">{sub}</div>
+        <div class="slot-name">{props.name}</div>
+        <div class="slot-sub">{props.sub}</div>
       </div>
-      {time && <div class="slot-time">{time}</div>}
-      {status === "confirmed" && <span class="badge b-confirmed">Confirmed</span>}
-      {status === "held" && <span class="badge b-held">Held · 23h</span>}
+      {props.time && <div class="slot-time">{props.time}</div>}
+      {props.status === "confirmed" && <span class="badge b-confirmed">Confirmed</span>}
+      {props.status === "held" && <span class="badge b-held">Held · 23h</span>}
     </div>
   );
 }
 
-function Gap({ label }) {
+function Gap(props) {
   return (
     <div class="comp-gap">
       <span class="plus-ico">
         <Icon name="plus" size={14} />
       </span>
-      {label}
+      {props.label}
     </div>
   );
 }
@@ -59,7 +59,7 @@ function OrbitMessage(props) {
       </div>
       <div class="comp-bubble">
         <div class="comp-bubble-body">{props.msg.body}</div>
-        <button class="comp-why" aria-expanded={open()} onclick={() => setOpen((o) => !o)}>
+        <button class="comp-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
           {open() ? "Hide reasoning" : "Why?"}
         </button>
         <Show when={open()}>
@@ -72,7 +72,6 @@ function OrbitMessage(props) {
 
 export default function Compose() {
   const { activeTrip, showToast } = useTrip();
-  const [tab, setTab] = createSignal("orbit");
 
   const onConfirmHeld = () => {
     showToast({
@@ -96,7 +95,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">22</span>
             <span class="day-date">Fri · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">31° / warm</span>
           </div>
           <Slot
@@ -120,7 +119,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">23</span>
             <span class="day-date">Sat · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">29° / clear</span>
           </div>
           <Slot
@@ -144,7 +143,7 @@ export default function Compose() {
           <div class="day-head">
             <span class="day-num">24</span>
             <span class="day-date">Sun · Aug</span>
-            <span class="day-line"></span>
+            <span class="day-line" />
             <span class="day-temp">29° / breezy</span>
           </div>
           <Slot
@@ -163,30 +162,34 @@ export default function Compose() {
             role="tab"
             aria-selected={tab() === "orbit"}
             class={`comp-tab ${tab() === "orbit" ? "on" : ""}`}
-            onclick={() => setTab("orbit")}
+            onClick={() => setTab("orbit")}
           >
             Orbit
           </button>
           <button
             role="tab"
             aria-selected={tab() === "compare"}
-            class={`comp-tab ${tab() === "compare" ? "on" : ""}`}
-            onclick={() => setTab("compare")}
+            class={`comp-tab ${tab() === "compare" ? "on" : "comp-tab-disabled"}`}
+            disabled
+            title="Compare · coming soon"
+            onClick={() => setTab("compare")}
           >
             Compare
           </button>
           <button
             role="tab"
             aria-selected={tab() === "docs"}
-            class={`comp-tab ${tab() === "docs" ? "on" : ""}`}
-            onclick={() => setTab("docs")}
+            class={`comp-tab ${tab() === "docs" ? "on" : "comp-tab-disabled"}`}
+            disabled
+            title="Docs · coming soon"
+            onClick={() => setTab("docs")}
           >
             Docs
           </button>
         </div>
 
         <div class="comp-primary-cta">
-          <button class="comp-confirm-btn" onclick={onConfirmHeld}>
+          <button class="comp-confirm-btn" onClick={onConfirmHeld}>
             <Icon name="check" size={14} />
             Confirm next held · Tasca da Sé
             <span class="comp-confirm-meta">23h left</span>
@@ -201,7 +204,7 @@ export default function Compose() {
         <div class="comp-composer">
           <div class="comp-field">
             <input placeholder="Ask Orbit anything about this trip…" aria-label="Ask Orbit about this trip" />
-            <button aria-label="Send">
+            <button aria-label="Send" disabled title="Ask Orbit · coming soon">
               <Icon name="send" size={14} />
             </button>
           </div>

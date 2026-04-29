@@ -1,0 +1,15 @@
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.main {
+  padding-top: var(--shell-h);
+}
+.main.full-viewport {
+  padding-top: 0;
+}
+.surface {
+  display: none;
+}
+.surface.active {
+  display: block;
+}

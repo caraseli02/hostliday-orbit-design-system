@@ -121,7 +121,7 @@ function StreamItem(props) {
 
       <div class="item-row">
         <Show when={canSlot()}>
-          <button class="act-btn primary" onclick={() => slotItemToTrip(item().id, activeTripId())}>
+          <button class="act-btn primary" onClick={() => slotItemToTrip(item().id, activeTripId())}>
             <Icon name="check" size={12} /> {slotLabel()}
           </button>
         </Show>
@@ -136,10 +136,10 @@ function StreamItem(props) {
           </button>
         </Show>
         <div class="item-actions">
-          <button class="act-btn" aria-label="Edit">
+          <button class="act-btn" aria-label="Edit (coming soon)" disabled title="Edit · coming soon">
             <Icon name="edit" size={12} />
           </button>
-          <button class="act-btn" aria-label="Delete" onclick={() => deleteItem(item().id)}>
+          <button class="act-btn" aria-label="Delete" onClick={() => deleteItem(item().id)}>
             <Icon name="trash" size={12} />
           </button>
         </div>
@@ -157,7 +157,7 @@ function Filters(props) {
             <button
               class={`filter-chip ${props.kinds().includes(c.id) ? "on" : ""}`}
               aria-pressed={props.kinds().includes(c.id)}
-              onclick={() => props.toggleKind(c.id)}
+              onClick={() => props.toggleKind(c.id)}
             >
               <Icon name={c.icon} size={11} /> {c.label}
             </button>
@@ -168,14 +168,14 @@ function Filters(props) {
         <button
           class={`filter-tog ${props.assignment() === "this" ? "on" : ""}`}
           aria-pressed={props.assignment() === "this"}
-          onclick={() => props.setAssignment(props.assignment() === "this" ? null : "this")}
+          onClick={() => props.setAssignment(props.assignment() === "this" ? null : "this")}
         >
           This trip
         </button>
         <button
           class={`filter-tog ${props.assignment() === "unsorted" ? "on" : ""}`}
           aria-pressed={props.assignment() === "unsorted"}
-          onclick={() => props.setAssignment(props.assignment() === "unsorted" ? null : "unsorted")}
+          onClick={() => props.setAssignment(props.assignment() === "unsorted" ? null : "unsorted")}
         >
           Unsorted
         </button>
@@ -186,7 +186,7 @@ function Filters(props) {
           type="search"
           placeholder="Search intake…"
           value={props.query()}
-          oninput={(e) => props.setQuery(e.currentTarget.value)}
+          onInput={(e) => props.setQuery(e.currentTarget.value)}
           aria-label="Search intake"
         />
       </div>
@@ -220,7 +220,7 @@ export default function Explore(props) {
     addItem({ raw: raw.trim(), source: "paste", tripId: activeTripId() });
   };
 
-  let dropInputRef;
+  let dropInputRef = undefined;
   const handleSubmit = () => {
     const v = dropInputRef?.value;
     onPaste(v);
@@ -232,7 +232,7 @@ export default function Explore(props) {
       <main class="explore-layout">
         <section class="explore-hero-section">
           <div class="intake-eye">
-            <span class="dot-live"></span>
+            <span class="dot-live" />
             Drop intake · open
           </div>
 
@@ -254,28 +254,28 @@ export default function Explore(props) {
                 ref={dropInputRef}
                 class="drop-input"
                 placeholder="Paste a link, a confirmation email, or just type a note…"
-                onkeydown={(e) => {
+                onKeyDown={(e) => {
                   if (e.key === "Enter") handleSubmit();
                 }}
               />
-              <button class="drop-paste-btn" onclick={handleSubmit}>
+              <button class="drop-paste-btn" onClick={handleSubmit}>
                 Drop into {activeTrip()?.name || "trip"}
-                <span style="opacity:.6;font-size:11px;font-family:var(--font-mono);padding:2px 5px;background:rgba(255,255,255,.15);border-radius:4px;margin-left:2px">
+                <span style={{"opacity":".6","font-size":"11px","font-family":"var(--font-mono)","padding":"2px 5px","background":"rgba(255,255,255,.15)","border-radius":"4px","margin-left":"2px"}}>
                   ↵
                 </span>
               </button>
             </div>
             <div class="drop-meta">
               <span class="drop-channel">
-                <Icon name="link" size={14} style="margin-right:4px" />
+                <Icon name="link" size={14} style={{"margin-right":"4px"}} />
                 Any link · <b>airbnb, booking, instagram, blog post, google maps…</b>
               </span>
               <span class="drop-channel">
-                <Icon name="image" size={14} style="margin-right:4px" />
+                <Icon name="image" size={14} style={{"margin-right":"4px"}} />
                 Any screenshot
               </span>
               <span class="drop-channel">
-                <Icon name="mail" size={14} style="margin-right:4px" />
+                <Icon name="mail" size={14} style={{"margin-right":"4px"}} />
                 Forward to <b>plan@hostliday.com</b>
               </span>
             </div>
@@ -288,10 +288,10 @@ export default function Explore(props) {
                   class={`trip-card ${t.id === activeTripId() ? "on" : ""}`}
                   role="radio"
                   aria-checked={t.id === activeTripId()}
-                  onclick={() => setActiveTrip(t.id)}
+                  onClick={() => setActiveTrip(t.id)}
                 >
                   <div class="trip-eye">
-                    <span class={`dot ${TRIP_STATUS_DOT[t.status]}`}></span>
+                    <span class={`dot ${TRIP_STATUS_DOT[t.status]}`} />
                     {TRIP_STATUS_LABEL[t.status]}
                   </div>
                   <div class="trip-name">{t.name}</div>
@@ -317,7 +317,7 @@ export default function Explore(props) {
             <div class="stream-eye">
               <span class="lab">Intake stream</span>
               <span class="live">
-                <span class="d"></span>parsing live
+                <span class="d" />parsing live
               </span>
             </div>
             <div class="stream-trip">{activeTrip()?.name || "No trip selected"}</div>
@@ -360,7 +360,7 @@ export default function Explore(props) {
             <span class="lh">Drop more anywhere on this page</span>
             <button
               class="compose-btn"
-              onclick={() => props.onNavigate && props.onNavigate("compose")}
+              onClick={() => props.onNavigate && props.onNavigate("compose")}
             >
               Open in Compose <Icon name="arrow" size={12} />
             </button>
