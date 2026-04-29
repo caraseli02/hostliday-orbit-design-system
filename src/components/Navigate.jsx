@@ -74,7 +74,7 @@ export default function Navigate(props) {
 
       <div class="nav-topbar">
         <button class="glass brand-pill" onClick={() => props.onExit()} aria-label="Back to product">
-          <img src="/assets/logos/hostliday-wordmark-white.svg" />
+          <img src="/assets/logos/hostliday-wordmark-white.svg" alt="Hostliday" />
         </button>
         <div class="glass nav-crumb">
           <div class="lbl">Day 1 · in transit</div>

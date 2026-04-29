@@ -88,7 +88,7 @@ export default function Compose() {
           <h1 class="tl-title">{activeTrip()?.name || "No trip"}</h1>
           <div class="tl-meta">
             {activeTrip()?.dates}
-            {activeTrip()?.nights ? ` · ${activeTrip().nights} nights` : ""} · 2 travelers
+            {activeTrip()?.nights ? ` · ${activeTrip()?.nights} nights` : ""} · 2 travelers
           </div>
         </div>
 
