@@ -72,6 +72,7 @@ function OrbitMessage(props) {
 
 export default function Compose() {
   const { activeTrip, showToast } = useTrip();
+  const [tab, setTab] = createSignal("orbit");
 
   const onConfirmHeld = () => {
     showToast({
@@ -174,7 +175,6 @@ export default function Compose() {
             class={`comp-tab ${tab() === "compare" ? "on" : "comp-tab-disabled"}`}
             disabled
             title="Compare · coming soon"
-            onClick={() => setTab("compare")}
           >
             Compare
           </button>
@@ -185,7 +185,6 @@ export default function Compose() {
             class={`comp-tab ${tab() === "docs" ? "on" : "comp-tab-disabled"}`}
             disabled
             title="Docs · coming soon"
-            onClick={() => setTab("docs")}
           >
             Docs
           </button>
