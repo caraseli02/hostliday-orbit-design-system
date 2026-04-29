@@ -50,7 +50,7 @@ function MapStage() {
         <circle r="10" class="live-dot-bg" />
         <circle r="7" class="live-dot" />
       </g>
-      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.55)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
+      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.72)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
         <text x="120" y="624" text-anchor="middle">
           Lisbon
         </text>
