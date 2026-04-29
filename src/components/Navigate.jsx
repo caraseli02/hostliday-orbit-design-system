@@ -6,6 +6,8 @@ function MapStage() {
       class="map-svg"
       viewBox="0 0 1280 720"
       preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="Map showing route from Lisbon to Douro Valley"
       style="position:absolute;inset:0;width:100%;height:100%"
     >
       <path class="map-park" d="M0 520 Q 200 460 380 500 T 720 540 L 720 720 L 0 720 Z" />
@@ -71,7 +73,7 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-topbar">
-        <div class="glass brand-pill" onclick={props.onExit} style="cursor:pointer">
+        <button class="glass brand-pill" onclick={props.onExit} aria-label="Back to product">
           <img src="/assets/logos/hostliday-wordmark-white.svg" />
         </div>
         <div class="glass nav-crumb">
@@ -87,18 +89,18 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-fab">
-        <button title="Re-center">
+        <button title="Re-center" aria-label="Re-center map">
           <Icon name="locate" />
         </button>
-        <button title="Zoom in">
+        <button title="Zoom in" aria-label="Zoom in">
           <Icon name="plus" />
         </button>
-        <button title="Zoom out">
+        <button title="Zoom out" aria-label="Zoom out">
           <Icon name="minus" />
         </button>
       </div>
 
-      <div class="glass nav-sheet">
+      <div class="glass nav-sheet" role="region" aria-label="Current trip leg details">
         <div class="sheet-grid">
           <div>
             <div class="leg-eye">
@@ -125,10 +127,10 @@ export default function Navigate(props) {
             </div>
           </div>
           <div class="leg-actions">
-            <button class="btn-pri">
+            <button class="btn-pri" aria-label="Message driver Henrique">
               <Icon name="msg" size={16} /> Message driver
             </button>
-            <button class="btn-sec">
+            <button class="btn-sec" aria-label="Open route in Maps">
               <Icon name="nav" size={14} /> Open in Maps
             </button>
           </div>
