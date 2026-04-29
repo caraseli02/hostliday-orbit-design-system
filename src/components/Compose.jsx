@@ -72,6 +72,7 @@ function OrbitMessage(props) {
 
 export default function Compose() {
   const { activeTrip, showToast } = useTrip();
+  const [tab, setTab] = createSignal("orbit");
 
   const onConfirmHeld = () => {
     showToast({
@@ -87,7 +88,7 @@ export default function Compose() {
           <h1 class="tl-title">{activeTrip()?.name || "No trip"}</h1>
           <div class="tl-meta">
             {activeTrip()?.dates}
-            {activeTrip()?.nights ? ` · ${activeTrip().nights} nights` : ""} · 2 travelers
+            {activeTrip()?.nights ? ` · ${activeTrip()?.nights} nights` : ""} · 2 travelers
           </div>
         </div>
 
@@ -157,18 +158,34 @@ export default function Compose() {
       </main>
 
       <aside class="comp-pane">
-        <div class="comp-tabs">
-          <button type="button" class="comp-tab on">
+        <div class="comp-tabs" role="tablist" aria-label="Orbit panel tabs">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab() === "orbit"}
+            class={`comp-tab ${tab() === "orbit" ? "on" : ""}`}
+            onClick={() => setTab("orbit")}
+          >
             Orbit
           </button>
-          <button type="button"
-            class="comp-tab comp-tab-disabled"
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab() === "compare"}
+            class={`comp-tab ${tab() === "compare" ? "on" : "comp-tab-disabled"}`}
             disabled
             title="Compare · coming soon"
           >
             Compare
           </button>
-          <button type="button" class="comp-tab comp-tab-disabled" disabled title="Docs · coming soon">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab() === "docs"}
+            class={`comp-tab ${tab() === "docs" ? "on" : "comp-tab-disabled"}`}
+            disabled
+            title="Docs · coming soon"
+          >
             Docs
           </button>
         </div>
@@ -188,8 +205,8 @@ export default function Compose() {
 
         <div class="comp-composer">
           <div class="comp-field">
-            <input placeholder="Ask Orbit anything about this trip…" />
-            <button type="button" aria-label="Send" disabled title="Ask Orbit · coming soon">
+            <input placeholder="Ask Orbit anything about this trip…" aria-label="Ask Orbit about this trip" />
+            <button type="button" aria-label="Send" disabled title="Ask Orbit Â· coming soon">
               <Icon name="send" size={14} />
             </button>
           </div>

@@ -6,6 +6,8 @@ function MapStage() {
       class="map-svg"
       viewBox="0 0 1280 720"
       preserveAspectRatio="xMidYMid slice"
+      role="img"
+      aria-label="Map showing route from Lisbon to Douro Valley"
       style={{"position":"absolute","inset":"0","width":"100%","height":"100%"}}
     >
       <path class="map-park" d="M0 520 Q 200 460 380 500 T 720 540 L 720 720 L 0 720 Z" />
@@ -48,7 +50,7 @@ function MapStage() {
         <circle r="10" class="live-dot-bg" />
         <circle r="7" class="live-dot" />
       </g>
-      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.55)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
+      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.72)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
         <text x="120" y="624" text-anchor="middle">
           Lisbon
         </text>
@@ -71,9 +73,9 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-topbar">
-        <div class="glass brand-pill" onClick={() => props.onExit()} style={{"cursor":"pointer"}}>
-          <img src="/assets/logos/hostliday-wordmark-white.svg" />
-        </div>
+        <button class="glass brand-pill" onClick={() => props.onExit()} aria-label="Back to product">
+          <img src="/assets/logos/hostliday-wordmark-white.svg" alt="Hostliday" />
+        </button>
         <div class="glass nav-crumb">
           <div class="lbl">Day 1 · in transit</div>
           <div class="ttl">
@@ -87,18 +89,18 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-fab">
-        <button type="button" title="Re-center">
+        <button type="button" title="Re-center" aria-label="Re-center map">
           <Icon name="locate" />
         </button>
-        <button type="button" title="Zoom in">
+        <button type="button" title="Zoom in" aria-label="Zoom in">
           <Icon name="plus" />
         </button>
-        <button type="button" title="Zoom out">
+        <button type="button" title="Zoom out" aria-label="Zoom out">
           <Icon name="minus" />
         </button>
       </div>
 
-      <div class="glass nav-sheet">
+      <div class="glass nav-sheet" role="region" aria-label="Current trip leg details">
         <div class="sheet-grid">
           <div>
             <div class="leg-eye">
@@ -125,10 +127,10 @@ export default function Navigate(props) {
             </div>
           </div>
           <div class="leg-actions">
-            <button type="button" class="btn-pri">
+            <button type="button" class="btn-pri" aria-label="Message driver Henrique">
               <Icon name="msg" size={16} /> Message driver
             </button>
-            <button type="button" class="btn-sec">
+            <button type="button" class="btn-sec" aria-label="Open route in Maps">
               <Icon name="nav" size={14} /> Open in Maps
             </button>
           </div>

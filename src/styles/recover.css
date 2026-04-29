@@ -84,7 +84,7 @@
 }
 .incident-sub {
   font-size: 15px;
-  color: var(--fg-2);
+  color: var(--fg-1);
   line-height: 1.55;
   max-width: 720px;
 }
@@ -160,6 +160,14 @@
 }
 .rec-opt.suggested::before {
   background: var(--status-confirmed);
+  height: 4px;
+}
+.rec-opt.suggested {
+  border: 1.5px solid rgba(31, 122, 77, 0.3);
+  padding: 24px 28px;
+  box-shadow:
+    var(--shadow-card),
+    0 0 0 1px rgba(31, 122, 77, 0.12);
 }
 .recommend {
   display: inline-block;
@@ -450,6 +458,9 @@
     0 1px 2px rgba(0, 0, 0, 0.04),
     0 8px 24px -12px rgba(0, 0, 0, 0.1);
   border-left: 3px solid var(--status-live);
+  position: sticky;
+  top: calc(var(--shell-h, 100px) + 8px);
+  z-index: 40;
 }
 .concierge-avatar {
   width: 56px;

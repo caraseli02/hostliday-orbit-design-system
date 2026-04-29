@@ -280,7 +280,7 @@ export default function Recover() {
         </div>
       </section>
 
-      <div class="escalate">
+      <div class="escalate" role="status" aria-live="polite">
         <div class="agents">
           <div class="av">SR</div>
           <div class="av">JM</div>

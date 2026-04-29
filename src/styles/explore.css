@@ -45,7 +45,7 @@
   font: 500 12px var(--font-body);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .explore-nav {
   display: flex;
@@ -196,11 +196,17 @@
   outline: none;
   font: 400 17px var(--font-body);
   color: var(--fg-1);
-  background: transparent;
-  padding: 8px 0;
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 4px;
+  border-radius: 0;
+  transition: border-color 140ms var(--ease-orbit);
 }
 .drop-input::placeholder {
-  color: var(--fg-3);
+  color: var(--fg-2);
+}
+.drop-input:focus {
+  border-bottom-color: var(--hostliday-red-500);
 }
 .drop-paste-btn {
   display: inline-flex;

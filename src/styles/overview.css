@@ -26,7 +26,7 @@
   font-weight: 700;
   font-size: clamp(40px, 6vw, 72px);
   letter-spacing: -0.025em;
-  line-height: 1.05;
+  line-height: 1.15;
   margin: 0 0 20px;
   max-width: 880px;
 }
@@ -357,7 +357,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 4px;
   border-radius: var(--r-card) var(--r-card) 0 0;
 }
 .overview-surface:hover {
@@ -387,6 +387,29 @@
   font: 700 11px var(--font-body);
   letter-spacing: var(--ls-widest);
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.os-eye-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.overview-surface-explore .os-eye-icon {
+  background: rgba(190, 0, 0, 0.1);
+  color: var(--hostliday-red-700);
+}
+.overview-surface-compose .os-eye-icon {
+  background: rgba(31, 122, 77, 0.12);
+  color: var(--status-confirmed);
+}
+.overview-surface-recover .os-eye-icon {
+  background: rgba(182, 130, 46, 0.14);
+  color: var(--status-held);
 }
 .overview-surface-explore .os-eye {
   color: var(--hostliday-red-700);

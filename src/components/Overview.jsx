@@ -1,4 +1,5 @@
 import { Show, For } from "solid-js";
+import Icon from "./Icon";
 import { useTrip } from "../state";
 
 const SURFACES = [
@@ -8,6 +9,7 @@ const SURFACES = [
     eye: "Explore",
     name: "Drop intake",
     cta: "Drop research",
+    icon: "paste",
     blurb:
       "Paste a link, forward an email, drop a screenshot. We parse, dedupe, slot it into the right trip.",
   },
@@ -17,6 +19,7 @@ const SURFACES = [
     eye: "Compose",
     name: "Plan & build",
     cta: "Plan the trip",
+    icon: "calendar",
     blurb: "Day-by-day timeline. Slot in bookings. Hold options. Reasoning trace from Orbit.",
   },
   {
@@ -25,6 +28,7 @@ const SURFACES = [
     eye: "Recover",
     name: "Fix & escalate",
     cta: "See an incident",
+    icon: "shield",
     blurb: "Live disruption response. Three backups held. Refund filed. Sara R. on call in 38 sec.",
   },
 ];
@@ -79,7 +83,10 @@ export default function Overview(props) {
                 class={`overview-surface overview-surface-${s.accent}`}
                 onClick={() => props.onNavigate(s.id)}
               >
-                <div class="os-eye">{s.eye}</div>
+                <div class="os-eye">
+                  <span class="os-eye-icon"><Icon name={s.icon} size={13} /></span>
+                  {s.eye}
+                </div>
                 <div class="os-name">{s.name}</div>
                 <p class="os-blurb">{s.blurb}</p>
                 <span class="os-cta">

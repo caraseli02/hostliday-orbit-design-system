@@ -22,7 +22,10 @@
 .footer-link {
   background: transparent;
   border: none;
-  padding: 4px 8px;
+  padding: 10px 8px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   color: var(--fg-3);
   font-size: 12px;
   cursor: pointer;

@@ -113,19 +113,20 @@
   font: 600 10px var(--font-body);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 4px;
 }
 .nav-crumb .ttl {
   font-weight: 600;
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
   display: flex;
   align-items: center;
   gap: 6px;
 }
 .nav-crumb .meta {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.62);
   margin-top: 2px;
 }
 .help-btn {
@@ -285,5 +286,5 @@
 }
 .up-item .tm {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.52);
 }
