@@ -1,4 +1,30 @@
+import { For } from "solid-js";
+
 export default function Components(props) {
+  const BRAND_COLORS = [
+    { hex: "#DA0000", label: "red-bright" },
+    { hex: "#BE0000", label: "red" },
+    { hex: "#810000", label: "red-deep" },
+  ];
+
+  const NEUTRAL_COLORS = [
+    { hex: "#FFFFFF", label: "neutral-0" },
+    { hex: "#FAF8F6", label: "neutral-50" },
+    { hex: "#F4F1ED", label: "neutral-100" },
+    { hex: "#E1DFDD", label: "neutral-200" },
+    { hex: "#A3A2A2", label: "neutral-400" },
+    { hex: "#5E5D5C", label: "neutral-600" },
+    { hex: "#232221", label: "neutral-800" },
+    { hex: "#000000", label: "neutral-1000" },
+  ];
+
+  const STATUS_COLORS = [
+    { hex: "#1F7A4D", label: "confirmed" },
+    { hex: "#B6822E", label: "held" },
+    { hex: "#2E5C8A", label: "live" },
+    { hex: "#DA0000", label: "critical" },
+  ];
+
   return (
     <div class="showcase">
       <div class="showcase-back-row">
@@ -12,47 +38,35 @@ export default function Components(props) {
         <h2>Colors</h2>
         <h3>Brand</h3>
         <div class="color-grid">
-          {[
-            { hex: "#DA0000", label: "red-bright" },
-            { hex: "#BE0000", label: "red" },
-            { hex: "#810000", label: "red-deep" },
-          ].map((c) => (
-            <div class="color-swatch" style={`background:${c.hex}`}>
-              <span class="label">{c.label}</span>
-            </div>
-          ))}
+          <For each={BRAND_COLORS}>
+            {(c) => (
+              <div class="color-swatch" style={`background:${c.hex}`}>
+                <span class="label">{c.label}</span>
+              </div>
+            )}
+          </For>
         </div>
 
         <h3>Neutrals</h3>
         <div class="color-grid">
-          {[
-            { hex: "#FFFFFF", label: "neutral-0" },
-            { hex: "#FAF8F6", label: "neutral-50" },
-            { hex: "#F4F1ED", label: "neutral-100" },
-            { hex: "#E1DFDD", label: "neutral-200" },
-            { hex: "#A3A2A2", label: "neutral-400" },
-            { hex: "#5E5D5C", label: "neutral-600" },
-            { hex: "#232221", label: "neutral-800" },
-            { hex: "#000000", label: "neutral-1000" },
-          ].map((c) => (
-            <div class="color-swatch" style={`background:${c.hex}`}>
-              <span class="label">{c.label}</span>
-            </div>
-          ))}
+          <For each={NEUTRAL_COLORS}>
+            {(c) => (
+              <div class="color-swatch" style={`background:${c.hex}`}>
+                <span class="label">{c.label}</span>
+              </div>
+            )}
+          </For>
         </div>
 
         <h3>Status</h3>
         <div class="color-grid">
-          {[
-            { hex: "#1F7A4D", label: "confirmed" },
-            { hex: "#B6822E", label: "held" },
-            { hex: "#2E5C8A", label: "live" },
-            { hex: "#DA0000", label: "critical" },
-          ].map((c) => (
-            <div class="color-swatch" style={`background:${c.hex}`}>
-              <span class="label">{c.label}</span>
-            </div>
-          ))}
+          <For each={STATUS_COLORS}>
+            {(c) => (
+              <div class="color-swatch" style={`background:${c.hex}`}>
+                <span class="label">{c.label}</span>
+              </div>
+            )}
+          </For>
         </div>
       </div>
 

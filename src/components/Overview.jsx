@@ -1,4 +1,4 @@
-import { Show } from "solid-js";
+import { Show, For } from "solid-js";
 import { useTrip } from "../state";
 
 const SURFACES = [
@@ -73,19 +73,21 @@ export default function Overview(props) {
           </p>
         </div>
         <div class="overview-surfaces">
-          {SURFACES.map((s) => (
-            <button
-              class={`overview-surface overview-surface-${s.accent}`}
-              onclick={() => props.onNavigate(s.id)}
-            >
-              <div class="os-eye">{s.eye}</div>
-              <div class="os-name">{s.name}</div>
-              <p class="os-blurb">{s.blurb}</p>
-              <span class="os-cta">
-                {s.cta} <span aria-hidden="true">→</span>
-              </span>
-            </button>
-          ))}
+          <For each={SURFACES}>
+            {(s) => (
+              <button
+                class={`overview-surface overview-surface-${s.accent}`}
+                onclick={() => props.onNavigate(s.id)}
+              >
+                <div class="os-eye">{s.eye}</div>
+                <div class="os-name">{s.name}</div>
+                <p class="os-blurb">{s.blurb}</p>
+                <span class="os-cta">
+                  {s.cta} <span aria-hidden="true">→</span>
+                </span>
+              </button>
+            )}
+          </For>
         </div>
       </div>
     </div>

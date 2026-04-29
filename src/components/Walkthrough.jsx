@@ -72,9 +72,9 @@ export default function Walkthrough(props) {
   createEffect(() => {
     if (!active() || paused()) return;
     setTickProgress(0);
-    const start = Date.now();
+    const startTime = Date.now();
     const interval = setInterval(() => {
-      const pct = Math.min(100, ((Date.now() - start) / AUTO_MS) * 100);
+      const pct = Math.min(100, ((Date.now() - startTime) / AUTO_MS) * 100);
       setTickProgress(pct);
     }, 80);
     const t = setTimeout(advance, AUTO_MS);

@@ -136,7 +136,7 @@ function StreamItem(props) {
           </button>
         </Show>
         <div class="item-actions">
-          <button class="act-btn" aria-label="Edit">
+          <button class="act-btn" aria-label="Edit (coming soon)" disabled title="Edit · coming soon">
             <Icon name="edit" size={12} />
           </button>
           <button class="act-btn" aria-label="Delete" onclick={() => deleteItem(item().id)}>

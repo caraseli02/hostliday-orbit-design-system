@@ -1,4 +1,4 @@
-import { createContext, createSignal, createMemo, useContext, batch } from "solid-js";
+import { createContext, createSignal, createMemo, useContext, onCleanup } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 
 const SEED_TRIPS = [
@@ -112,12 +112,18 @@ export function TripProvider(props) {
   const [walkthrough, setWalkthrough] = createSignal({ mode: "manual", step: 0 });
 
   const parseTimers = new Map();
+  let toastTimer = null;
+
+  // Clean up all timers on unmount
+  onCleanup(() => {
+    for (const t of parseTimers.values()) clearTimeout(t);
+    parseTimers.clear();
+    if (toastTimer) clearTimeout(toastTimer);
+  });
 
   const activeTrip = createMemo(() => trips.find((t) => t.id === activeTripId()) || null);
 
   const tripStream = createMemo(() => items.filter((i) => i.tripId === activeTripId()));
-
-  const allItems = createMemo(() => items);
 
   function setActiveTrip(id) {
     if (!trips.find((t) => t.id === id)) return;
@@ -212,7 +218,8 @@ export function TripProvider(props) {
   function showToast({ message, undo }) {
     const id = Date.now();
     setToast({ id, message, undo });
-    setTimeout(() => setToast((t) => (t && t.id === id ? null : t)), 4000);
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => setToast((t) => (t && t.id === id ? null : t)), 4000);
   }
 
   function dismissToast() {
@@ -227,7 +234,6 @@ export function TripProvider(props) {
         activeTripId,
         activeTrip,
         tripStream,
-        allItems,
         setActiveTrip,
         slotItemToTrip,
         addItem,
