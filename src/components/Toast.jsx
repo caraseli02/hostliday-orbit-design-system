@@ -13,7 +13,7 @@ export default function Toast() {
         </span>
         <span class="toast-msg">{toast().message}</span>
         <Show when={toast().undo}>
-          <button
+          <button type="button"
             class="toast-undo"
             onClick={() => {
               toast().undo();
@@ -23,7 +23,7 @@ export default function Toast() {
             Undo
           </button>
         </Show>
-        <button class="toast-close" aria-label="Dismiss" onClick={dismissToast}>
+        <button type="button" class="toast-close" aria-label="Dismiss" onClick={dismissToast}>
           <Icon name="trash" size={12} />
         </button>
       </div>

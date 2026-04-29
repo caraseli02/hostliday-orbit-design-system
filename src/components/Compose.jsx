@@ -59,7 +59,7 @@ function OrbitMessage(props) {
       </div>
       <div class="comp-bubble">
         <div class="comp-bubble-body">{props.msg.body}</div>
-        <button class="comp-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
+        <button type="button" class="comp-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
           {open() ? "Hide reasoning" : "Why?"}
         </button>
         <Show when={open()}>
@@ -158,23 +158,23 @@ export default function Compose() {
 
       <aside class="comp-pane">
         <div class="comp-tabs">
-          <button class="comp-tab on">
+          <button type="button" class="comp-tab on">
             Orbit
           </button>
-          <button
+          <button type="button"
             class="comp-tab comp-tab-disabled"
             disabled
             title="Compare · coming soon"
           >
             Compare
           </button>
-          <button class="comp-tab comp-tab-disabled" disabled title="Docs · coming soon">
+          <button type="button" class="comp-tab comp-tab-disabled" disabled title="Docs · coming soon">
             Docs
           </button>
         </div>
 
         <div class="comp-primary-cta">
-          <button class="comp-confirm-btn" onClick={onConfirmHeld}>
+          <button type="button" class="comp-confirm-btn" onClick={onConfirmHeld}>
             <Icon name="check" size={14} />
             Confirm next held · Tasca da Sé
             <span class="comp-confirm-meta">23h left</span>
@@ -189,7 +189,7 @@ export default function Compose() {
         <div class="comp-composer">
           <div class="comp-field">
             <input placeholder="Ask Orbit anything about this trip…" />
-            <button aria-label="Send" disabled title="Ask Orbit · coming soon">
+            <button type="button" aria-label="Send" disabled title="Ask Orbit · coming soon">
               <Icon name="send" size={14} />
             </button>
           </div>

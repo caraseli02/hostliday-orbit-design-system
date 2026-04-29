@@ -14,15 +14,25 @@ export default function Shell(props) {
   const { trips, activeTripId, activeTrip, setActiveTrip } = useTrip();
   const [open, setOpen] = createSignal(false);
 
+  const closeMenu = () => setOpen(false);
+
   const closeOnClickAway = (e) => {
-    if (!e.target.closest(".shell-trip-switch")) setOpen(false);
+    if (!e.target.closest(".shell-trip-switch")) closeMenu();
   };
   createEffect(() => {
     if (open()) {
       document.addEventListener("click", closeOnClickAway);
-      onCleanup(() => document.removeEventListener("click", closeOnClickAway));
+      document.addEventListener("keydown", onMenuKey);
+      onCleanup(() => {
+        document.removeEventListener("click", closeOnClickAway);
+        document.removeEventListener("keydown", onMenuKey);
+      });
     }
   });
+
+  const onMenuKey = (e) => {
+    if (e.key === "Escape") closeMenu();
+  };
 
   const accentClass = () =>
     `shell-accent shell-accent-${SURFACES.find((s) => s.id === props.surface)?.accent || "explore"}`;
@@ -45,7 +55,7 @@ export default function Shell(props) {
         </a>
 
         <div class="shell-trip-switch">
-          <button
+          <button type="button"
             class="shell-trip-btn"
             aria-haspopup="listbox"
             aria-expanded={open()}
@@ -63,7 +73,7 @@ export default function Shell(props) {
               <For each={trips}>
                 {(t) => (
                   <li>
-                    <button
+                    <button type="button"
                       class={`shell-trip-opt ${t.id === activeTripId() ? "on" : ""}`}
                       role="option"
                       aria-selected={t.id === activeTripId()}
@@ -98,7 +108,7 @@ export default function Shell(props) {
       <nav class="shell-row shell-row-tabs" role="tablist" aria-label="Surfaces">
         <For each={SURFACES}>
           {(s) => (
-            <button
+            <button type="button"
               class={`shell-tab ${props.surface === s.id ? "on" : ""}`}
               role="tab"
               aria-selected={props.surface === s.id}
