@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--neutral-100);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+#app {
+  min-height: 100vh;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+.card-photo img,
+.explore-wrap img {
+  border-radius: 0;
+}

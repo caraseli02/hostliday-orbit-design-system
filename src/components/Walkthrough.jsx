@@ -88,7 +88,7 @@ export default function Walkthrough(props) {
     <Show when={active()}>
       <div class="walkthrough-bar" role="region" aria-label="Walkthrough controls">
         <div class="wt-progress" aria-hidden="true">
-          <div class="wt-progress-bar" style={`width:${paused() ? 0 : tickProgress()}%`}></div>
+          <div class="wt-progress-bar" style={`width:${paused() ? 0 : tickProgress()}%`} />
         </div>
         <div class="wt-row">
           <span class="wt-eye">Walkthrough</span>
@@ -96,10 +96,10 @@ export default function Walkthrough(props) {
             {currentIndex() + 1} / {STEPS.length}
           </span>
           <span class="wt-label">{STEP_LABEL[props.surface()] || ""}</span>
-          <div class="wt-spacer"></div>
+          <div class="wt-spacer" />
           <button
             class="wt-btn"
-            onclick={back}
+            onClick={back}
             disabled={currentIndex() === 0}
             aria-label="Previous step"
           >
@@ -107,15 +107,15 @@ export default function Walkthrough(props) {
           </button>
           <button
             class="wt-btn wt-btn-pause"
-            onclick={() => setPaused((p) => !p)}
+            onClick={() => setPaused((p) => !p)}
             aria-label={paused() ? "Resume" : "Pause"}
           >
             {paused() ? "▶" : "❚❚"}
           </button>
-          <button class="wt-btn" onclick={advance} aria-label="Next step">
+          <button class="wt-btn" onClick={advance} aria-label="Next step">
             →
           </button>
-          <button class="wt-btn wt-btn-exit" onclick={stop} aria-label="Exit walkthrough">
+          <button class="wt-btn wt-btn-exit" onClick={stop} aria-label="Exit walkthrough">
             Esc
           </button>
         </div>

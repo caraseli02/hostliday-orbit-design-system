@@ -36,7 +36,7 @@ export default function Shell(props) {
         <a
           class="shell-brand"
           href="#"
-          onclick={(e) => {
+          onClick={(e) => {
             e.preventDefault();
             props.onSurface("overview");
           }}
@@ -49,12 +49,12 @@ export default function Shell(props) {
             class="shell-trip-btn"
             aria-haspopup="listbox"
             aria-expanded={open()}
-            onclick={(e) => {
+            onClick={(e) => {
               e.stopPropagation();
               setOpen((o) => !o);
             }}
           >
-            <span class={`shell-trip-dot ${activeTrip()?.status || ""}`}></span>
+            <span class={`shell-trip-dot ${activeTrip()?.status || ""}`} />
             <span class="shell-trip-name">{activeTrip()?.name || "No trip"}</span>
             <Icon name="arrow" size={12} />
           </button>
@@ -67,12 +67,12 @@ export default function Shell(props) {
                       class={`shell-trip-opt ${t.id === activeTripId() ? "on" : ""}`}
                       role="option"
                       aria-selected={t.id === activeTripId()}
-                      onclick={() => {
+                      onClick={() => {
                         setActiveTrip(t.id);
                         setOpen(false);
                       }}
                     >
-                      <span class={`shell-trip-dot ${t.status}`}></span>
+                      <span class={`shell-trip-dot ${t.status}`} />
                       <div class="shell-trip-opt-body">
                         <div class="shell-trip-opt-name">{t.name}</div>
                         <div class="shell-trip-opt-meta">
@@ -88,7 +88,7 @@ export default function Shell(props) {
           </Show>
         </div>
 
-        <div class="shell-spacer"></div>
+        <div class="shell-spacer" />
 
         <div class="shell-user" aria-label="Signed in as Mariana C.">
           <span class="shell-user-name">Mariana C.</span>
@@ -103,14 +103,14 @@ export default function Shell(props) {
               role="tab"
               aria-selected={props.surface === s.id}
               aria-current={props.surface === s.id ? "page" : undefined}
-              onclick={() => props.onSurface(s.id)}
+              onClick={() => props.onSurface(s.id)}
             >
               {s.label}
             </button>
           )}
         </For>
-        <div class="shell-tab-spacer"></div>
-        <div class={accentClass()} aria-hidden="true"></div>
+        <div class="shell-tab-spacer" />
+        <div class={accentClass()} aria-hidden="true" />
       </nav>
     </header>
   );

@@ -1,0 +1,236 @@
+/* =========================================================
+   SHELL — unified app chrome (trip-as-parent + surface tabs)
+   ========================================================= */
+:root {
+  --shell-h: 100px;
+  --shell-row-1: 56px;
+  --shell-row-2: 44px;
+}
+
+.shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-1);
+}
+.shell-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--neutral-1000);
+  color: var(--neutral-0);
+  padding: 8px 14px;
+  border-radius: 0 0 8px 0;
+  font-size: 13px;
+  z-index: 200;
+}
+.shell-skip:focus {
+  left: 0;
+}
+
+.shell-row {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gutter-app);
+}
+.shell-row-trip {
+  height: var(--shell-row-1);
+  gap: 16px;
+  border-bottom: 1px solid var(--border-1);
+}
+.shell-row-tabs {
+  height: var(--shell-row-2);
+  position: relative;
+  gap: 4px;
+}
+
+.shell-brand {
+  display: flex;
+  align-items: center;
+}
+.shell-logo {
+  height: 22px;
+}
+
+.shell-trip-switch {
+  position: relative;
+}
+.shell-trip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 10px;
+  background: transparent;
+  border: 1px solid var(--border-1);
+  border-radius: var(--r-pill);
+  font: 500 13px var(--font-body);
+  color: var(--fg-1);
+  cursor: pointer;
+  transition: background var(--dur-micro) var(--ease-orbit);
+}
+.shell-trip-btn:hover {
+  background: var(--neutral-50);
+}
+.shell-trip-btn:focus-visible {
+  outline: 2px solid var(--hostliday-red-500);
+  outline-offset: 2px;
+}
+.shell-trip-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.shell-trip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.shell-trip-dot.active {
+  background: var(--status-confirmed, #1f7a4d);
+  box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.15);
+}
+.shell-trip-dot.held {
+  background: var(--status-held, #b6822e);
+}
+.shell-trip-dot.idea {
+  background: var(--neutral-400, #a3a2a2);
+}
+
+.shell-trip-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 320px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-1);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-pop);
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  z-index: 200;
+}
+.shell-trip-menu li {
+  margin: 0;
+}
+.shell-trip-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.shell-trip-opt:hover,
+.shell-trip-opt.on {
+  background: var(--neutral-50);
+}
+.shell-trip-opt-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.shell-trip-opt-name {
+  font: 600 13px var(--font-body);
+  color: var(--fg-1);
+}
+.shell-trip-opt-meta {
+  font-size: 12px;
+  color: var(--fg-3);
+}
+
+.shell-spacer {
+  flex: 1;
+}
+.shell-user-name {
+  font-size: 13px;
+  color: var(--fg-2);
+}
+
+.shell-tab {
+  position: relative;
+  padding: 0 18px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  font: 500 13px var(--font-body);
+  color: var(--fg-2);
+  cursor: pointer;
+  letter-spacing: var(--ls-tight);
+  transition: color var(--dur-micro) var(--ease-orbit);
+}
+.shell-tab:hover {
+  color: var(--fg-1);
+}
+.shell-tab.on {
+  color: var(--fg-1);
+  font-weight: 600;
+}
+.shell-tab.on::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--fg-1);
+  border-radius: 2px 2px 0 0;
+}
+.shell-tab:focus-visible {
+  outline: 2px solid var(--hostliday-red-500);
+  outline-offset: -4px;
+  border-radius: 4px;
+}
+.shell-tab-spacer {
+  flex: 1;
+}
+
+/* Surface accent strip — voice modulation under tabs */
+.shell-accent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+.shell-accent-explore {
+  color: #d4a574;
+  opacity: 0.35;
+}
+.shell-accent-compose {
+  color: var(--status-confirmed, #1f7a4d);
+  opacity: 0.25;
+}
+.shell-accent-recover {
+  color: var(--hostliday-red-500);
+  opacity: 0.55;
+  animation: accent-pulse 2.4s ease-in-out infinite;
+}
+@keyframes accent-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shell-accent-recover {
+    animation: none;
+    opacity: 0.55;
+  }
+}

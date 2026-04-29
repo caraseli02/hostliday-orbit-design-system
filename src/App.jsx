@@ -13,12 +13,12 @@ import Components from "./components/Components";
 
 const FULL_VIEWPORT = new Set(["navigate"]);
 
-function SurfaceError({ name, error }) {
+function SurfaceError(props) {
   return (
     <div class="surface-error" role="alert">
-      <h2>Something went wrong in {name}</h2>
-      <pre>{error.message}</pre>
-      <button onclick={() => window.location.reload()}>Reload</button>
+      <h2>Something went wrong in {props.name}</h2>
+      <pre>{props.error.message}</pre>
+      <button onClick={() => window.location.reload()}>Reload</button>
     </div>
   );
 }

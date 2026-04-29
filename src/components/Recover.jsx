@@ -57,7 +57,7 @@ function Action(props) {
     <div class="act">
       <div class="time">{a().time}</div>
       <div class="marker">
-        <div class={`d ${a().dot}`}></div>
+        <div class={`d ${a().dot}`} />
       </div>
       <div class="body">
         <div class="ttl">{a().title}</div>
@@ -77,7 +77,7 @@ function Action(props) {
             <span class="av h">SR</span>Standing by · Sara R., on-call concierge
           </Show>
           <Show when={a().why}>
-            <button class="act-why" aria-expanded={open()} onclick={() => setOpen((o) => !o)}>
+            <button class="act-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
               {open() ? "Hide reasoning" : "Why?"}
             </button>
           </Show>
@@ -105,7 +105,7 @@ export default function Recover() {
           <button
             class="concierge-bio-btn"
             aria-expanded={bioOpen()}
-            onclick={() => setBioOpen((o) => !o)}
+            onClick={() => setBioOpen((o) => !o)}
           >
             {bioOpen() ? "Hide bio" : "About Sara"}
           </button>
@@ -145,7 +145,7 @@ export default function Recover() {
           </div>
           <div class="im">
             <span class="k">Refund</span>
-            <span class="v l" style="color:var(--status-confirmed)">
+            <span class="v l" style={{"color":"var(--status-confirmed)"}}>
               In flight · €82
             </span>
           </div>
@@ -169,10 +169,10 @@ export default function Recover() {
           <article class="rec-opt suggested">
             <div class="recommend">Suggested</div>
             <div class="o-eye">
-              <Icon name="train" size={12} style="vertical-align:middle" /> Train · CP IC 522
+              <Icon name="train" size={12} style={{"vertical-align":"middle"}} /> Train · CP IC 522
             </div>
             <div class="o-name">Lisbon → Porto</div>
-            <div style="font-size:13px;color:var(--fg-2);line-height:1.5">
+            <div style={{"font-size":"13px","color":"var(--fg-2)","line-height":"1.5"}}>
               Only +1h later. Same station. 1st class · seats 11A & 11B together.
             </div>
             <div class="o-stats">
@@ -190,7 +190,7 @@ export default function Recover() {
               </div>
               <div>
                 <div class="lbl">Cost</div>
-                <div class="val l" style="color:var(--status-confirmed)">
+                <div class="val l" style={{"color":"var(--status-confirmed)"}}>
                   Same
                 </div>
               </div>
@@ -203,10 +203,10 @@ export default function Recover() {
 
           <article class="rec-opt">
             <div class="o-eye">
-              <Icon name="train" size={12} style="vertical-align:middle" /> Train · CP IC 524
+              <Icon name="train" size={12} style={{"vertical-align":"middle"}} /> Train · CP IC 524
             </div>
             <div class="o-name">Lisbon → Porto</div>
-            <div style="font-size:13px;color:var(--fg-2);line-height:1.5">
+            <div style={{"font-size":"13px","color":"var(--fg-2)","line-height":"1.5"}}>
               Earlier alternative if you want to skip the wait. Stops in Coimbra & Aveiro.
             </div>
             <div class="o-stats">
@@ -224,7 +224,7 @@ export default function Recover() {
               </div>
               <div>
                 <div class="lbl">Cost</div>
-                <div class="val l" style="color:var(--status-confirmed)">
+                <div class="val l" style={{"color":"var(--status-confirmed)"}}>
                   Same
                 </div>
               </div>
@@ -237,10 +237,10 @@ export default function Recover() {
 
           <article class="rec-opt">
             <div class="o-eye">
-              <Icon name="bus" size={12} style="vertical-align:middle" /> Bus · FlixBus 7711
+              <Icon name="bus" size={12} style={{"vertical-align":"middle"}} /> Bus · FlixBus 7711
             </div>
             <div class="o-name">Sete Rios → Campanhã</div>
-            <div style="font-size:13px;color:var(--fg-2);line-height:1.5">
+            <div style={{"font-size":"13px","color":"var(--fg-2)","line-height":"1.5"}}>
               Slower, but leaves now. Direct, no stops.
             </div>
             <div class="o-stats">
@@ -258,7 +258,7 @@ export default function Recover() {
               </div>
               <div>
                 <div class="lbl">Diff</div>
-                <div class="val l" style="color:var(--status-held)">
+                <div class="val l" style={{"color":"var(--status-held)"}}>
                   +€8
                 </div>
               </div>

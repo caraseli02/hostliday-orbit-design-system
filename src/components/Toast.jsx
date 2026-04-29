@@ -15,7 +15,7 @@ export default function Toast() {
         <Show when={toast().undo}>
           <button
             class="toast-undo"
-            onclick={() => {
+            onClick={() => {
               toast().undo();
               dismissToast();
             }}
@@ -23,7 +23,7 @@ export default function Toast() {
             Undo
           </button>
         </Show>
-        <button class="toast-close" aria-label="Dismiss" onclick={dismissToast}>
+        <button class="toast-close" aria-label="Dismiss" onClick={dismissToast}>
           <Icon name="trash" size={12} />
         </button>
       </div>
