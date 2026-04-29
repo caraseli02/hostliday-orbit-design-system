@@ -158,20 +158,29 @@ export default function Compose() {
       </main>
 
       <aside class="comp-pane">
-        <div class="comp-tabs">
+        <div class="comp-tabs" role="tablist" aria-label="Orbit panel tabs">
           <button
+            role="tab"
+            aria-selected={tab() === "orbit"}
             class={`comp-tab ${tab() === "orbit" ? "on" : ""}`}
             onclick={() => setTab("orbit")}
           >
             Orbit
           </button>
           <button
+            role="tab"
+            aria-selected={tab() === "compare"}
             class={`comp-tab ${tab() === "compare" ? "on" : ""}`}
             onclick={() => setTab("compare")}
           >
             Compare
           </button>
-          <button class={`comp-tab ${tab() === "docs" ? "on" : ""}`} onclick={() => setTab("docs")}>
+          <button
+            role="tab"
+            aria-selected={tab() === "docs"}
+            class={`comp-tab ${tab() === "docs" ? "on" : ""}`}
+            onclick={() => setTab("docs")}
+          >
             Docs
           </button>
         </div>
@@ -191,7 +200,7 @@ export default function Compose() {
 
         <div class="comp-composer">
           <div class="comp-field">
-            <input placeholder="Ask Orbit anything about this trip…" />
+            <input placeholder="Ask Orbit anything about this trip…" aria-label="Ask Orbit about this trip" />
             <button aria-label="Send">
               <Icon name="send" size={14} />
             </button>
