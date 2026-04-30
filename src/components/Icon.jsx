@@ -152,6 +152,20 @@ const PATHS = {
       <rect x="14" y="14" width="7" height="7" rx="1" />
     </>
   ),
+  columns: (
+    <>
+      <rect x="3" y="3" width="7" height="18" rx="1" />
+      <rect x="14" y="3" width="7" height="18" rx="1" />
+    </>
+  ),
+  checkCircle: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9 12l2 2 4-4" />
+    </>
+  ),
+  chevronDown: <path d="M6 9l6 6 6-6" />,
+  chevronUp: <path d="M18 15l-6-6-6 6" />,
   edit: (
     <>
       <path d="M12 20h9" />
