@@ -178,7 +178,7 @@ export default function Compose() {
                 <span class="day-date">{day.date}</span>
                 <span class="day-line" />
                 <span class="day-temp">{day.temp}</span>
-                <Icon name={collapsed()[day.id] ? "chevron-down" : "chevron-up"} size={16} />
+                <Icon name={collapsed()[day.id] ? "chevronDown" : "chevronUp"} size={16} />
               </button>
               <Show when={!collapsed()[day.id]}>
                 <div id={`day-content-${day.id}`} class="day-content">
@@ -195,8 +195,10 @@ export default function Compose() {
         <div class="comp-tabs" role="tablist" aria-label="Orbit panel tabs">
           <button
             type="button"
+            id="tab-orbit"
             role="tab"
             aria-selected={tab() === "orbit"}
+            aria-controls="panel-orbit"
             class={`comp-tab ${tab() === "orbit" ? "on" : ""}`}
             onClick={() => setTab("orbit")}
           >
@@ -204,8 +206,10 @@ export default function Compose() {
           </button>
           <button
             type="button"
+            id="tab-compare"
             role="tab"
             aria-selected={tab() === "compare"}
+            aria-controls="panel-compare"
             class={`comp-tab ${tab() === "compare" ? "on" : ""}`}
             onClick={() => setTab("compare")}
           >
@@ -232,7 +236,7 @@ export default function Compose() {
               disabled={confirmState() === "confirmed"}
             >
               <Show when={confirmState() === "confirmed"}>
-                <Icon name="check-circle" size={14} />
+                <Icon name="checkCircle" size={14} />
               </Show>
               <Show when={confirmState() !== "confirmed"}>
                 <Icon name="check" size={14} />
@@ -253,7 +257,7 @@ export default function Compose() {
             </div>
           </div>
 
-          <div class={`comp-chat stagger-chat ${mounted() ? "mounted" : ""}`} role="tabpanel">
+          <div id="panel-orbit" class={`comp-chat stagger-chat ${mounted() ? "mounted" : ""}`} role="tabpanel" aria-labelledby="tab-orbit">
             <For each={ORBIT_MESSAGES}>{(m, i) => <OrbitMessage msg={m} index={i()} />}</For>
           </div>
 
@@ -268,7 +272,7 @@ export default function Compose() {
         </Show>
 
         <Show when={tab() === "compare"}>
-          <div class="comp-chat" role="tabpanel">
+          <div id="panel-compare" class="comp-chat" role="tabpanel" aria-labelledby="tab-compare">
             <ComparePlaceholder />
           </div>
         </Show>
