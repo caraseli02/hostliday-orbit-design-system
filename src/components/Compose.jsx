@@ -1,4 +1,4 @@
-import { createSignal, For, Show, onMount } from "solid-js";
+import { createSignal, For, Show, onMount, onCleanup } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
 
@@ -132,10 +132,16 @@ export default function Compose() {
 
   const toggleDay = (id) => setCollapsed((prev) => ({ ...prev, [id]: !prev[id] }));
 
+  let confirmTimeout = null;
+  onCleanup(() => {
+    if (confirmTimeout) clearTimeout(confirmTimeout);
+  });
+
   const handleConfirmPress = () => {
     if (confirmState() !== "idle") return;
     setConfirmState("holding");
-    setTimeout(() => {
+    confirmTimeout = setTimeout(() => {
+      confirmTimeout = null;
       setConfirmState("confirmed");
       showToast({
         message: "Tasca da Sé confirmed for Day 2 · 20:00",

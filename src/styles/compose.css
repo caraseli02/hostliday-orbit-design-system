@@ -535,3 +535,18 @@
     padding: 32px 16px;
   }
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .comp-msg,
+  .stagger-chat .comp-msg {
+    animation: none !important;
+    transition: none !important;
+  }
+  .comp-confirm-btn {
+    transition: none !important;
+  }
+  .day-head {
+    transition: none !important;
+  }
+}
