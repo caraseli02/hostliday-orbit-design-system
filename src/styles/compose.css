@@ -387,11 +387,11 @@
   margin-top: 8px;
   padding: 8px 10px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(190, 0, 0, 0.04);
+  border: 1px solid rgba(190, 0, 0, 0.12);
   font: 400 12px var(--font-body);
   line-height: 1.5;
   color: var(--fg-2);
-  border-left: 2px solid var(--hostliday-red-500);
 }
 
 /* ---------- Staggered fade-in for orbit messages ---------- */
