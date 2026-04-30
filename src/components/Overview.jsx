@@ -103,11 +103,11 @@ export default function Overview(props) {
       </div>
 
       {/* How it works */}
-      <div class="home-steps">
+      <div class="home-steps" aria-label="How it works">
         <For each={STEPS}>
           {(step) => (
             <div class="home-step">
-              <div class="home-step-num">{step.num}</div>
+              <div class="home-step-num" aria-hidden="true">{step.num}</div>
               <div class="home-step-icon">
                 <Icon name={step.icon} size={20} />
               </div>
@@ -174,11 +174,11 @@ export default function Overview(props) {
                       <div class="prev-day">
                         <span class="prev-day-label">Day 1</span>
                         <div class="prev-tl-row">
-                          <span class="prev-tl-dot prev-tl-confirmed" />
+                          <span class="prev-tl-dot prev-tl-confirmed" aria-hidden="true" />
                           <span class="prev-tl-text">BA 502 · 22:40</span>
                         </div>
                         <div class="prev-tl-row">
-                          <span class="prev-tl-dot prev-tl-held" />
+                          <span class="prev-tl-dot prev-tl-held" aria-hidden="true" />
                           <span class="prev-tl-text">Casa do Vale · Douro</span>
                         </div>
                       </div>
@@ -186,11 +186,11 @@ export default function Overview(props) {
                       <div class="prev-day">
                         <span class="prev-day-label">Day 2</span>
                         <div class="prev-tl-row">
-                          <span class="prev-tl-dot prev-tl-empty" />
+                          <span class="prev-tl-dot prev-tl-empty" aria-hidden="true" />
                           <span class="prev-tl-text prev-tl-muted">Open slot</span>
                         </div>
                         <div class="prev-tl-row">
-                          <span class="prev-tl-dot prev-tl-confirmed" />
+                          <span class="prev-tl-dot prev-tl-confirmed" aria-hidden="true" />
                           <span class="prev-tl-text">Wine tasting · 14:00</span>
                         </div>
                       </div>
@@ -209,7 +209,7 @@ export default function Overview(props) {
                         <div class="prev-alert-row">
                           <span class="prev-alert-label">Response</span>
                           <span class="prev-alert-value prev-alert-live">
-                            <span class="prev-alert-dot" /> Sara R. · 38s
+                            <span class="prev-alert-dot" aria-hidden="true" /> Sara R. · 38s
                           </span>
                         </div>
                         <div class="prev-alert-row">
@@ -231,19 +231,19 @@ export default function Overview(props) {
       </div>
 
       {/* Stats / Trust bar */}
-      <div class="home-stats">
+      <dl class="home-stats" aria-label="Key metrics">
         <For each={STATS}>
           {(stat) => (
             <div class="home-stat">
-              <div class="home-stat-value">{stat.value}</div>
-              <div class="home-stat-label">{stat.label}</div>
+              <dd class="home-stat-value">{stat.value}</dd>
+              <dt class="home-stat-label">{stat.label}</dt>
             </div>
           )}
         </For>
         <div class="home-stat home-stat-motto">
           AI for the boring parts. Humans when it matters.
         </div>
-      </div>
+      </dl>
     </div>
   );
 }
