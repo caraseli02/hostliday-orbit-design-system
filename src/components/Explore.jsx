@@ -414,7 +414,7 @@ export default function Explore(props) {
                 }}
                 disabled={parsing()}
               />
-              <button class="drop-paste-btn" onClick={handleSubmit} disabled={parsing()}>
+              <button type="button" class="drop-paste-btn" onClick={handleSubmit} disabled={parsing()}>
                 {parsing() ? "Parsing…" : `Drop into ${activeTrip()?.name || "trip"}`}
                 <Show when={!parsing()}>
                   <span style={{"opacity":".6","font-size":"11px","font-family":"var(--font-mono)","padding":"2px 5px","background":"rgba(255,255,255,.15)","border-radius":"4px","margin-left":"2px"}}>
@@ -464,6 +464,7 @@ export default function Explore(props) {
             <For each={trips}>
               {(t) => (
                 <button
+                  type="button"
                   class={`trip-card ${t.id === activeTripId() ? "on" : ""}`}
                   role="radio"
                   aria-checked={t.id === activeTripId()}

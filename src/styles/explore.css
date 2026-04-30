@@ -728,7 +728,7 @@
 }
 .tag.kind {
   background: var(--neutral-1000);
-  color: #fff;
+  color: var(--neutral-0);
 }
 .tag.kind.stay {
   background: var(--hostliday-red-500);
