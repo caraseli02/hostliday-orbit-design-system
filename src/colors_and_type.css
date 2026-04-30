@@ -186,10 +186,7 @@
   --sheet-peek: 96px;
 
   /* ---------- Icons ---------- */
-  --icon-base: "https://unpkg.com/lucide-static@0.460.0/icons";
-  --icon-sw-sm: 1.25;
-  --icon-sw-md: 1.5;
-  --icon-sw-lg: 1.75;
+  /* Icons are bundled inline in Icon.jsx — no CDN dependency */
 }
 
 /* =========================================================

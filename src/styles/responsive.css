@@ -78,6 +78,43 @@
     border-top: 1px solid var(--border-1);
   }
 
+  /* Navigate — mobile bottom sheet takes full width */
+  .nav-topbar {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+    gap: 8px;
+  }
+
+  .nav-crumb {
+    display: none;
+  }
+
+  .nav-sheet {
+    left: 0;
+    right: 0;
+    border-radius: 16px 16px 0 0;
+    padding: 0 16px 16px;
+  }
+
+  .nav-fab {
+    right: 8px;
+    bottom: 200px;
+  }
+
+  .leg-title {
+    font-size: 20px;
+  }
+
+  .sheet-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .leg-meta {
+    gap: 16px;
+  }
+
   .shell-footer {
     flex-direction: column;
     gap: 12px;
@@ -96,6 +133,14 @@
 @media (max-width: 480px) {
   :root {
     --shell-h: 80px;
+  }
+
+  .shell-row-trip {
+    gap: 8px;
+  }
+
+  .shell-user-name {
+    display: none;
   }
 
   .home {
@@ -126,5 +171,40 @@
 
   .recover-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Compose — stacked timeline on small screens */
+  .comp-timeline {
+    padding: 12px var(--gutter-mobile) 24px;
+  }
+
+  .comp-slot {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .slot-time {
+    width: 100%;
+    padding-left: 48px;
+    margin-top: -4px;
+  }
+
+  .comp-bubble {
+    max-width: 100%;
+  }
+
+  /* Navigate — compact FAB and sheet */
+  .nav-fab button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-pill img {
+    height: 16px;
+  }
+
+  .help-btn {
+    padding: 6px 10px;
+    font-size: 12px;
   }
 }

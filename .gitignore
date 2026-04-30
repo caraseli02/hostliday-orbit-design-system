@@ -30,3 +30,4 @@ build/
 # Archive
 _archive/
 .gstack/
+node-compile-cache/
