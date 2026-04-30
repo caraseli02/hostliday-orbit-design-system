@@ -1,4 +1,5 @@
-import { createSignal, Show, ErrorBoundary } from "solid-js";
+import { createSignal, Show, ErrorBoundary, createEffect } from "solid-js";
+import { useNavigate, useLocation } from "@solidjs/router";
 import { TripProvider } from "./state";
 import Shell from "./components/Shell";
 import Footer from "./components/Footer";
@@ -23,60 +24,101 @@ function SurfaceError(props) {
   );
 }
 
+function getSurfaceFromPath(path) {
+  if (!path || path === "/") return "overview";
+  return path.replace(/^\//, "");
+}
+
 export default function App() {
-  const [surface, setSurface] = createSignal("overview");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [surface, setSurface] = createSignal(
+    getSurfaceFromPath(location.pathname),
+  );
+
+  // Sync URL → signal on browser back/forward
+  createEffect(() => {
+    const s = getSurfaceFromPath(location.pathname);
+    if (s !== surface()) setSurface(s);
+  });
+
+  // Navigate to surface (updates signal + URL hash)
+  const navigateToSurface = (s) => {
+    setSurface(s);
+    navigate(s === "overview" ? "/" : `/${s}`);
+  };
+
+  // Focus management: move focus to main on surface change
+  createEffect(() => {
+    surface(); // track
+    requestAnimationFrame(() => {
+      const main = document.getElementById("shell-main");
+      if (main) main.focus();
+    });
+  });
 
   const isFullViewport = () => FULL_VIEWPORT.has(surface());
   const showShell = () => !isFullViewport() && surface() !== "components";
 
   return (
     <TripProvider>
-      <Walkthrough surface={surface} onSurface={setSurface} />
+      <Walkthrough surface={surface} onSurface={navigateToSurface} />
 
       <Show when={showShell()}>
-        <Shell surface={surface()} onSurface={setSurface} />
+        <Shell surface={surface()} onSurface={navigateToSurface} />
       </Show>
 
       <main id="shell-main" class={`main ${isFullViewport() ? "full-viewport" : ""}`} tabindex="-1">
         <ErrorBoundary fallback={(err) => <SurfaceError name="Overview" error={err} />}>
           <Show when={surface() === "overview"}>
-            <Overview onNavigate={setSurface} />
+            <div class="surface-enter">
+              <Overview onNavigate={navigateToSurface} />
+            </div>
           </Show>
         </ErrorBoundary>
 
         <ErrorBoundary fallback={(err) => <SurfaceError name="Explore" error={err} />}>
           <Show when={surface() === "explore"}>
-            <Explore onNavigate={setSurface} />
+            <div class="surface-enter">
+              <Explore onNavigate={navigateToSurface} />
+            </div>
           </Show>
         </ErrorBoundary>
 
         <ErrorBoundary fallback={(err) => <SurfaceError name="Compose" error={err} />}>
           <Show when={surface() === "compose"}>
-            <Compose />
+            <div class="surface-enter">
+              <Compose />
+            </div>
           </Show>
         </ErrorBoundary>
 
         <ErrorBoundary fallback={(err) => <SurfaceError name="Navigate" error={err} />}>
           <Show when={surface() === "navigate"}>
-            <Navigate onExit={() => setSurface("overview")} />
+            <Navigate onExit={() => navigateToSurface("overview")} />
           </Show>
         </ErrorBoundary>
 
         <ErrorBoundary fallback={(err) => <SurfaceError name="Recover" error={err} />}>
           <Show when={surface() === "recover"}>
-            <Recover />
+            <div class="surface-enter">
+              <Recover />
+            </div>
           </Show>
         </ErrorBoundary>
 
         <ErrorBoundary fallback={(err) => <SurfaceError name="Components" error={err} />}>
           <Show when={surface() === "components"}>
-            <Components onExit={() => setSurface("overview")} />
+            <div class="surface-enter">
+              <Components onExit={() => navigateToSurface("overview")} />
+            </div>
           </Show>
         </ErrorBoundary>
       </main>
 
       <Show when={showShell()}>
-        <Footer onSurface={setSurface} />
+        <Footer onSurface={navigateToSurface} />
       </Show>
 
       <Toast />

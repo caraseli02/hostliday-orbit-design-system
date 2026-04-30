@@ -1,4 +1,4 @@
-import { createContext, createSignal, createMemo, useContext, onCleanup } from "solid-js";
+import { createContext, createSignal, createMemo, useContext, onCleanup, createEffect } from "solid-js";
 import { createStore, produce } from "solid-js/store";
 
 const SEED_TRIPS = [
@@ -102,11 +102,32 @@ const SEED_ITEMS = [
   },
 ];
 
+const STORAGE_KEY = "hostliday-orbit";
+
+function loadPersisted() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function persistState(trips, items) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ trips, items }));
+  } catch {
+    // localStorage full or unavailable
+  }
+}
+
 const TripContext = createContext();
 
 export function TripProvider(props) {
-  const [trips, setTrips] = createStore(SEED_TRIPS);
-  const [items, setItems] = createStore(SEED_ITEMS);
+  const saved = loadPersisted();
+  const [trips] = createStore(saved?.trips || SEED_TRIPS);
+  const [items, setItems] = createStore(saved?.items || SEED_ITEMS);
   const [activeTripId, _setActiveTripId] = createSignal("iberia");
   const [toast, setToast] = createSignal(null);
   const [walkthrough, setWalkthrough] = createSignal({ mode: "manual", step: 0 });
@@ -119,6 +140,13 @@ export function TripProvider(props) {
     for (const t of parseTimers.values()) clearTimeout(t);
     parseTimers.clear();
     if (toastTimer) clearTimeout(toastTimer);
+  });
+
+  // Persist trips/items to localStorage on change
+  createEffect(() => {
+    JSON.stringify(trips);
+    JSON.stringify(items);
+    persistState(trips, items);
   });
 
   const activeTrip = createMemo(() => trips.find((t) => t.id === activeTripId()) || null);

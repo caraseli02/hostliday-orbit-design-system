@@ -48,7 +48,7 @@ function MapStage(props) {
       </g>
       <path class="route-done" d="M120 600 Q 240 540 320 480 T 480 340" />
       <path
-        ref={routeRef}
+        ref={props.routeRef}
         class="route route-animated"
         d="M480 340 Q 580 290 660 280 T 820 220 L 920 180 L 980 130"
       />
@@ -171,7 +171,7 @@ export default function Navigate(props) {
   return (
     <div class="nav-shell orbit-dark">
       <div class="nav-map">
-        <MapStage vb={vb()} />
+        <MapStage vb={vb()} routeRef={routeRef} />
       </div>
 
       <div class="nav-topbar">

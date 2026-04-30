@@ -18,8 +18,13 @@ export default [
         clearTimeout: "readonly",
         setInterval: "readonly",
         clearInterval: "readonly",
+        requestAnimationFrame: "readonly",
         URL: "readonly",
         URLSearchParams: "readonly",
+        localStorage: "readonly",
+        Map: "readonly",
+        Date: "readonly",
+        Math: "readonly",
       },
     },
     rules: {

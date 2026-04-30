@@ -36,3 +36,24 @@
 .surface.active .stagger > * {
   opacity: 1;
 }
+
+/* Surface transition — fade+slide on mount */
+@keyframes surfaceFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.surface-enter {
+  animation: surfaceFadeIn var(--dur-surface) var(--ease-orbit);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface-enter {
+    animation: none;
+  }
+}
