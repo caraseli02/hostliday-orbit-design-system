@@ -1,11 +1,9 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 
 export default defineConfig({
   plugins: [
-    solidPlugin({
-      hot: false,
-    }),
+    solidPlugin(),
   ],
   server: {
     port: 3000,
@@ -18,8 +16,5 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     transformMode: { web: [/\.[jt]sx$/] },
-  },
-  resolve: {
-    conditions: ["browser", "development"],
   },
 });
