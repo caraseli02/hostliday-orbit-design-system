@@ -1,15 +1,31 @@
+import { createSignal, Show, For, onMount } from "solid-js";
 import Icon from "./Icon";
+import { useTrip } from "../state";
 
-function MapStage() {
+const DEFAULT_VIEWBOX = { x: 0, y: 0, w: 1280, h: 720 };
+const ZOOM_STEP = 120;
+const MIN_W = 400;
+const MAX_W = 2000;
+
+function MapStage(props) {
   return (
     <svg
       class="map-svg"
-      viewBox="0 0 1280 720"
+      viewBox={`${props.vb.x} ${props.vb.y} ${props.vb.w} ${props.vb.h}`}
       preserveAspectRatio="xMidYMid slice"
       role="img"
       aria-label="Map showing route from Lisbon to Douro Valley"
-      style={{"position":"absolute","inset":"0","width":"100%","height":"100%"}}
+      style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
     >
+      <defs>
+        <filter id="route-glow">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
       <path class="map-park" d="M0 520 Q 200 460 380 500 T 720 540 L 720 720 L 0 720 Z" />
       <path
         class="map-water"
@@ -31,7 +47,10 @@ function MapStage() {
         <path d="M1100 -20 Q 1080 240 1100 460 T 1100 740" />
       </g>
       <path class="route-done" d="M120 600 Q 240 540 320 480 T 480 340" />
-      <path class="route" d="M480 340 Q 580 290 660 280 T 820 220 L 920 180 L 980 130" />
+      <path
+        class="route route-animated"
+        d="M480 340 Q 580 290 660 280 T 820 220 L 920 180 L 980 130"
+      />
       <g transform="translate(120 600)" opacity=".55">
         <circle r="8" class="pin-ring" />
         <circle r="3" class="pin" />
@@ -50,7 +69,7 @@ function MapStage() {
         <circle r="10" class="live-dot-bg" />
         <circle r="7" class="live-dot" />
       </g>
-      <g style={{"font-family":"var(--font-body)","font-size":"11px","fill":"rgba(255,255,255,.72)","letter-spacing":".06em","text-transform":"uppercase","font-weight":"600"}}>
+      <g style={{ "font-family": "var(--font-body)", "font-size": "11px", fill: "rgba(255,255,255,.72)", "letter-spacing": ".06em", "text-transform": "uppercase", "font-weight": 600 }}>
         <text x="120" y="624" text-anchor="middle">
           Lisbon
         </text>
@@ -65,15 +84,93 @@ function MapStage() {
   );
 }
 
+const UPCOMING = [
+  { icon: "bed", name: "Casa do Vale · check-in", time: "Day 1 · 02:30" },
+  { icon: "hike", name: "Douro vineyard walk", time: "Day 2 · 09:00" },
+  { icon: "food", name: "Tasca dinner · Lisbon", time: "Day 3 · 22:30" },
+  { icon: "car", name: "Train · Lisbon → Porto", time: "Day 3 · 14:08" },
+];
+
 export default function Navigate(props) {
+  const { showToast } = useTrip();
+
+  const [vb, setVb] = createSignal({ ...DEFAULT_VIEWBOX });
+  const [sheetExpanded, setSheetExpanded] = createSignal(false);
+  let sheetRef = undefined;
+  let dragStartY = 0;
+  let dragDelta = 0;
+
+  onMount(() => {
+    const routeEl = document.querySelector(".route-animated");
+    if (routeEl) {
+      const len = routeEl.getTotalLength();
+      routeEl.style.strokeDasharray = len;
+      routeEl.style.strokeDashoffset = len;
+      // Force reflow then animate
+      routeEl.getBoundingClientRect();
+      routeEl.style.transition = "stroke-dashoffset 2.4s cubic-bezier(0.4, 0, 0.2, 1)";
+      routeEl.style.strokeDashoffset = "0";
+    }
+  });
+
+  function zoomIn() {
+    setVb((prev) => {
+      const w = Math.max(MIN_W, prev.w - ZOOM_STEP);
+      const h = w * (720 / 1280);
+      return { x: prev.x + (prev.w - w) / 2, y: prev.y + (prev.h - h) / 2, w, h };
+    });
+  }
+
+  function zoomOut() {
+    setVb((prev) => {
+      const w = Math.min(MAX_W, prev.w + ZOOM_STEP);
+      const h = w * (720 / 1280);
+      return { x: prev.x + (prev.w - w) / 2, y: prev.y + (prev.h - h) / 2, w, h };
+    });
+  }
+
+  function reCenter() {
+    setVb({ ...DEFAULT_VIEWBOX });
+  }
+
+  function onSheetPointerDown(e) {
+    if (!sheetRef) return;
+    dragStartY = e.clientY;
+    dragDelta = 0;
+    const onMove = (ev) => {
+      dragDelta = ev.clientY - dragStartY;
+    };
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      // Swipe up → expand, swipe down → collapse
+      if (dragDelta < -40) setSheetExpanded(true);
+      else if (dragDelta > 40) setSheetExpanded(false);
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+  }
+
+  function toggleSheet() {
+    setSheetExpanded((prev) => !prev);
+  }
+
+  function handleMessage() {
+    showToast({ message: "Opening chat with Henrique…" });
+  }
+
+  function handleMaps() {
+    showToast({ message: "Opening route in Maps…" });
+  }
+
   return (
     <div class="nav-shell orbit-dark">
       <div class="nav-map">
-        <MapStage />
+        <MapStage vb={vb()} />
       </div>
 
       <div class="nav-topbar">
-        <button class="glass brand-pill" onClick={() => props.onExit()} aria-label="Back to product">
+        <button type="button" class="glass brand-pill" onClick={() => props.onExit()} aria-label="Back to product">
           <img src="/assets/logos/hostliday-wordmark-white.svg" alt="Hostliday" />
         </button>
         <div class="glass nav-crumb">
@@ -89,18 +186,27 @@ export default function Navigate(props) {
       </div>
 
       <div class="nav-fab">
-        <button type="button" title="Re-center" aria-label="Re-center map">
+        <button type="button" title="Re-center" aria-label="Re-center map" onClick={reCenter}>
           <Icon name="locate" />
         </button>
-        <button type="button" title="Zoom in" aria-label="Zoom in">
+        <button type="button" title="Zoom in" aria-label="Zoom in" onClick={zoomIn}>
           <Icon name="plus" />
         </button>
-        <button type="button" title="Zoom out" aria-label="Zoom out">
+        <button type="button" title="Zoom out" aria-label="Zoom out" onClick={zoomOut}>
           <Icon name="minus" />
         </button>
       </div>
 
-      <div class="glass nav-sheet" role="region" aria-label="Current trip leg details">
+      <div
+        ref={sheetRef}
+        classList={{ "glass nav-sheet": true, "sheet-expanded": sheetExpanded(), "sheet-peek": !sheetExpanded() }}
+        role="region"
+        aria-label="Current trip leg details"
+      >
+        <div class="sheet-handle" onPointerDown={onSheetPointerDown} onClick={toggleSheet}>
+          <span class="handle-bar" />
+        </div>
+
         <div class="sheet-grid">
           <div>
             <div class="leg-eye">
@@ -127,52 +233,32 @@ export default function Navigate(props) {
             </div>
           </div>
           <div class="leg-actions">
-            <button type="button" class="btn-pri" aria-label="Message driver Henrique">
+            <button type="button" class="btn-pri" aria-label="Message driver Henrique" onClick={handleMessage}>
               <Icon name="msg" size={16} /> Message driver
             </button>
-            <button type="button" class="btn-sec" aria-label="Open route in Maps">
+            <button type="button" class="btn-sec" aria-label="Open route in Maps" onClick={handleMaps}>
               <Icon name="nav" size={14} /> Open in Maps
             </button>
           </div>
         </div>
-        <div class="upnext">
-          <div class="up-item">
-            <div class="ico">
-              <Icon name="bed" size={16} />
-            </div>
-            <div class="body">
-              <div class="nm">Casa do Vale · check-in</div>
-              <div class="tm">Day 1 · 02:30</div>
-            </div>
+
+        <Show when={sheetExpanded()}>
+          <div class="upnext">
+            <For each={UPCOMING}>
+              {(item) => (
+                <div class="up-item" tabindex="0" role="listitem">
+                  <div class="ico">
+                    <Icon name={item.icon} size={16} />
+                  </div>
+                  <div class="body">
+                    <div class="nm">{item.name}</div>
+                    <div class="tm">{item.time}</div>
+                  </div>
+                </div>
+              )}
+            </For>
           </div>
-          <div class="up-item">
-            <div class="ico">
-              <Icon name="hike" size={16} />
-            </div>
-            <div class="body">
-              <div class="nm">Douro vineyard walk</div>
-              <div class="tm">Day 2 · 09:00</div>
-            </div>
-          </div>
-          <div class="up-item">
-            <div class="ico">
-              <Icon name="food" size={16} />
-            </div>
-            <div class="body">
-              <div class="nm">Tasca dinner · Lisbon</div>
-              <div class="tm">Day 3 · 22:30</div>
-            </div>
-          </div>
-          <div class="up-item">
-            <div class="ico">
-              <Icon name="car" size={16} />
-            </div>
-            <div class="body">
-              <div class="nm">Train · Lisbon → Porto</div>
-              <div class="tm">Day 3 · 14:08</div>
-            </div>
-          </div>
-        </div>
+        </Show>
       </div>
     </div>
   );
