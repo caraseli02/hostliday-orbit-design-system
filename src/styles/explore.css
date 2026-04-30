@@ -1162,4 +1162,10 @@
   .expand-chevron {
     transition: none;
   }
+  .slotting {
+    transition: none !important;
+  }
+  .parse-progress-fill {
+    transition: none !important;
+  }
 }

@@ -1,4 +1,4 @@
-import { For, Show, createSignal, createMemo } from "solid-js";
+import { For, Show, createSignal, createMemo, onCleanup } from "solid-js";
 import Icon from "./Icon";
 import { useTrip, matchesFilter, safeHref } from "../state";
 
@@ -299,6 +299,14 @@ export default function Explore(props) {
 
   const unfilteredCount = createMemo(() => items.length);
 
+  /* Track timers for cleanup */
+  let activeInterval = null;
+  let activeTimeout = null;
+  onCleanup(() => {
+    if (activeInterval) clearInterval(activeInterval);
+    if (activeTimeout) clearTimeout(activeTimeout);
+  });
+
   const onPaste = (raw) => {
     if (!raw || !raw.trim()) return;
 
@@ -312,18 +320,21 @@ export default function Explore(props) {
 
     /* Animate progress bar over 1.4s */
     let progress = 0;
-    const interval = setInterval(() => {
+    activeInterval = setInterval(() => {
       progress += 2;
       if (progress >= 100) {
         progress = 100;
-        clearInterval(interval);
+        clearInterval(activeInterval);
+        activeInterval = null;
       }
       setParseProgress(progress);
     }, 28);
 
     /* After animation, add item and show toast */
-    setTimeout(() => {
-      clearInterval(interval);
+    activeTimeout = setTimeout(() => {
+      clearInterval(activeInterval);
+      activeInterval = null;
+      activeTimeout = null;
       setParseProgress(100);
       addItem({ raw: raw.trim(), source: "paste", tripId: activeTripId(), kind, kindLabel, kindIcon });
       setParsing(false);
