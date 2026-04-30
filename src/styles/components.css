@@ -259,7 +259,7 @@
   margin-top: 8px;
   padding: 8px 20px;
   background: var(--hostliday-red-bright);
-  color: #fff;
+  color: var(--neutral-0);
   border: none;
   border-radius: 8px;
   cursor: pointer;

@@ -208,7 +208,7 @@
   pointer-events: none;
 }
 .shell-accent-explore {
-  color: #d4a574;
+  color: var(--status-held, #b2822e);
   opacity: 0.35;
 }
 .shell-accent-compose {
