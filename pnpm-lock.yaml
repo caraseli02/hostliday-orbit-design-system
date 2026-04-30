@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@solidjs/router':
-        specifier: ^0.16.1
-        version: 0.16.1(solid-js@1.9.12)
       solid-js:
         specifier: ^1.9.5
         version: 1.9.12
@@ -1771,6 +1768,7 @@ snapshots:
   '@solidjs/router@0.16.1(solid-js@1.9.12)':
     dependencies:
       solid-js: 1.9.12
+    optional: true
 
   '@solidjs/testing-library@0.8.10(@solidjs/router@0.16.1(solid-js@1.9.12))(solid-js@1.9.12)':
     dependencies:

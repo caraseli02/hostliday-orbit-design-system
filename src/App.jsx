@@ -1,5 +1,4 @@
 import { createSignal, Show, ErrorBoundary, createEffect } from "solid-js";
-import { useNavigate, useLocation } from "@solidjs/router";
 import { TripProvider } from "./state";
 import Shell from "./components/Shell";
 import Footer from "./components/Footer";
@@ -14,6 +13,12 @@ import Components from "./components/Components";
 
 const FULL_VIEWPORT = new Set(["navigate"]);
 
+function getSurfaceFromHash() {
+  const hash = window.location.hash.slice(1); // remove #
+  if (!hash || hash === "/") return "overview";
+  return hash.replace(/^\//, "");
+}
+
 function SurfaceError(props) {
   return (
     <div class="surface-error" role="alert">
@@ -24,29 +29,25 @@ function SurfaceError(props) {
   );
 }
 
-function getSurfaceFromPath(path) {
-  if (!path || path === "/") return "overview";
-  return path.replace(/^\//, "");
-}
-
 export default function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [surface, setSurface] = createSignal(getSurfaceFromHash());
 
-  const [surface, setSurface] = createSignal(
-    getSurfaceFromPath(location.pathname),
-  );
-
-  // Sync URL → signal on browser back/forward
-  createEffect(() => {
-    const s = getSurfaceFromPath(location.pathname);
+  // Listen for hash changes (browser back/forward)
+  const onHashChange = () => {
+    const s = getSurfaceFromHash();
     if (s !== surface()) setSurface(s);
-  });
+  };
+  window.addEventListener("hashchange", onHashChange);
 
   // Navigate to surface (updates signal + URL hash)
   const navigateToSurface = (s) => {
     setSurface(s);
-    navigate(s === "overview" ? "/" : `/${s}`);
+    const hash = s === "overview" ? "" : s;
+    window.location.hash = hash ? `#${hash}` : "";
+    if (!hash) {
+      // Clear the hash completely
+      history.pushState(null, "", window.location.pathname);
+    }
   };
 
   // Focus management: move focus to main on surface change
