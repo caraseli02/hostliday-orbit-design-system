@@ -45,11 +45,11 @@ const PARSE_PILL = {
 function detectKind(raw) {
   if (!raw) return "note";
   const lower = raw.toLowerCase();
-  if (/airbnb|booking\.com|vrbo|hotel|hostel|apartment|stay/i.test(lower)) return "stay";
-  if (/flight|ryanair|easyjet|lufthansa|ba\.com|british-airways/i.test(lower)) return "flight";
-  if (/restaurant|cafe|bar|taverna|tasca|food|dinner|lunch|breakfast|menu/i.test(lower)) return "food";
-  if (/hike|walk|tour|museum|activity|beach|vineyard|experience/i.test(lower)) return "activity";
-  if (/instagram\.com|google\.com\/maps|tripadvisor|yelp/i.test(lower)) return "activity";
+  if (/airbnb|booking\.com|vrbo|hotel|hostel|apartment|stay/.test(lower)) return "stay";
+  if (/flight|ryanair|easyjet|lufthansa|ba\.com|british-airways/.test(lower)) return "flight";
+  if (/restaurant|cafe|bar|taverna|tasca|food|dinner|lunch|breakfast|menu/.test(lower)) return "food";
+  if (/hike|walk|tour|museum|activity|beach|vineyard|experience/.test(lower)) return "activity";
+  if (/instagram\.com|google\.com\/maps|tripadvisor|yelp/.test(lower)) return "activity";
   return "note";
 }
 
@@ -79,13 +79,15 @@ function StreamItem(props) {
     return idx > -1 ? raw.slice(0, idx) : raw;
   };
 
+  let slotTimer;
   const handleSlot = () => {
     setSlotting(true);
-    setTimeout(() => {
+    slotTimer = setTimeout(() => {
       slotItemToTrip(item().id, activeTripId());
       setSlotting(false);
     }, 400);
   };
+  onCleanup(() => { if (slotTimer) clearTimeout(slotTimer); });
 
   const isMatch = () => {
     if (!props.query) return false;
@@ -103,7 +105,7 @@ function StreamItem(props) {
       class={`stream-item parse-${item().parseStatus || "parsed"} ${expanded() ? "expanded" : ""} ${slotting() ? "slotting" : ""} ${isMatch() ? "search-match" : ""}`}
       data-type={item().source}
     >
-      <div class="item-header" onClick={() => setExpanded(!expanded())} role="button" tabindex="0">
+      <div class="item-header" onClick={() => setExpanded(!expanded())} role="button" tabindex="0" aria-expanded={expanded()} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setExpanded(!expanded()); } }}>
         <div class="item-meta">
           <span class="item-src">
             <Icon name={sourceIcon(item().source)} size={10} /> {item().source}
@@ -263,7 +265,7 @@ function Filters(props) {
         />
         <Show when={props.query()}>
           <button type="button" class="search-clear" onClick={() => props.setQuery("")} aria-label="Clear search">
-            <Icon name="trash" size={12} />
+            <Icon name="x" size={12} />
           </button>
         </Show>
       </div>
