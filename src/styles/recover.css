@@ -174,8 +174,8 @@
   border-color: var(--status-confirmed);
   background: rgba(31, 122, 77, 0.04);
 }
-.o-cta .confirmed-btn {
-  background: var(--status-confirmed) !important;
+.rec-opt.confirmed .o-cta .primary {
+  background: var(--status-confirmed);
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -690,19 +690,9 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .rec-opt.suggested {
-    animation: none !important;
-  }
-  .act {
-    transition: none !important;
-  }
-  .o-cta .confirmed-btn svg {
-    animation: none !important;
-  }
-  .escalate-av {
-    animation: none !important;
-  }
-  .concierge-bio-wrapper {
-    transition: none !important;
-  }
+  .act { opacity: 1; transform: none; transition: none; }
+  .rec-opt.suggested { animation: none; }
+  .escalate-av { animation: none; }
+  .concierge-bio-wrapper { transition: none; }
+  .o-cta .confirmed-btn svg { animation: none; }
 }

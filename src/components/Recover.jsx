@@ -2,6 +2,8 @@ import { createSignal, For, Show, onMount, onCleanup } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
 
+const CONCIERGE = "Sara R.";
+
 const ACTIONS = [
   {
     id: "a1",
@@ -85,7 +87,7 @@ function Action(props) {
               </>
             }
           >
-            <span class="av h">SR</span>Standing by · Sara R., on-call concierge
+            <span class="av h">SR</span>Standing by · {CONCIERGE}, on-call concierge
           </Show>
           <Show when={a().why}>
             <button type="button" class="act-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
@@ -112,11 +114,11 @@ export default function Recover() {
   };
 
   const handleChat = () => {
-    showToast({ message: "Opening chat with Sara R…" });
+    showToast({ message: `Opening chat with ${CONCIERGE}…` });
   };
 
   const handleCall = () => {
-    showToast({ message: "Calling Sara R.…" });
+    showToast({ message: `Calling ${CONCIERGE}…` });
   };
 
   return (
@@ -125,7 +127,7 @@ export default function Recover() {
         <div class="concierge-avatar">SR</div>
         <div class="concierge-body">
           <div class="concierge-line">
-            <b>Sara R.</b> · on-call concierge
+            <b>{CONCIERGE}</b> · on-call concierge
             <span class="concierge-meta">· 38s avg pickup · EN/PT</span>
           </div>
           <button type="button"
