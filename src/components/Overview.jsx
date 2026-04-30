@@ -1,7 +1,6 @@
 import { Show, For } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
-import Icon from "./Icon";
 
 const STEPS = [
   {
