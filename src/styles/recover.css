@@ -687,3 +687,22 @@
   align-items: center;
   gap: 8px;
 }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rec-opt.suggested {
+    animation: none !important;
+  }
+  .act {
+    transition: none !important;
+  }
+  .o-cta .confirmed-btn svg {
+    animation: none !important;
+  }
+  .escalate-av {
+    animation: none !important;
+  }
+  .concierge-bio-wrapper {
+    transition: none !important;
+  }
+}

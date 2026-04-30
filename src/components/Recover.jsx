@@ -1,4 +1,4 @@
-import { createSignal, For, Show, onMount } from "solid-js";
+import { createSignal, For, Show, onMount, onCleanup } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
 
@@ -56,12 +56,16 @@ function Action(props) {
   const [visible, setVisible] = createSignal(false);
   const a = () => props.action;
 
+  let staggerTimer = null;
   onMount(() => {
-    setTimeout(() => setVisible(true), props.index * 120);
+    staggerTimer = setTimeout(() => setVisible(true), props.index * 120);
+  });
+  onCleanup(() => {
+    if (staggerTimer) clearTimeout(staggerTimer);
   });
 
   return (
-    <div class={`act${visible() ? " act-visible" : ""}`} aria-hidden={!visible()}>
+    <div class={`act${visible() ? " act-visible" : ""}`}>
       <div class="time">{a().time}</div>
       <div class="marker">
         <div class={`d ${a().dot}`} />
