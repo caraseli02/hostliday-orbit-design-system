@@ -25,6 +25,7 @@ export default [
         Map: "readonly",
         Date: "readonly",
         Math: "readonly",
+        history: "readonly",
       },
     },
     rules: {
