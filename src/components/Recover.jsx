@@ -1,5 +1,8 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For, Show, onMount, onCleanup } from "solid-js";
 import Icon from "./Icon";
+import { useTrip } from "../state";
+
+const CONCIERGE = "Sara R.";
 
 const ACTIONS = [
   {
@@ -52,9 +55,19 @@ const ACTIONS = [
 
 function Action(props) {
   const [open, setOpen] = createSignal(false);
+  const [visible, setVisible] = createSignal(false);
   const a = () => props.action;
+
+  let staggerTimer = null;
+  onMount(() => {
+    staggerTimer = setTimeout(() => setVisible(true), props.index * 120);
+  });
+  onCleanup(() => {
+    if (staggerTimer) clearTimeout(staggerTimer);
+  });
+
   return (
-    <div class="act">
+    <div class={`act${visible() ? " act-visible" : ""}`}>
       <div class="time">{a().time}</div>
       <div class="marker">
         <div class={`d ${a().dot}`} />
@@ -74,7 +87,7 @@ function Action(props) {
               </>
             }
           >
-            <span class="av h">SR</span>Standing by · Sara R., on-call concierge
+            <span class="av h">SR</span>Standing by · {CONCIERGE}, on-call concierge
           </Show>
           <Show when={a().why}>
             <button type="button" class="act-why" aria-expanded={open()} onClick={() => setOpen((o) => !o)}>
@@ -91,7 +104,22 @@ function Action(props) {
 }
 
 export default function Recover() {
+  const { showToast } = useTrip();
   const [bioOpen, setBioOpen] = createSignal(false);
+  const [confirmedId, setConfirmedId] = createSignal(null);
+
+  const handleSwitch = (id, name) => {
+    setConfirmedId(id);
+    showToast({ message: `Switched to ${name} — confirmed.` });
+  };
+
+  const handleChat = () => {
+    showToast({ message: `Opening chat with ${CONCIERGE}…` });
+  };
+
+  const handleCall = () => {
+    showToast({ message: `Calling ${CONCIERGE}…` });
+  };
 
   return (
     <div class="rec-shell">
@@ -99,7 +127,7 @@ export default function Recover() {
         <div class="concierge-avatar">SR</div>
         <div class="concierge-body">
           <div class="concierge-line">
-            <b>Sara R.</b> · on-call concierge
+            <b>{CONCIERGE}</b> · on-call concierge
             <span class="concierge-meta">· 38s avg pickup · EN/PT</span>
           </div>
           <button type="button"
@@ -109,17 +137,17 @@ export default function Recover() {
           >
             {bioOpen() ? "Hide bio" : "About Sara"}
           </button>
-          <Show when={bioOpen()}>
+          <div class={`concierge-bio-wrapper${bioOpen() ? " open" : ""}`}>
             <div class="concierge-bio">
               7 years at Belmond Reid's, then Hostliday since launch. Lisbon-based. Handles ~12
               disruptions / day across the Iberia desk. Average resolution: 8 minutes.
             </div>
-          </Show>
+          </div>
         </div>
-        <button type="button" class="concierge-chat">
+        <button type="button" class="concierge-chat" onClick={handleChat} aria-label="Chat with Sara R.">
           <Icon name="msg" size={14} /> Chat
         </button>
-        <button type="button" class="concierge-call">
+        <button type="button" class="concierge-call" onClick={handleCall} aria-label="Call Sara R.">
           <Icon name="phone" size={14} /> Call
         </button>
       </div>
@@ -166,8 +194,10 @@ export default function Recover() {
           </div>
         </div>
         <div class="rec-opts">
-          <article class="rec-opt suggested">
-            <div class="recommend">Suggested</div>
+          <article class={`rec-opt${confirmedId() === "ic522" ? " confirmed" : " suggested"}`}>
+            <Show when={confirmedId() !== "ic522"}>
+              <div class="recommend">Suggested</div>
+            </Show>
             <div class="o-eye">
               <Icon name="train" size={12} style={{"vertical-align":"middle"}} /> Train · CP IC 522
             </div>
@@ -196,12 +226,21 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button type="button" class="primary">Switch · one tap</button>
+              <Show
+                when={confirmedId() === "ic522"}
+                fallback={
+                  <button type="button" class="primary" onClick={() => handleSwitch("ic522", "CP IC 522")}>Switch · one tap</button>
+                }
+              >
+                <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
+                  <Icon name="check" size={14} /> Confirmed
+                </button>
+              </Show>
               <button type="button" class="ghost">Details</button>
             </div>
           </article>
 
-          <article class="rec-opt">
+          <article class={`rec-opt${confirmedId() === "ic524" ? " confirmed" : ""}`}>
             <div class="o-eye">
               <Icon name="train" size={12} style={{"vertical-align":"middle"}} /> Train · CP IC 524
             </div>
@@ -230,12 +269,21 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button type="button" class="primary">Switch</button>
+              <Show
+                when={confirmedId() === "ic524"}
+                fallback={
+                  <button type="button" class="primary" onClick={() => handleSwitch("ic524", "CP IC 524")}>Switch</button>
+                }
+              >
+                <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
+                  <Icon name="check" size={14} /> Confirmed
+                </button>
+              </Show>
               <button type="button" class="ghost">Details</button>
             </div>
           </article>
 
-          <article class="rec-opt">
+          <article class={`rec-opt${confirmedId() === "flixbus" ? " confirmed" : ""}`}>
             <div class="o-eye">
               <Icon name="bus" size={12} style={{"vertical-align":"middle"}} /> Bus · FlixBus 7711
             </div>
@@ -264,7 +312,16 @@ export default function Recover() {
               </div>
             </div>
             <div class="o-cta">
-              <button type="button" class="primary">Switch</button>
+              <Show
+                when={confirmedId() === "flixbus"}
+                fallback={
+                  <button type="button" class="primary" onClick={() => handleSwitch("flixbus", "FlixBus 7711")}>Switch</button>
+                }
+              >
+                <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
+                  <Icon name="check" size={14} /> Confirmed
+                </button>
+              </Show>
               <button type="button" class="ghost">Details</button>
             </div>
           </article>
@@ -276,23 +333,23 @@ export default function Recover() {
           <h2 class="rec-sec-title">What I've done in the last 4 minutes</h2>
         </div>
         <div class="actions-tl">
-          <For each={ACTIONS}>{(a) => <Action action={a} />}</For>
+          <For each={ACTIONS}>{(a, i) => <Action action={a} index={i()} />}</For>
         </div>
       </section>
 
       <div class="escalate" role="status" aria-live="polite">
         <div class="agents">
-          <div class="av">SR</div>
-          <div class="av">JM</div>
-          <div class="av">AT</div>
+          <div class="av escalate-av">SR</div>
+          <div class="av escalate-av">JM</div>
+          <div class="av escalate-av">AT</div>
         </div>
         <div class="e-msg">
           <b>3 humans on call right now</b> · avg pickup 38 sec · all speak EN/PT
         </div>
-        <button type="button" class="chat">
+        <button type="button" class="chat" onClick={handleChat} aria-label="Chat with Sara R.">
           <Icon name="msg" size={14} /> Chat with Sara
         </button>
-        <button type="button" class="call">
+        <button type="button" class="call" onClick={handleCall} aria-label="Call Sara R.">
           <Icon name="phone" size={14} /> Call now
         </button>
       </div>

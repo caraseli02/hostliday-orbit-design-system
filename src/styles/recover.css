@@ -168,6 +168,29 @@
   box-shadow:
     var(--shadow-card),
     0 0 0 1px rgba(31, 122, 77, 0.12);
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+.rec-opt.confirmed {
+  border-color: var(--status-confirmed);
+  background: rgba(31, 122, 77, 0.04);
+}
+.rec-opt.confirmed .o-cta .primary {
+  background: var(--status-confirmed);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.o-cta .confirmed-btn svg {
+  animation: check-pop 300ms ease;
+}
+@keyframes subtle-pulse {
+  0%, 100% { box-shadow: var(--shadow-card), 0 0 0 1px rgba(31, 122, 77, 0.12); }
+  50% { box-shadow: var(--shadow-card), 0 0 0 3px rgba(31, 122, 77, 0.18); }
+}
+@keyframes check-pop {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.3); }
+  100% { transform: scale(1); }
 }
 .recommend {
   display: inline-block;
@@ -240,7 +263,7 @@
   cursor: pointer;
 }
 
-/* Action timeline */
+/* Action timeline — staggered entrance */
 .actions-tl {
   border-left: 2px solid var(--border-1);
   margin-left: 8px;
@@ -250,6 +273,13 @@
   gap: 14px;
   padding: 12px 0 12px 20px;
   position: relative;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+.act-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .act .time {
   font: 500 12px var(--font-mono);
@@ -340,11 +370,11 @@
   margin-top: 6px;
   padding: 8px 10px;
   border-radius: 6px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(190, 0, 0, 0.04);
+  border: 1px solid rgba(190, 0, 0, 0.12);
   font: 400 12px var(--font-body);
   line-height: 1.5;
   color: var(--fg-2);
-  border-left: 2px solid var(--hostliday-red-500);
 }
 
 /* Walkthrough bar */
@@ -457,7 +487,7 @@
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.04),
     0 8px 24px -12px rgba(0, 0, 0, 0.1);
-  border-left: 3px solid var(--status-live);
+  border-top: 3px solid var(--status-live);
   position: sticky;
   top: calc(var(--shell-h, 100px) + 8px);
   z-index: 40;
@@ -510,6 +540,15 @@
   outline: 2px solid var(--hostliday-red-500);
   outline-offset: 2px;
   border-radius: 4px;
+}
+/* Bio expand — smooth height transition */
+.concierge-bio-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease;
+}
+.concierge-bio-wrapper.open {
+  max-height: 120px;
 }
 .concierge-bio {
   margin-top: 8px;
@@ -605,6 +644,17 @@
   margin-left: -10px;
   background: var(--status-held);
 }
+/* Escalation avatar float animation */
+.escalate-av {
+  animation: av-float 3s ease-in-out infinite;
+}
+.escalate .agents .av:nth-child(1) { animation-delay: 0s; }
+.escalate .agents .av:nth-child(2) { animation-delay: 0.4s; }
+.escalate .agents .av:nth-child(3) { animation-delay: 0.8s; }
+@keyframes av-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
 .escalate .e-msg {
   flex: 1;
   font-size: 14px;
@@ -636,4 +686,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .act { opacity: 1; transform: none; transition: none; }
+  .rec-opt.suggested { animation: none; }
+  .escalate-av { animation: none; }
+  .concierge-bio-wrapper { transition: none; }
+  .o-cta .confirmed-btn svg { animation: none; }
 }
