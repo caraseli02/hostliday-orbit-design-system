@@ -1,4 +1,4 @@
-import { createSignal, Show, For, onMount } from "solid-js";
+import { createSignal, Show, For, onMount, onCleanup } from "solid-js";
 import Icon from "./Icon";
 import { useTrip } from "../state";
 
@@ -150,6 +150,10 @@ export default function Navigate(props) {
     };
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    onCleanup(() => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+    });
   }
 
   function toggleSheet() {
@@ -186,7 +190,7 @@ export default function Navigate(props) {
         </div>
       </div>
 
-      <div class="nav-fab">
+      <div class="nav-fab" role="group" aria-label="Map controls">
         <button type="button" title="Re-center" aria-label="Re-center map" onClick={reCenter}>
           <Icon name="locate" />
         </button>
@@ -203,8 +207,17 @@ export default function Navigate(props) {
         classList={{ "glass nav-sheet": true, "sheet-expanded": sheetExpanded(), "sheet-peek": !sheetExpanded() }}
         role="region"
         aria-label="Current trip leg details"
+        aria-expanded={sheetExpanded()}
       >
-        <div class="sheet-handle" onPointerDown={onSheetPointerDown} onClick={toggleSheet}>
+        <div
+          class="sheet-handle"
+          onPointerDown={onSheetPointerDown}
+          onClick={toggleSheet}
+          tabIndex={0}
+          role="button"
+          aria-label={sheetExpanded() ? "Collapse details" : "Expand details"}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSheet(); } }}
+        >
           <span class="handle-bar" />
         </div>
 
@@ -244,10 +257,10 @@ export default function Navigate(props) {
         </div>
 
         <Show when={sheetExpanded()}>
-          <div class="upnext">
+          <div class="upnext" role="list">
             <For each={UPCOMING}>
               {(item) => (
-                <div class="up-item" tabindex="0" role="listitem">
+                <div class="up-item" tabIndex={0} role="listitem">
                   <div class="ico">
                     <Icon name={item.icon} size={16} />
                   </div>
