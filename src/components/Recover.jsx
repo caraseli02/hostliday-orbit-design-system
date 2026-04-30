@@ -102,8 +102,8 @@ export default function Recover() {
   const [bioOpen, setBioOpen] = createSignal(false);
   const [confirmedId, setConfirmedId] = createSignal(null);
 
-  const handleSwitch = (name) => {
-    setConfirmedId(name);
+  const handleSwitch = (id, name) => {
+    setConfirmedId(id);
     showToast({ message: `Switched to ${name} — confirmed.` });
   };
 
@@ -223,7 +223,7 @@ export default function Recover() {
               <Show
                 when={confirmedId() === "ic522"}
                 fallback={
-                  <button type="button" class="primary" onClick={() => handleSwitch("CP IC 522")}>Switch · one tap</button>
+                  <button type="button" class="primary" onClick={() => handleSwitch("ic522", "CP IC 522")}>Switch · one tap</button>
                 }
               >
                 <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
@@ -266,7 +266,7 @@ export default function Recover() {
               <Show
                 when={confirmedId() === "ic524"}
                 fallback={
-                  <button type="button" class="primary" onClick={() => handleSwitch("CP IC 524")}>Switch</button>
+                  <button type="button" class="primary" onClick={() => handleSwitch("ic524", "CP IC 524")}>Switch</button>
                 }
               >
                 <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
@@ -309,7 +309,7 @@ export default function Recover() {
               <Show
                 when={confirmedId() === "flixbus"}
                 fallback={
-                  <button type="button" class="primary" onClick={() => handleSwitch("FlixBus 7711")}>Switch</button>
+                  <button type="button" class="primary" onClick={() => handleSwitch("flixbus", "FlixBus 7711")}>Switch</button>
                 }
               >
                 <button type="button" class="primary confirmed-btn" aria-label="Confirmed">
