@@ -135,6 +135,7 @@ export default function Overview(props) {
                 type="button"
                 class={`overview-surface overview-surface-${s.accent}`}
                 onClick={() => props.onNavigate(s.id)}
+                aria-label={`Navigate to ${s.name} surface`}
               >
                 <div class="os-top">
                   <div class="os-eye">{s.eye}</div>
