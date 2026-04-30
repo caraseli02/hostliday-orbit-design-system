@@ -48,6 +48,7 @@ function MapStage(props) {
       </g>
       <path class="route-done" d="M120 600 Q 240 540 320 480 T 480 340" />
       <path
+        ref={routeRef}
         class="route route-animated"
         d="M480 340 Q 580 290 660 280 T 820 220 L 920 180 L 980 130"
       />
@@ -97,19 +98,19 @@ export default function Navigate(props) {
   const [vb, setVb] = createSignal({ ...DEFAULT_VIEWBOX });
   const [sheetExpanded, setSheetExpanded] = createSignal(false);
   let sheetRef = undefined;
+  let routeRef = undefined;
   let dragStartY = 0;
   let dragDelta = 0;
 
   onMount(() => {
-    const routeEl = document.querySelector(".route-animated");
-    if (routeEl) {
-      const len = routeEl.getTotalLength();
-      routeEl.style.strokeDasharray = len;
-      routeEl.style.strokeDashoffset = len;
+    if (routeRef) {
+      const len = routeRef.getTotalLength();
+      routeRef.style.strokeDasharray = len;
+      routeRef.style.strokeDashoffset = len;
       // Force reflow then animate
-      routeEl.getBoundingClientRect();
-      routeEl.style.transition = "stroke-dashoffset 2.4s cubic-bezier(0.4, 0, 0.2, 1)";
-      routeEl.style.strokeDashoffset = "0";
+      routeRef.getBoundingClientRect();
+      routeRef.style.transition = "stroke-dashoffset 2.4s cubic-bezier(0.4, 0, 0.2, 1)";
+      routeRef.style.strokeDashoffset = "0";
     }
   });
 
