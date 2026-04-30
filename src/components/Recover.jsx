@@ -144,10 +144,10 @@ export default function Recover() {
             </div>
           </div>
         </div>
-        <button type="button" class="concierge-chat" onClick={handleChat}>
+        <button type="button" class="concierge-chat" onClick={handleChat} aria-label="Chat with Sara R.">
           <Icon name="msg" size={14} /> Chat
         </button>
-        <button type="button" class="concierge-call" onClick={handleCall}>
+        <button type="button" class="concierge-call" onClick={handleCall} aria-label="Call Sara R.">
           <Icon name="phone" size={14} /> Call
         </button>
       </div>
@@ -346,10 +346,10 @@ export default function Recover() {
         <div class="e-msg">
           <b>3 humans on call right now</b> · avg pickup 38 sec · all speak EN/PT
         </div>
-        <button type="button" class="chat" onClick={handleChat}>
+        <button type="button" class="chat" onClick={handleChat} aria-label="Chat with Sara R.">
           <Icon name="msg" size={14} /> Chat with Sara
         </button>
-        <button type="button" class="call" onClick={handleCall}>
+        <button type="button" class="call" onClick={handleCall} aria-label="Call Sara R.">
           <Icon name="phone" size={14} /> Call now
         </button>
       </div>
