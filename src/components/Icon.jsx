@@ -174,6 +174,11 @@ const PATHS = {
       <path d="M12 9v4M12 17h.01" />
     </>
   ),
+  x: (
+    <>
+      <path d="M18 6L6 18M6 6l12 12" />
+    </>
+  ),
 };
 
 export default function Icon(props) {
