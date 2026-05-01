@@ -2,7 +2,7 @@
    EXPLORE SURFACE — Interactive MVP
    ========================================================= */
 .explore-wrap {
-  background-color: var(--surface-explore, #f5f0e8);
+  background-color: var(--surface-explore, oklch(0.9568 0.0119 79.78));
   background-image:
     radial-gradient(circle at 25% 20%, rgba(190, 0, 0, 0.025) 0%, transparent 40%),
     radial-gradient(circle at 80% 60%, rgba(46, 92, 138, 0.03) 0%, transparent 45%),
@@ -25,7 +25,7 @@
   gap: 32px;
   padding: 0 40px;
   height: 64px;
-  background: var(--surface-explore, #f5f0e8);
+  background: var(--surface-explore, oklch(0.9568 0.0119 79.78));
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 .explore-brand {
@@ -324,7 +324,7 @@
   height: 100%;
   background: var(--status-live);
   border-radius: 2px;
-  transition: width 30ms linear;
+  transition: transform 30ms linear;
 }
 
 /* Trip strip */
@@ -642,14 +642,19 @@
 
 /* Item details — expand/collapse */
 .item-details {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease-orbit);
+}
+.item-details > * {
   overflow: hidden;
-  transition: max-height 320ms var(--ease-orbit), padding 220ms;
-  padding: 0 22px;
 }
 .item-details.open {
-  max-height: 600px;
+  grid-template-rows: 1fr;
   padding: 0 22px 14px;
+}
+.item-details.open > * {
+  padding: 0;
 }
 
 .item-meta {
@@ -681,7 +686,7 @@
   margin-top: 8px;
   height: 110px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #1a1f2e 0%, #2a3548 50%, #4a3530 100%);
+  background: linear-gradient(135deg, oklch(0.2417 0.0298 269.88) 0%, oklch(0.3276 0.0371 261.16) 50%, oklch(0.3513 0.0317 33.78) 100%);
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);

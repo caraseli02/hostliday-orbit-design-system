@@ -92,14 +92,14 @@
   flex-shrink: 0;
 }
 .shell-trip-dot.active {
-  background: var(--status-confirmed, #1f7a4d);
+  background: var(--status-confirmed, oklch(0.5154 0.1102 156.8));
   box-shadow: 0 0 0 3px rgba(31, 122, 77, 0.15);
 }
 .shell-trip-dot.held {
-  background: var(--status-held, #b6822e);
+  background: var(--status-held, oklch(0.6436 0.1167 75.39));
 }
 .shell-trip-dot.idea {
-  background: var(--neutral-400, #a3a2a2);
+  background: var(--neutral-400, oklch(0.6494 0.006 60));
 }
 
 .shell-trip-menu {
@@ -208,11 +208,11 @@
   pointer-events: none;
 }
 .shell-accent-explore {
-  color: var(--status-held, #b2822e);
+  color: var(--status-held, oklch(0.6436 0.1167 75.39));
   opacity: 0.35;
 }
 .shell-accent-compose {
-  color: var(--status-confirmed, #1f7a4d);
+  color: var(--status-confirmed, oklch(0.5154 0.1102 156.8));
   opacity: 0.25;
 }
 .shell-accent-recover {

@@ -35,7 +35,7 @@
 }
 .toast-icon {
   display: inline-flex;
-  color: var(--status-confirmed, #4ade80);
+  color: var(--status-confirmed, oklch(0.5154 0.1102 156.8));
 }
 .toast-msg {
   color: var(--neutral-0);

@@ -401,7 +401,7 @@
 .wt-progress-bar {
   height: 100%;
   background: var(--hostliday-red-500);
-  transition: width 80ms linear;
+  transition: transform 80ms linear;
 }
 .wt-row {
   display: flex;
@@ -496,7 +496,7 @@
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--status-live), #1f4060);
+  background: linear-gradient(135deg, var(--status-live), oklch(0.3243 0.064 254.63));
   color: var(--neutral-0);
   font: 700 18px var(--font-display);
   display: flex;
@@ -543,12 +543,15 @@
 }
 /* Bio expand — smooth height transition */
 .concierge-bio-wrapper {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+.concierge-bio-wrapper > * {
   overflow: hidden;
-  transition: max-height 300ms ease;
 }
 .concierge-bio-wrapper.open {
-  max-height: 120px;
+  grid-template-rows: 1fr;
 }
 .concierge-bio {
   margin-top: 8px;

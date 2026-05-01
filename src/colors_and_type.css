@@ -6,63 +6,55 @@
    ========================================================= */
 
 /* ---------- Webfonts ---------- */
-/* Inter: self-hosted variable font (woff2) */
-@font-face {
-  font-family: "Inter";
-  src: url("./fonts/Inter-Variable.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-/* Montserrat + JetBrains Mono: loaded via Google Fonts CDN (index.html) */
+/* Figtree + Young Serif + JetBrains Mono: loaded via Google Fonts CDN (index.html) */
 
 /* =========================================================
    CORE TOKENS
    ========================================================= */
 :root {
   /* ---------- Brand red (from Brandbook) ---------- */
-  --hostliday-red: #be0000; /* primary brand red */
-  --hostliday-red-deep: #810000; /* gradient end */
-  --hostliday-red-bright: #da0000; /* gradient start */
-  --hostliday-red-50: #fbeaea;
-  --hostliday-red-100: #f4c7c7;
-  --hostliday-red-200: #e89b9b;
-  --hostliday-red-300: #d86161;
-  --hostliday-red-400: #cc2929;
-  --hostliday-red-500: #be0000;
-  --hostliday-red-600: #a30000;
-  --hostliday-red-700: #810000;
-  --hostliday-red-800: #5c0000;
-  --hostliday-red-900: #3d0000;
+  --hostliday-red: oklch(0.5033 0.2065 29.23); /* primary brand red */
+  --hostliday-red-deep: oklch(0.3788 0.1554 29.23); /* gradient end */
+  --hostliday-red-bright: oklch(0.5579 0.2289 29.23); /* gradient start */
+  --hostliday-red-50: oklch(0.9505 0.0185 17.48);
+  --hostliday-red-100: oklch(0.8688 0.0513 18.19);
+  --hostliday-red-200: oklch(0.7656 0.0927 19.42);
+  --hostliday-red-300: oklch(0.6395 0.1503 22.25);
+  --hostliday-red-400: oklch(0.5503 0.1985 26.77);
+  --hostliday-red-500: oklch(0.5033 0.2065 29.23);
+  --hostliday-red-600: oklch(0.4493 0.1844 29.23);
+  --hostliday-red-700: oklch(0.3788 0.1554 29.23);
+  --hostliday-red-800: oklch(0.2981 0.1223 29.23);
+  --hostliday-red-900: oklch(0.2261 0.0928 29.23);
 
   /* The Hostliday Gradient — defined in two angles per brandbook */
-  --hostliday-gradient-120: linear-gradient(120deg, #da0000 0%, #810000 100%);
-  --hostliday-gradient-90: linear-gradient(90deg, #da0000 0%, #810000 100%);
+  --hostliday-gradient-120: linear-gradient(120deg, oklch(0.5579 0.2289 29.23) 0%, oklch(0.3788 0.1554 29.23) 100%);
+  --hostliday-gradient-90: linear-gradient(90deg, oklch(0.5579 0.2289 29.23) 0%, oklch(0.3788 0.1554 29.23) 100%);
   --hostliday-gradient: var(--hostliday-gradient-120);
 
   /* ---------- Neutrals (warm-leaning, brandbook-anchored) ---------- */
-  --neutral-0: #ffffff;
-  --neutral-25: #fdfcfb;
-  --neutral-50: #faf8f6; /* off-white canvas */
-  --neutral-100: #f4f1ed; /* app shell canvas */
-  --neutral-150: #ece8e3;
-  --neutral-200: #e1dfdd; /* brandbook neutral */
-  --neutral-300: #c9c6c2;
-  --neutral-400: #a3a2a2; /* brandbook neutral */
-  --neutral-500: #807f7e;
-  --neutral-600: #5e5d5c;
-  --neutral-700: #3f3e3d;
-  --neutral-800: #232221;
-  --neutral-900: #0e0e0e;
-  --neutral-1000: #000000; /* brandbook black */
+  --neutral-0: oklch(1 0.005 60);
+  --neutral-25: oklch(0.9912 0.004 60);
+  --neutral-50: oklch(0.9728 0.006 60); /* off-white canvas */
+  --neutral-100: oklch(0.947 0.007 60); /* app shell canvas */
+  --neutral-150: oklch(0.9163 0.009 60);
+  --neutral-200: oklch(0.8741 0.008 60); /* brandbook neutral */
+  --neutral-300: oklch(0.7775 0.007 60);
+  --neutral-400: oklch(0.6494 0.006 60); /* brandbook neutral */
+  --neutral-500: oklch(0.5272 0.006 60);
+  --neutral-600: oklch(0.4085 0.006 60);
+  --neutral-700: oklch(0.3043 0.006 60);
+  --neutral-800: oklch(0.192 0.005 60);
+  --neutral-900: oklch(0.12 0.005 30);
+  --neutral-1000: oklch(0.12 0.005 30); /* brandbook black */
 
   /* ---------- Status (added for product) ---------- */
-  --status-confirmed: #1f7a4d; /* green: confirmed bookings */
-  --status-confirmed-bg: #e5f2ec;
-  --status-held: #b6822e; /* amber: held / pending */
-  --status-held-bg: #faf1df;
-  --status-live: #2e5c8a; /* slate-blue: in transit / live */
-  --status-live-bg: #e5eef7;
+  --status-confirmed: oklch(0.5154 0.1102 156.8); /* green: confirmed bookings */
+  --status-confirmed-bg: oklch(0.9498 0.0159 166.72);
+  --status-held: oklch(0.6436 0.1167 75.39); /* amber: held / pending */
+  --status-held-bg: oklch(0.9604 0.0256 84.59);
+  --status-live: oklch(0.4645 0.0907 250.38); /* slate-blue: in transit / live */
+  --status-live-bg: oklch(0.945 0.0155 247.99);
   --status-critical: var(--hostliday-red-500);
   --status-critical-bg: var(--hostliday-red-50);
 
@@ -72,8 +64,8 @@
   --bg-surface-alt: var(--neutral-50);
   --bg-sunken: var(--neutral-150);
   --bg-inverse: var(--neutral-1000);
-  --surface-explore: #f5f0e8;
-  --surface-navigate: #0e1117;
+  --surface-explore: oklch(0.9568 0.0119 79.78);
+  --surface-navigate: oklch(0.1773 0.0133 264.15);
 
   --fg-1: var(--neutral-1000); /* primary text */
   --fg-2: var(--neutral-700); /* secondary text */
@@ -98,8 +90,8 @@
   --protection-gradient-top: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 60%);
 
   /* ---------- Type families ---------- */
-  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Young Serif", ui-serif, Georgia, serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* ---------- Type scale (1.25 modular, +1 hero step) ---------- */
@@ -133,7 +125,7 @@
   --ls-wide: 0.04em;
   --ls-widest: 0.12em;
 
-  /* Weights (Inter / Montserrat variable) */
+  /* Weights (Figtree / Young Serif variable) */
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
@@ -171,7 +163,7 @@
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px -12px rgba(0, 0, 0, 0.1);
   --shadow-pop: 0 8px 16px -4px rgba(0, 0, 0, 0.08), 0 24px 48px -16px rgba(0, 0, 0, 0.18);
   --shadow-modal: 0 32px 64px -24px rgba(0, 0, 0, 0.3);
-  --shadow-focus: 0 0 0 3px rgba(190, 0, 0, 0.22);
+  --shadow-focus: 0 0 0 3px oklch(0.5033 0.2065 29.23 / 0.22);
 
   /* ---------- Motion ---------- */
   --ease-orbit: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -197,19 +189,19 @@
    floats over photography. Apply `.orbit-dark` to a container.
    ========================================================= */
 .orbit-dark {
-  --bg-canvas: #0e1117;
-  --bg-surface: #15181f;
-  --bg-surface-alt: #1b1f27;
-  --bg-sunken: #0a0c12;
+  --bg-canvas: oklch(0.1773 0.0133 264.15);
+  --bg-surface: oklch(0.2235 0.013 264.15);
+  --bg-surface-alt: oklch(0.2617 0.012 264.15);
+  --bg-sunken: oklch(0.1414 0.014 264.15);
 
-  --fg-1: #f5f5f4;
-  --fg-2: #bdbcba;
-  --fg-3: #8e8d8b;
-  --fg-4: #5e5d5c;
+  --fg-1: oklch(0.9672 0.003 80);
+  --fg-2: oklch(0.7643 0.005 80);
+  --fg-3: oklch(0.6035 0.006 80);
+  --fg-4: oklch(0.4789 0.002 67.77);
 
-  --border-1: rgba(255, 255, 255, 0.08);
-  --border-2: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.4);
+  --border-1: oklch(1 0 0 / 0.08);
+  --border-2: oklch(1 0 0 / 0.14);
+  --border-strong: oklch(1 0 0 / 0.4);
 
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 12px 32px -8px rgba(0, 0, 0, 0.55);
   --shadow-pop: 0 16px 48px -8px rgba(0, 0, 0, 0.65);
@@ -224,10 +216,10 @@
 /* Floating glass panel — for use over the map */
 .orbit-dark .glass,
 .glass {
-  background: rgba(20, 22, 28, 0.72);
+  background: oklch(0.1785 0.015 264.15 / 0.72);
   backdrop-filter: blur(18px) saturate(1.1);
   -webkit-backdrop-filter: blur(18px) saturate(1.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid oklch(1 0 0 / 0.08);
 }
 
 /* =========================================================
@@ -370,7 +362,7 @@ p,
 /* Link styles */
 a {
   color: var(--fg-link);
-  text-decoration-color: rgba(190, 0, 0, 0.35);
+  text-decoration-color: oklch(0.5033 0.2065 29.23 / 0.35);
   text-underline-offset: 2px;
   transition: opacity var(--dur-micro) var(--ease-orbit);
 }
@@ -382,6 +374,12 @@ a:hover {
 ::selection {
   background: var(--hostliday-red-500);
   color: var(--neutral-0);
+}
+
+/* Focus ring — all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* =========================================================

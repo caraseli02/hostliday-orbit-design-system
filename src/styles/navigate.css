@@ -6,13 +6,13 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: var(--surface-navigate, #0e1117);
+  background: var(--surface-navigate, oklch(0.1773 0.0133 264.15));
   color: var(--fg-on-dark);
 }
 .nav-map {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 30%, #1a2030 0%, #0a0c12 70%);
+  background: radial-gradient(ellipse at 30% 30%, oklch(0.2455 0.0319 268.2) 0%, oklch(0.1551 0.0133 270.44) 70%);
 }
 .map-svg {
   position: absolute;
@@ -31,10 +31,10 @@
   stroke-width: 2.5;
 }
 .map-water {
-  fill: var(--nav-water, #0f1a2a);
+  fill: var(--nav-water, oklch(0.1785 0.032 258.57));
 }
 .map-park {
-  fill: var(--nav-park, #122218);
+  fill: var(--nav-park, oklch(0.1831 0.027 155));
 }
 .route {
   stroke: var(--hostliday-red-bright);
@@ -97,7 +97,7 @@
   fill: var(--hostliday-red-bright);
 }
 .live-dot-bg {
-  fill: var(--bg-inverse, #0E1117);
+  fill: var(--bg-inverse, oklch(0.1773 0.0133 264.15));
 }
 
 .glass {
@@ -202,14 +202,19 @@
   border-radius: 20px 20px 0 0;
   padding: 0 24px 20px;
   z-index: 10;
-  transition: max-height 360ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 360ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.nav-sheet > * {
   overflow: hidden;
 }
 .sheet-peek {
-  max-height: 220px;
+  grid-template-rows: 220px;
 }
 .sheet-expanded {
-  max-height: 85vh;
+  grid-template-rows: 1fr;
 }
 
 /* Drag handle */
@@ -328,8 +333,8 @@
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
-  mask-image: linear-gradient(to right, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, oklch(0.12 0.005 30) 85%, transparent);
+  mask-image: linear-gradient(to right, oklch(0.12 0.005 30) 85%, transparent);
 }
 .up-item {
   display: flex;
