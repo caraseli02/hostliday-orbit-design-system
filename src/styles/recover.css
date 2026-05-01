@@ -401,7 +401,7 @@
 .wt-progress-bar {
   height: 100%;
   background: var(--hostliday-red-500);
-  transition: width 80ms linear;
+  transition: transform 80ms linear;
 }
 .wt-row {
   display: flex;
@@ -496,7 +496,7 @@
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--status-live), #1f4060);
+  background: linear-gradient(135deg, var(--status-live), oklch(0.3243 0.064 254.63));
   color: var(--neutral-0);
   font: 700 18px var(--font-display);
   display: flex;
@@ -543,12 +543,15 @@
 }
 /* Bio expand — smooth height transition */
 .concierge-bio-wrapper {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+.concierge-bio-wrapper > * {
   overflow: hidden;
-  transition: max-height 300ms ease;
 }
 .concierge-bio-wrapper.open {
-  max-height: 120px;
+  grid-template-rows: 1fr;
 }
 .concierge-bio {
   margin-top: 8px;
@@ -695,4 +698,103 @@
   .escalate-av { animation: none; }
   .concierge-bio-wrapper { transition: none; }
   .o-cta .confirmed-btn svg { animation: none; }
+}
+
+/* ---- Recover mobile responsive ---- */
+@media (max-width: 768px) {
+  .rec-bar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .incident-title {
+    font-size: 28px;
+  }
+  .incident-meta {
+    gap: 20px;
+  }
+  .o-stats {
+    gap: 16px;
+  }
+  .o-cta {
+    flex-wrap: wrap;
+  }
+  .o-cta .primary,
+  .o-cta .ghost {
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+    min-width: 120px;
+  }
+  .incident {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .incident-title {
+    font-size: 24px;
+  }
+  .incident-meta {
+    gap: 14px;
+  }
+  .o-stats {
+    gap: 12px;
+  }
+  .rec-bar {
+    gap: 8px;
+    padding-bottom: 16px;
+  }
+  .actions-tl {
+    margin-left: 4px;
+  }
+  .act {
+    gap: 10px;
+    padding: 10px 0 10px 14px;
+  }
+  .rec-opt {
+    padding: 16px;
+  }
+  .rec-sec-title {
+    font-size: 18px;
+  }
+}
+
+/* Escalation bar: stack on narrow screens */
+@media (max-width: 600px) {
+  .escalate {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px var(--gutter-mobile);
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .escalate .e-msg {
+    flex: 1 1 100%;
+    font-size: 13px;
+  }
+  .escalate button.call,
+  .escalate button.chat {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+
+/* Safe area bottom for walkthrough bar */
+@media (max-width: 640px) {
+  .walkthrough-bar {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Touch manipulation for all interactive recover elements */
+.rec-opt,
+.o-cta .primary,
+.o-cta .ghost,
+.concierge-chat,
+.concierge-call,
+.concierge-bio-btn,
+.act-why,
+.escalate button.call,
+.escalate button.chat,
+.wt-btn {
+  touch-manipulation: manipulation;
 }
