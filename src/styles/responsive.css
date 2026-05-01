@@ -29,8 +29,9 @@
     font-size: 12px;
   }
 
+  /* Overview h1: intermediate clamp for tablets */
   .home h1 {
-    font-size: clamp(32px, 8vw, 48px);
+    font-size: clamp(28px, 7vw, 48px);
   }
 
   .home-lead {
@@ -45,8 +46,9 @@
     margin-top: 48px;
   }
 
+  /* Overview surfaces: 2-col on tablets for less vertical scroll */
   .overview-surfaces {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
 
@@ -107,6 +109,11 @@
     margin-bottom: 36px;
   }
 
+  /* Overview surfaces: 1-col on small mobile */
+  .overview-surfaces {
+    grid-template-columns: 1fr;
+  }
+
   .surface-grid {
     gap: 12px;
   }
@@ -127,4 +134,27 @@
   .recover-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Overview h1: smaller on small mobile */
+  .home h1 {
+    font-size: clamp(24px, 9vw, 36px);
+  }
+}
+
+/* ---- Safe area insets ---- */
+@supports (padding: env(safe-area-inset-top)) {
+  .shell {
+    padding-top: env(safe-area-inset-top);
+  }
+  .shell-row-trip {
+    height: calc(var(--shell-row-1) + env(safe-area-inset-top));
+  }
+}
+
+/* ---- Global touch manipulation for buttons and links ---- */
+button,
+a,
+[role="button"],
+input[type="submit"] {
+  touch-manipulation: manipulation;
 }

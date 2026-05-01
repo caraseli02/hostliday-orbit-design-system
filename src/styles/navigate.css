@@ -386,3 +386,55 @@
     transition: none;
   }
 }
+
+/* ---- Navigate mobile responsive ---- */
+
+/* Bottom sheet: stack leg info + actions on narrow screens */
+@media (max-width: 540px) {
+  .sheet-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .leg-actions {
+    flex-direction: row;
+    width: 100%;
+  }
+  .leg-actions .btn-pri,
+  .leg-actions .btn-sec {
+    flex: 1;
+    justify-content: center;
+  }
+  .leg-title {
+    font-size: 20px;
+  }
+  .nav-sheet {
+    padding: 0 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    border-radius: 16px 16px 0 0;
+  }
+  .nav-topbar {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+  .nav-fab {
+    right: 10px;
+    bottom: 240px;
+  }
+  .nav-fab button {
+    width: 44px;
+    height: 44px;
+  }
+  .leg-meta {
+    gap: 16px;
+  }
+}
+
+/* Touch manipulation for all interactive navigate elements */
+.btn-pri,
+.btn-sec,
+.help-btn,
+.nav-fab button,
+.up-item,
+.sheet-handle {
+  touch-manipulation: manipulation;
+}

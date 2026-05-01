@@ -235,3 +235,37 @@
     opacity: 0.55;
   }
 }
+
+/* ---- Shell compactness: very small screens ---- */
+@media (max-width: 400px) {
+  :root {
+    --shell-row-1: 44px;
+    --shell-row-2: 38px;
+    --shell-h: 82px;
+  }
+  .shell-trip-btn {
+    padding: 4px 8px 4px 6px;
+    font-size: 11px;
+  }
+  .shell-trip-name {
+    max-width: 100px;
+  }
+  .shell-tab {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+  .shell-logo {
+    height: 18px;
+  }
+  .shell-trip-menu {
+    min-width: 260px;
+  }
+}
+
+/* Touch manipulation for all interactive shell elements */
+.shell-trip-btn,
+.shell-tab,
+.shell-trip-opt,
+.shell-skip {
+  touch-manipulation: manipulation;
+}

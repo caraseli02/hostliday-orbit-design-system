@@ -1078,10 +1078,12 @@
     scrollbar-width: thin;
     gap: 12px;
     padding: 6px;
+    scroll-snap-type: x mandatory;
   }
   .trip-card {
     min-width: 200px;
     flex: 0 0 auto;
+    scroll-snap-align: start;
   }
   .trip-card + .trip-card {
     border-left: none;
@@ -1129,7 +1131,7 @@
     font-size: 15px;
   }
   .tripstrip {
-    margin-top: 32px;
+    margin-top: 24px;
     border-radius: 12px;
   }
   .trip-card {
@@ -1153,6 +1155,22 @@
     padding: 4px 8px;
     font-size: 11px;
   }
+  /* Signoff: stack vertically on mobile */
+  .signoff {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 40px;
+  }
+  .signoff .signoff-line {
+    display: none;
+  }
+  /* Intake eye: smaller on mobile */
+  .intake-eye {
+    font-size: 10px;
+    padding: 4px 10px 4px 6px;
+    margin-bottom: 20px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1173,4 +1191,17 @@
   .parse-progress-fill {
     transition: none !important;
   }
+}
+
+/* Touch manipulation for all interactive explore elements */
+.drop-paste-btn,
+.trip-card,
+.item-header,
+.act-btn,
+.compose-btn,
+.filter-chip,
+.filter-tog,
+.clear-filters-btn,
+.search-clear {
+  touch-manipulation: manipulation;
 }
